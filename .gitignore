@@ -1,0 +1,11 @@
+# Visual Studio temp something
+.vs/
+
+[Bb]in/
+[Oo]bj/
+
+logs/*
+
+*.cache
+*.user
+*.txt

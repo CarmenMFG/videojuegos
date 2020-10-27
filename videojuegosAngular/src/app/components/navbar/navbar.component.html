@@ -13,7 +13,12 @@
         </li>
       </ul>
       <span class="navbar-text">
-        Navbar text with an inline element
+        <button  *ngIf="auth.isAuthenticated$ | async; else loggedOut" 
+                 class="btn btn-outline-primary"
+                 (click)="auth.logout({ returnTo: document.location.origin })">Salir</button>
+        <button #loggedOut 
+                 class="btn btn-outline-danger"
+                 (click)="auth.loginWithRedirect()">Ingresar</button>
       </span>
     </div>
   </nav>
