@@ -11,7 +11,7 @@ namespace Videogames.Repository.Configurations
     {
         public void Configure(EntityTypeBuilder<VideoGameEntity> builder)
         {
-            builder.ToTable("VIDEOGAMES");
+            builder.ToTable("VIDEOGAME");
 
             builder.HasKey(vg => vg.Id)
                 .HasName("PK_Videogames");
@@ -34,7 +34,7 @@ namespace Videogames.Repository.Configurations
 
             builder.Property(vg => vg.ReleaseDate)
                 .HasColumnName("releasedate")
-                .HasColumnType("datetime");
+                .HasColumnType("varchar(20)");
 
             builder.Property(vg => vg.Developer)
                 .HasColumnName("developer")
@@ -58,19 +58,21 @@ namespace Videogames.Repository.Configurations
 
             builder.Property(vg => vg.CreateDate)
                .HasColumnName("createdate")
-               .HasColumnType("datetime");
+               .HasColumnType("datetime")
+               .HasDefaultValueSql("now()"); ;
 
             builder.Property(vg => vg.UpdateDate)
                .HasColumnName("updatedate")
-               .HasColumnType("datetime");
+               .HasColumnType("datetime")
+               .HasDefaultValueSql("now()");
 
             builder.Property(vg => vg.Genre)
-               .HasColumnName("genre")
-               .HasColumnType("varchar(1000)");
-
-            builder.Property(vg => vg.Distributor)
               .HasColumnName("genre")
               .HasColumnType("varchar(1000)");
+
+            builder.Property(vg => vg.Distributor)
+             .HasColumnName("distributor")
+             .HasColumnType("varchar(200)");
 
             builder.Property(vg => vg.IdPlatform)
              .HasColumnName("idplatform")

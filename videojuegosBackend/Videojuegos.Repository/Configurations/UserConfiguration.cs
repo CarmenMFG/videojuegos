@@ -23,26 +23,25 @@ namespace Videogames.Repository.Configurations
                 .HasColumnName("email")
                 .IsRequired()
                 .HasColumnType("varchar(200)");
-          
+
             builder.Property(us => us.User)
                .HasColumnName("user")
                .IsRequired()
                .HasColumnType("varchar(100)");
-          
+
             builder.Property(us => us.Password)
                .HasColumnName("password")
                .IsRequired()
                .HasColumnType("varchar(200)");
 
-             builder.Property(us => us.IdRol)
-               .HasColumnName("idrol")
-               .IsRequired()
-               .HasColumnType("int");
+            builder.Property(us => us.IdRol)
+              .HasColumnName("idrol")
+              .IsRequired()
+              .HasColumnType("int");
 
             builder.HasOne(us => us.Rol)
-             .WithMany(r => r.Users)
-             .HasForeignKey(r => r.Rol);
-             
+            .WithMany(r => r.Users)
+            .HasForeignKey(r => r.IdRol);
         }
     }
 }
