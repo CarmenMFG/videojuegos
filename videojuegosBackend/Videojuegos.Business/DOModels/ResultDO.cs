@@ -9,5 +9,10 @@ namespace Videogames.Business.DOModels
         public bool Success { get; set; }
 
         public string Message { get; set; }
+
+        public VideoGameDO CurrentVideoGame { get; set; }
+
+        public List<VideoGameDO> ListVideoGames{get;set;}
+
     }
 }

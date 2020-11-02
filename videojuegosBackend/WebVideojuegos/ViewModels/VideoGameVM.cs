@@ -20,7 +20,6 @@ namespace Videojuegos.API.ViewModels
         public string Language { get; set; }
         public int IdPlatform { get; set; }
         public int IdSupport { get; set; }
-        public string NameSupport { get; set; }
        // public int IdUser { get; set; }
         public bool IsActive { get; set; }
         public byte[] CoverPage { get; set; }

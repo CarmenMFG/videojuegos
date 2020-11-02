@@ -21,7 +21,7 @@ namespace Videogames.Business.Extensions
                 Genre = modelDO.Genre,
                 IdPlatform = modelDO.IdPlatform,
                 IdSupport = modelDO.IdSupport,
-               // IdUser = modelVM.IdUser,
+              // IdUser = modelVM.IdUser,
                 IsActive = modelDO.IsActive,
                 Language = modelDO.Language,
                 Notes = modelDO.Notes,

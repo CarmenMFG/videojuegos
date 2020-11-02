@@ -9,9 +9,9 @@ namespace Videogames.Repository.Data
         public VideogameContext(DbContextOptions<VideogameContext> options) : base(options) { }
         
         public DbSet<VideoGameEntity> VideoGames { get; set; }
-        public DbSet<PlatformEntity> Platfroms { get; set; }
+        public DbSet<PlatformEntity> Platforms { get; set; }
         public DbSet<SupportEntity> Supports { get; set; }
-        //meter soporte
+     
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

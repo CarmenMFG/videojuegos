@@ -18,14 +18,7 @@ namespace  Videojuegos.Controllers
         {
             _business = business;
         }
-        [HttpGet]
-        public ActionResult GetVideoGame(int id)
-        {
-            //_business.CreateVideoGame();
-
-            return Ok("todo ha ido bien");
-        }
-
+    
         [HttpPost]
         public ActionResult CreateVideoGame(VideoGameVM model)
         {
@@ -40,5 +33,59 @@ namespace  Videojuegos.Controllers
                 return BadRequest();
             }
         }
+        [HttpPut]
+        public ActionResult ModifyVideoGame(VideoGameVM model)
+        {
+            if (model != null)
+            {
+                var result = _business.ModifyVideoGame(model.ConvertVMToDO(), 1, "administrador");
+
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+        [HttpDelete("{idVideoGame}")]
+        public ActionResult DeactiveVideoGame(int idVideoGame)
+        {
+            if (idVideoGame != null)
+            {
+                var result = _business.DeactiveVideoGame(idVideoGame, 1, "administrador");
+
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+        [HttpGet]
+        public ActionResult GetOkVideoGame()
+        {
+             return Ok("Todo ha ido bien");
+
+        }
+       
+        [HttpGet("getAll")]
+        public ActionResult GetAllVideoGame()
+        {
+            var result = _business.GetAllVideoGame(1, "administrador");
+
+            return Ok(result);
+            
+        }
+
+        [HttpGet("{idVideoGame}")]
+        public ActionResult GetVideoGame(int idVideoGame)
+        {
+            var result = _business.GetVideoGame(idVideoGame, 1, "administrador");
+
+            return Ok(result);
+
+        }
+
+
     }
 }
