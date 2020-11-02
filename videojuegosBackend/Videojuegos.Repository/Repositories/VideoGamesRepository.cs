@@ -75,7 +75,7 @@ namespace Videojuegos.Repository.Repositories
                         videoGameModified.Description = videoGame.Description;
                         videoGameModified.Developer = videoGame.Developer;
                         videoGameModified.Distributor = videoGame.Distributor;
-                        videoGameModified.IdPlatform = videoGame.IdPlatform;
+                        videoGameModified.IdSystem = videoGame.IdSystem;
                         videoGameModified.IdSupport = videoGame.IdSupport;
                         videoGameModified.IsActive = videoGame.IsActive;
                         videoGameModified.Language = videoGame.Language;

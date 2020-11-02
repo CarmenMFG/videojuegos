@@ -18,7 +18,7 @@ namespace Videojuegos.API.ViewModels
         public string Distributor { get; set; }
         public string Region { get; set; }
         public string Language { get; set; }
-        public int IdPlatform { get; set; }
+        public int IdSystem { get; set; }
         public int IdSupport { get; set; }
        // public int IdUser { get; set; }
         public bool IsActive { get; set; }

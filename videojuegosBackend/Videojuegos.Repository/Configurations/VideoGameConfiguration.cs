@@ -67,57 +67,49 @@ namespace Videogames.Repository.Configurations
                .HasDefaultValueSql("now()");
 
             builder.Property(vg => vg.Genre)
-              .HasColumnName("genre")
-              .HasColumnType("varchar(1000)");
+               .HasColumnName("genre")
+               .HasColumnType("varchar(1000)");
 
             builder.Property(vg => vg.Distributor)
-             .HasColumnName("distributor")
-             .HasColumnType("varchar(200)");
+               .HasColumnName("distributor")
+               .HasColumnType("varchar(200)");
 
-            builder.Property(vg => vg.IdPlatform)
-             .HasColumnName("idplatform")
-             .HasColumnType("int)");
+            builder.Property(vg => vg.IdSystem)
+               .HasColumnName("idSystem")
+               .HasColumnType("int)");
 
             builder.Property(vg => vg.IdSupport)
-             .HasColumnName("idsupport")
-             .HasColumnType("int)");
+               .HasColumnName("idsupport")
+               .HasColumnType("int)");
 
             builder.Property(vg => vg.Region)
-              .HasColumnName("region")
-              .HasColumnType("varchar(20)");
+                .HasColumnName("region")
+                .HasColumnType("varchar(20)");
 
             builder.Property(vg => vg.Language)
-             .HasColumnName("language")
-             .HasColumnType("varchar(20)");
+              .HasColumnName("language")
+              .HasColumnType("varchar(20)");
 
             builder.Property(vg => vg.IdUser)
-            .HasColumnName("iduser")
-            .HasColumnType("int");
+              .HasColumnName("iduser")
+              .HasColumnType("int");
 
             builder.Property(vg => vg.IsActive)
-           .HasColumnName("isactive")
-           .HasColumnType("smallint");
+              .HasColumnName("isactive")
+              .HasColumnType("smallint");
 
-            builder.HasOne(v => v.Platform)
-                .WithMany(p => p.VideoGames)
-                .HasForeignKey(vg => vg.IdPlatform);
+            builder.HasOne(v => v.System)
+              .WithMany(p => p.VideoGames)
+              .HasForeignKey(vg => vg.IdSystem);
            
             builder.HasOne(v => v.Support)
-               .WithMany(s => s.VideoGames)
-               .HasForeignKey(vg => vg.IdSupport);
+              .WithMany(s => s.VideoGames)
+              .HasForeignKey(vg => vg.IdSupport);
 
             builder.HasOne(v => v.User)
               .WithMany(u => u.VideoGames)
               .HasForeignKey(vg => vg.IdUser);
-
-
-
-
-
-
-
-
-        }
+       }
        
 
     }

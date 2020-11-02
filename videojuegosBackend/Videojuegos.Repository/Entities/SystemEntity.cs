@@ -4,11 +4,13 @@ using System.Text;
 
 namespace Videogames.Repository.Entities
 {
-    public class PlatformEntity
+    public class SystemEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public virtual ICollection<SystemEntity>Systems { get; set; }
+        public int IdPlatform { get; set; }
+        public PlatformEntity Platform { get; set; }
+        public virtual ICollection<VideoGameEntity> VideoGames { get; set; }
     }
 }

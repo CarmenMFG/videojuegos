@@ -17,8 +17,8 @@ namespace Videogames.Repository.Entities
         public string Distributor { get; set; }
         public string Region { get; set; }
         public string Language { get; set; }
-        public int IdPlatform { get; set; }
-        public int IdSupport { get; set; } /* Cuando selecciona una de la BBDD*/
+        public int IdSystem { get; set; }
+        public int IdSupport { get; set; } 
         public int IdUser { get; set; }
         public bool IsActive { get; set; }
         public byte[] CoverPage { get; set; }
@@ -26,7 +26,7 @@ namespace Videogames.Repository.Entities
         public string ReleaseDate { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime UpdateDate { get; set; }
-        public PlatformEntity Platform { get; set; }
+        public SystemEntity System { get; set; }
         public UserEntity User { get; set; }
         public SupportEntity Support { get; set; }
 

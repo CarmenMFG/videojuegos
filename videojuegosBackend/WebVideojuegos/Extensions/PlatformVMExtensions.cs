@@ -16,7 +16,7 @@ namespace Videogames.API.Extensions
             modelDO.Description = modelVM.Description;
             modelDO.Id = modelVM.Id;
             modelDO.Name = modelVM.Name;
-            modelDO.VideoGames = modelVM.VideoGames;
+            modelDO.Systems = modelVM.Systems;
 
             return modelDO;
 
@@ -29,7 +29,7 @@ namespace Videogames.API.Extensions
             modelVM.Description = modelDO.Description;
             modelVM.Id = modelDO.Id;
             modelVM.Name = modelDO.Name;
-            modelVM.VideoGames = modelDO.VideoGames;
+            modelVM.Systems = modelDO.Systems;
 
             return modelVM;
 
