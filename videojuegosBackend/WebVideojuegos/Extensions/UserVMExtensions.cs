@@ -1,36 +1,51 @@
 ﻿using Videogames.API.ViewModels;
 
 using Videogames.Business.DOModels;
+using Videogames.Repository.Entities;
+
 namespace Videogames.API.Extensions
 {
     public static class UserVMExtensions
     {
-        public static UserDO ConvertVMToDO(this UserVM modelVM)
+        public static UserEntity ConvertVMToEntity(this UserVM modelVM)
         {
-            var modelDO = new UserDO();
+            UserEntity modelentity = null;
 
-            modelDO.Email = modelVM.Email;
-            modelDO.Id = modelVM.Id;
-            modelDO.IdRol = modelVM.IdRol;
-            modelDO.Password = modelVM.Password;
-            modelDO.Rol = modelVM.Rol;
-            modelDO.User = modelVM.User;
-            modelDO.VideoGames = modelVM.VideoGames;
+            if ( modelVM != null)
+            {
+                modelentity = new UserEntity
+                {
+                    Email = modelVM.Email,
+                    Id = modelVM.Id,
+                    IdRol = modelVM.IdRol,
+                    User = modelVM.User,
+                    PasswordHash = modelVM.PasswordHash,
+                    PasswordSalt = modelVM.PasswordSalt
+                };
 
-            return modelDO;
+            }
+            
+
+
+
+            return modelentity;
         }
-        public static UserVM ConvertDOToVM(this UserDO modelDO)
+        public static UserVM ConvertDOToVM(this UserEntity modelEntity)
         {
-            var modeVM = new UserVM();
+            UserVM modeVM = null;
+            if (modelEntity != null)
+            {
+                modeVM = new UserVM
+                {
+                    Email = modelEntity.Email,
+                    Id = modelEntity.Id,
+                    IdRol = modelEntity.IdRol,
+                    User = modelEntity.User,
+                    PasswordHash = modelEntity.PasswordHash,
+                    PasswordSalt = modelEntity.PasswordSalt
+                };
 
-            modeVM.Email = modelDO.Email;
-            modeVM.Id = modelDO.Id;
-            modeVM.IdRol = modelDO.IdRol;
-            modeVM.Password = modelDO.Password;
-            modeVM.Rol = modelDO.Rol;
-            modeVM.User = modelDO.User;
-            modeVM.VideoGames = modelDO.VideoGames;
-
+            }
             return modeVM;
         }
 

@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Videogames.Repository.Data;
 using Videogames.Repository.Entities;
 using Videogames.Repository.Interfaces;
 
-
-namespace Videojuegos.Repository.Repositories
+namespace Videogames.Repository.Repositories
 {
     public class VideoGamesRepository : IVideoGameRepository
     {
@@ -41,7 +41,7 @@ namespace Videojuegos.Repository.Repositories
             try
             {
                 VideoGameEntity videoGameDeactived = _context.VideoGames.FirstOrDefault(vg => vg.Id == idVideoGame);
-                if (videoGameDeactived.IdUser == idUser)
+                if (videoGameDeactived!=null && videoGameDeactived.IdUser == idUser)
                 {
                     videoGameDeactived.IsActive = false;
                     videoGameDeactived.UpdateDate = DateTime.Now;
@@ -61,12 +61,12 @@ namespace Videojuegos.Repository.Repositories
         }
 
         public bool ModifyVideoGameRepository(VideoGameEntity videoGame,int idUser)
-        {
+        {  
             try
             {
                 //solo saca el videojuego con ese id y q sea activo
                 VideoGameEntity videoGameModified = _context.VideoGames.Where(v => v.IsActive).FirstOrDefault(vg => vg.Id == videoGame.Id);
-                if (videoGameModified.IdUser == idUser)
+                if (videoGameModified != null && videoGameModified.IdUser == idUser)
                     {
                         videoGameModified.Genre = videoGame.Genre;
                         videoGameModified.BackCover = videoGame.BackCover;
@@ -115,35 +115,22 @@ namespace Videojuegos.Repository.Repositories
                                                 .FirstOrDefault(vg => vg.Id == idVideoGame);
             return videoGameCurrent;
         }
-       /* public SupportEntity GetSupportRepository(string name, int idUser)
+
+        public List<SystemEntity> GetAllSystemsRepository()
         {
-            SupportEntity supportCurrent = _context.Supports
-                                            .Where(sup => sup.Name.ToUpper() == name.ToUpper()
-                                            && (sup.CreatedUser==idUser))
-                                            .FirstOrDefault();
-            return supportCurrent;
+            List<SystemEntity> listSystems = _context.Systems.Include(c=>c.Platform).ToList();
+            return listSystems;
         }
 
-        public int AddSupportRepository(string name,int idUser)
+        public List<SupportEntity> GetAllSupportsRepository()
         {
-            try
-            {
-                var supportCurrent = new SupportEntity();
-                supportCurrent.CreateDate = DateTime.Now;
-                supportCurrent.UpdateDate = DateTime.Now;
-                supportCurrent.CreatedUser = idUser;
-                supportCurrent.Name = name;
-                _context.Supports.Add(supportCurrent);
-                _context.SaveChanges();
+            List<SupportEntity> listSupports = _context.Supports.ToList();
+            return listSupports;
 
-                return supportCurrent.Id;
-            }
-            catch (Exception ex)
-            {
-                return 0;
-            }
-        }*/
+        }
 
-    
+       
+
+
     }
 }

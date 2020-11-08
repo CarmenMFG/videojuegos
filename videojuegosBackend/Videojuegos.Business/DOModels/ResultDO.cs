@@ -14,5 +14,12 @@ namespace Videogames.Business.DOModels
 
         public List<VideoGameDO> ListVideoGames{get;set;}
 
+        public SystemDO CurrentSystem { get; set; }
+
+        public List<SystemDO> ListSystems { get; set; }
+        public PlatformDO CurrentPlatform { get; set; }
+
+        public List<PlatformDO> ListPlatform { get; set; }
+
     }
 }

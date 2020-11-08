@@ -9,7 +9,7 @@ namespace Videogames.API.Extensions
 {
     public static class SupportVMExtensions
     {
-        public static SupportDO ConvertVMToDO(this SupportVM modelVM)
+       /* public static SupportDO ConvertVMToDO(this SupportVM modelVM)
         {
             var modelDO = new SupportDO();
 
@@ -20,7 +20,7 @@ namespace Videogames.API.Extensions
 
             return modelDO;
 
-        }
+        }*/
 
         public static SupportVM ConvertDOToVM(this SupportDO modelDO)
         {
@@ -32,6 +32,19 @@ namespace Videogames.API.Extensions
             modelVM.VideoGames = modelDO.VideoGames;
 
             return modelVM;
+
+        }
+        public static List<SupportVM> ConvertDOToVMs(this List<SupportDO> modelsDO)
+        {
+            var listSupportsVM = new List<SupportVM>();
+            foreach (SupportDO sup in modelsDO)
+            {
+                var model = sup.ConvertDOToVM();
+                listSupportsVM.Add(model);
+
+            }
+
+            return listSupportsVM;
 
         }
     }

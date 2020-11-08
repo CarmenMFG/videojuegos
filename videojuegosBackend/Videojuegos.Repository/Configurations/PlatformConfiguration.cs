@@ -13,8 +13,8 @@ namespace Videogames.Repository.Configurations
             builder.HasKey(pl => pl.Id)
                 .HasName("PK_Platform");
 
-            builder.Property(pl => pl.Id)
-                .HasColumnName("id");
+          /*  builder.Property(pl => pl.Id)
+                .HasColumnName("id");*/
 
             builder.Property(pl => pl.Name)
                 .HasColumnName("name")

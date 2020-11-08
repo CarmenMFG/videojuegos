@@ -11,7 +11,8 @@ namespace Videogames.Repository.Data
         public DbSet<VideoGameEntity> VideoGames { get; set; }
         public DbSet<PlatformEntity> Platforms { get; set; }
         public DbSet<SupportEntity> Supports { get; set; }
-        public DbSet<PlatformEntity> Systems { get; set; }
+        public DbSet<SystemEntity> Systems { get; set; }
+        public DbSet<UserEntity> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

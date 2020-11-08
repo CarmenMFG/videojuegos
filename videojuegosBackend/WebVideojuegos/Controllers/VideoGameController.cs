@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Videogames.API.Extensions;
+using Videogames.API.ViewModels;
 using Videogames.Business;
 using Videojuegos.API.ViewModels;
+using Newtonsoft.Json.Serialization;
+using System;
 
 namespace  Videojuegos.Controllers
 {
@@ -20,47 +23,88 @@ namespace  Videojuegos.Controllers
         }
     
         [HttpPost]
-        public ActionResult CreateVideoGame(VideoGameVM model)
+        public JsonResult CreateVideoGame(VideoGameVM model)
         {
+            var result = new ResultVM() { Message = "", Success = true };
             if (model != null)
             {
-                var result = _business.CreateVideoGame(model.ConvertVMToDO(), 1, "administrador");
-
-                return Ok(result);
+                try
+                {
+                    bool res = _business.CreateVideoGame(model.ConvertVMToDO(), 1, "administrador");
+                    result.StatusCode = 200;
+                    result.Message = res ? "Videojuego guardado con éxito" : "No se pudo guardar el videojuego seleccionado";
+                }
+                catch
+                {
+                    result.Success = false;
+                    result.Message = "No se pudo guardar el videojuego ";
+                    result.StatusCode = 500;
+                }
             }
             else
             {
-                return BadRequest();
+                result.Success = false;
+                result.Message = "Debe rellenar los datos del videojuego";
+                result.StatusCode = 500;
             }
+            return new JsonResult(result);
         }
+
         [HttpPut]
-        public ActionResult ModifyVideoGame(VideoGameVM model)
+        public JsonResult ModifyVideoGame(VideoGameVM model)
         {
+            var result = new ResultVM() { Message = "", Success = true };
             if (model != null)
             {
-                var result = _business.ModifyVideoGame(model.ConvertVMToDO(), 1, "administrador");
+                try
+                {
+                    bool res = _business.ModifyVideoGame(model.ConvertVMToDO(), 1, "administrador");
 
-                return Ok(result);
+                    result.StatusCode = 200;
+                    result.Message = res ? "Videojuego modificado con éxito" : "No se pudo modificar el videojuego seleccionado";
+
+                }
+                catch
+                {
+                    result.Success = false;
+                    result.Message = "No se pudo desactivar el videojuego ";
+                    result.StatusCode = 500;
+                }
+            
             }
             else
             {
-                return BadRequest();
+                result.Success = false;
+                result.Message = "Debe seleccionar un videojuego";
+                result.StatusCode = 500;
+
             }
+            return new JsonResult(result);
         }
+
+
         [HttpDelete("{idVideoGame}")]
-        public ActionResult DeactiveVideoGame(int idVideoGame)
+        public JsonResult DeactiveVideoGame(int idVideoGame)
         {
-            if (idVideoGame != null)
-            {
-                var result = _business.DeactiveVideoGame(idVideoGame, 1, "administrador");
+            var result = new ResultVM() { Message = "", Success = true };
 
-                return Ok(result);
-            }
-            else
+            try
             {
-                return BadRequest();
+                bool res = _business.DeactiveVideoGame(idVideoGame, 1, "administrador");
+                result.StatusCode = 200;
+                result.Message = res ? "Videojuego desactivado con éxito" : "No se puedo desactivar el videojuego seleccionado";
+              
             }
+            catch
+            {
+                result.Success = false;
+                result.Message = "No se pudo desactivar el videojuego ";
+                result.StatusCode = 500;
+            }
+
+            return new JsonResult(result);
         }
+
         [HttpGet]
         public ActionResult GetOkVideoGame()
         {
@@ -69,22 +113,95 @@ namespace  Videojuegos.Controllers
         }
        
         [HttpGet("getAll")]
-        public ActionResult GetAllVideoGame()
+        public JsonResult GetAllVideoGame()
         {
-            var result = _business.GetAllVideoGame(1, "administrador");
+            var result = new ResultVM() { Message = "", Success = true };
 
-            return Ok(result);
-            
+            try
+            {
+                result.Data = _business.GetAllVideoGame(1, "administrador");
+                result.StatusCode = 200;
+            }
+            catch
+            {
+                result.Success = false;
+                result.Message = "No se pueden mostrar los videojuegos ";
+                result.StatusCode = 500;
+            }
+
+            return new JsonResult(result);
+
         }
 
         [HttpGet("{idVideoGame}")]
-        public ActionResult GetVideoGame(int idVideoGame)
+        public JsonResult GetVideoGame(int idVideoGame)
         {
-            var result = _business.GetVideoGame(idVideoGame, 1, "administrador");
+            var result = new ResultVM() { Message = "", Success = true };
 
-            return Ok(result);
+            try
+                {
+                     result.Data = _business.GetVideoGame(idVideoGame, 1, "administrador");
+                     result.StatusCode = 200;
+                }
+            catch
+                {
+                    result.Success = false;
+                    result.Message = "No se puede mostrar el videojuego solicitado";
+                    result.StatusCode = 500;
+                }
+
+            return new JsonResult(result);
 
         }
+
+        [HttpGet("systems")]
+
+        public JsonResult GetAllSystems()
+        {
+           var result = new ResultVM() { Message = "", Success = true };
+        
+            try
+                 {
+                      result.Data = _business.GetAllSystems(1, "administrador").ConvertDOToVMs();
+                      result.StatusCode = 200;
+                  }
+             catch
+                 {
+                       result.Success = false;
+                       result.Message = "No se pueden mostrar los sistemas";
+                       result.StatusCode = 500;
+                  }
+
+            return new JsonResult(result);
+
+        }
+        [HttpGet("supports")]
+
+        public JsonResult GetAllSupports()
+        {
+            var result = new ResultVM() { Message = "", Success = true };
+        
+            try
+                 {
+                    result.Data= _business.GetAllSupports(1, "administrador").ConvertDOToVMs();
+                    result.StatusCode = 200;
+                 }
+             catch (Exception ex )
+                 {
+                           
+                    result.Success = false;
+                    result.Message = "No se pueden mostrar los soportes";
+                    result.StatusCode = 500;
+            
+             }
+
+
+            return new JsonResult(result);
+
+        }
+
+         
+
 
 
     }

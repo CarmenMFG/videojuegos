@@ -29,10 +29,10 @@ namespace Videogames.Repository.Configurations
                .IsRequired()
                .HasColumnType("varchar(100)");
 
-            builder.Property(us => us.Password)
+           /* builder.Property(us => us.Password)
                .HasColumnName("password")
                .IsRequired()
-               .HasColumnType("varchar(200)");
+               .HasColumnType("varchar(200)");*/
 
             builder.Property(us => us.IdRol)
               .HasColumnName("idrol")

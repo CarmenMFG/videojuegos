@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.ComTypes;
 using Videogames.Business.DOModels;
 using Videogames.Business.Extensions;
 using Videogames.Repository.Entities;
@@ -18,120 +17,113 @@ namespace Videogames.Business
             _repository = repository;
         }
 
-        public ResultDO CreateVideoGame(VideoGameDO videogame, int userId, string role) {
-            
-            ResultDO result = null;
+        public bool CreateVideoGame(VideoGameDO videogame, int userId, string role) {
+           
+            bool success = false;
 
             if (videogame != null)
             {
-                // debemos comprobar el namesupport si no está vacio. 
-                // en este caso debemos ir a por el a bbdd y obtener su id
-                // si no existe, lo creamos
+               
                 if (role.ToUpper() == "ADMINISTRADOR" || role.ToUpper() == "USER")
                 {
-                     bool success = _repository.CreateVideoGameRepository(videogame.ConvertDOToEntity(),userId);
+                    success = _repository.CreateVideoGameRepository(videogame.ConvertDOToEntity(),userId);
 
-                    result = new ResultDO() { Success = success, Message = !success ? "Hay un problema en la creación del videojuego" : string.Empty };
-                }
-                else
-                {
-                    result = new ResultDO() { Success = false, Message = "No tiene permisos" };
-                }
+                 }
+                
             }
 
-            return result; 
+            return success; 
        }
-        public ResultDO ModifyVideoGame(VideoGameDO videogame, int userId, string role)
+
+        public bool ModifyVideoGame(VideoGameDO videogame, int userId, string role)
         {
 
-            ResultDO result = null;
+            bool success = false;
 
             if (videogame != null)
             {
-                // debemos comprobar el namesupport si no está vacio. 
-                // en este caso debemos ir a por el a bbdd y obtener su id
-                // si no existe, lo creamos
+                
                 if (role.ToUpper() == "ADMINISTRADOR" || role.ToUpper() == "USER")
                 {
-                    bool success = _repository.ModifyVideoGameRepository(videogame.ConvertDOToEntity(), userId);
+                   success = _repository.ModifyVideoGameRepository(videogame.ConvertDOToEntity(), userId);
 
-                    result = new ResultDO() { Success = success, Message = !success ? "Hay un problema en la creación del videojuego" : string.Empty };
-                }
-                else
-                {
-                    result = new ResultDO() { Success = false, Message = "No tiene permisos" };
                 }
             }
 
-            return result;
+            return success;
         }
 
-        public object GetVideoGame(object idVideoGame, int v1, string v2)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ResultDO DeactiveVideoGame(int idVideoGame, int userId, string role)
+       
+        public bool DeactiveVideoGame(int idVideoGame, int userId, string role)
         {
 
-            ResultDO result = null;
+            bool success = false;
 
-            if (idVideoGame != null)
-            {
-                if (role.ToUpper() == "ADMINISTRADOR" || role.ToUpper() == "USER")
+              if (role.ToUpper() == "ADMINISTRADOR" || role.ToUpper() == "USER")
                 {
-                   bool success = _repository.DeactiveVideoGameRepository(idVideoGame,userId);
+                    success = _repository.DeactiveVideoGameRepository(idVideoGame,userId);
 
-                    result = new ResultDO() { Success = success, Message = !success ? "Hay un problema en la desactivación del videojuego" : string.Empty };
                 }
-                else
-                {
-                    result = new ResultDO() { Success = false, Message = "No tiene permisos" };
-                }
-            }
-
-            return result;
+           return success;
         }
-        public ResultDO GetAllVideoGame(int userId, string role)
+
+        public List<VideoGameDO> GetAllVideoGame(int userId, string role)
         {
 
-            ResultDO result = null;
+            List<VideoGameDO> listVideoGamesDO = null;
 
                 if (role.ToUpper() == "ADMINISTRADOR" || role.ToUpper() == "USER")
                 {
-                    var listVideoGamesEntity= _repository.GetAllVideoGameRepository(userId);
-                    var listVideoGamesDO = new List<VideoGameDO>();
-                    bool success = !(listVideoGamesEntity.Count==0);
-                       foreach (VideoGameEntity vg in listVideoGamesEntity)
-                            {
-                                listVideoGamesDO.Add(vg.ConvertEntityToDO());
-                            }
-                    result = new ResultDO() { ListVideoGames = listVideoGamesDO,  Success = success, Message = !success ? "No tiene ningun videojuego activo" : string.Empty };
-                }
-                else
-                {
-                    result = new ResultDO() { Success = false, Message = "No tiene permisos" };
+                    listVideoGamesDO = _repository.GetAllVideoGameRepository(userId).ConvertEntitiesToDOs();
+                                 
                 }
            
-           return result;
+           return listVideoGamesDO;
         }
-        public ResultDO GetVideoGame(int idVideoGame,int userId, string role)
-        {
 
-            ResultDO result = null;
+        public VideoGameDO GetVideoGame(int idVideoGame,int userId, string role)
+        {
+            
+            VideoGameDO videoGamesDO = null;
+            
+            if (role.ToUpper() == "ADMINISTRADOR" || role.ToUpper() == "USER")
+            {
+                videoGamesDO = _repository.GetVideoGameRepository(idVideoGame, userId).ConvertEntityToDO();
+            }
+           
+            return videoGamesDO;
+          
+        }
+
+        public List<SystemDO> GetAllSystems(int userId, string role)
+        {
+           
+            List<SystemDO> listSystemsDO = null;
 
             if (role.ToUpper() == "ADMINISTRADOR" || role.ToUpper() == "USER")
             {
-                var videoGamesEntity = _repository.GetVideoGameRepository(idVideoGame,userId);
-                bool success = videoGamesEntity != null;
-                result = new ResultDO() {CurrentVideoGame = videoGamesEntity.ConvertEntityToDO(), Success = success, Message = !success ? "No tiene ningun videojuego activo" : string.Empty };
-            }
-            else
-            {
-                result = new ResultDO() { Success = false, Message = "No tiene permisos" };
-            }
-
-            return result;
+                 listSystemsDO = _repository.GetAllSystemsRepository().ConvertEntitiesToDOs();
+             }
+          
+            return listSystemsDO;
         }
+
+        public List<SupportDO> GetAllSupports(int userId,string role)
+        {
+            List<SupportEntity> listSup = null;
+            List<SupportDO> listSupportDO = null;
+
+            if (role.ToUpper() == "ADMINISTRADOR" || role.ToUpper() == "USER")
+            {
+                listSup = _repository.GetAllSupportsRepository();
+                listSupportDO=listSup.ConvertEntitiesToDOs();
+                //listSupportDO = _repository.GetAllSupportsRepository().ConvertEntitiesToDOs();
+
+            }
+         
+            return listSupportDO;
+
+        }
+      
     }
 }

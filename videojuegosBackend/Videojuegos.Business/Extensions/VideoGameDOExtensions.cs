@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Generic;
 using Videogames.Business.DOModels;
 using Videogames.Repository.Entities;
 
@@ -70,6 +71,18 @@ namespace Videogames.Business.Extensions
 
             return modelVM;
 
+        }
+        public static List<VideoGameDO> ConvertEntitiesToDOs(this List<VideoGameEntity> modelEntities)
+        {
+            var listVideoGameDO = new List<VideoGameDO>();
+
+            foreach (VideoGameEntity vi in modelEntities)
+            {
+                var model = vi.ConvertEntityToDO();
+                listVideoGameDO.Add(model);
+            }
+
+            return listVideoGameDO;
         }
     }
 

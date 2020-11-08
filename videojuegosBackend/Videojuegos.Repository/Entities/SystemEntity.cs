@@ -11,6 +11,6 @@ namespace Videogames.Repository.Entities
         public string Description { get; set; }
         public int IdPlatform { get; set; }
         public PlatformEntity Platform { get; set; }
-        public virtual ICollection<VideoGameEntity> VideoGames { get; set; }
+        public ICollection<VideoGameEntity> VideoGames { get; set; }
     }
 }

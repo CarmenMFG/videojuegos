@@ -11,25 +11,34 @@ namespace Videogames.API.Extensions
     {
         public static PlatformDO ConvertVMToDO(this PlatformVM modelVM)
         {
-            var modelDO = new PlatformDO();
-
-            modelDO.Description = modelVM.Description;
-            modelDO.Id = modelVM.Id;
-            modelDO.Name = modelVM.Name;
-            modelDO.Systems = modelVM.Systems;
-
-            return modelDO;
+            PlatformDO modelDO = null;
+            if (modelVM != null)
+            {
+                modelDO = new PlatformDO
+                {
+                    Description = modelVM.Description,
+                    Id = modelVM.Id,
+                    Name = modelVM.Name,
+                    Systems = modelVM.Systems
+                };
+            }
+             return modelDO;
 
         }
 
         public static PlatformVM ConvertDOToVM(this PlatformDO modelDO)
         {
-            var modelVM = new PlatformVM();
-
-            modelVM.Description = modelDO.Description;
-            modelVM.Id = modelDO.Id;
-            modelVM.Name = modelDO.Name;
-            modelVM.Systems = modelDO.Systems;
+            PlatformVM modelVM = null;
+            if (modelDO != null)
+            {
+                modelVM = new PlatformVM
+                {
+                    Description = modelDO.Description,
+                    Id = modelDO.Id,
+                    Name = modelDO.Name,
+                    Systems = modelDO.Systems
+                };
+            }
 
             return modelVM;
 

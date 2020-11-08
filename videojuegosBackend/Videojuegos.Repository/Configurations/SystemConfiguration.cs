@@ -13,8 +13,8 @@ namespace Videogames.Repository.Configurations
             builder.HasKey(st => st.Id)
                 .HasName("PK_System");
 
-            builder.Property(st => st.Id)
-                .HasColumnName("id");
+            //builder.Property(st => st.Id)
+            //    .HasColumnName("id");
 
             builder.Property(st => st.Name)
                 .HasColumnName("name")
@@ -29,9 +29,9 @@ namespace Videogames.Repository.Configurations
                .HasColumnName("idplatform")
                .HasColumnType("int");
 
-            builder.HasOne(v => v.Platform)
-             .WithMany(u => u.Systems)
-             .HasForeignKey(vg => vg.IdPlatform);
+            builder.HasOne(st => st.Platform)
+             .WithMany(p => p.Systems)
+             .HasForeignKey(st => st.IdPlatform);
            
          
 

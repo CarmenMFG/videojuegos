@@ -10,7 +10,7 @@ namespace Videogames.Business.DOModels
         public int IdPlatform { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public virtual string Platforms { get; set; }
-        public virtual string VideoGames { get; set; }
+        public PlatformDO Platform { get; set; }
+        public ICollection<VideoGameDO>  VideoGames{ get; set; }
     }
 }

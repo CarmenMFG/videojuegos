@@ -4,9 +4,9 @@ using Videogames.Repository.Entities;
 
 namespace Videogames.Repository.Configurations
 {
-    public class RolConfiguration : IEntityTypeConfiguration<PlatformEntity>
+    public class RolConfiguration : IEntityTypeConfiguration<RolEntity>
     {
-        public void Configure(EntityTypeBuilder<PlatformEntity> builder)
+        public void Configure(EntityTypeBuilder<RolEntity> builder)
         {
             builder.ToTable("ROL");
 

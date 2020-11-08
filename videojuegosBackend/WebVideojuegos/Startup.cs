@@ -11,7 +11,9 @@ using Videogames.Repository.Interfaces;
 using Videogames.Business;
 using Videogames.Repository.Data;
 
-using Videojuegos.Repository.Repositories;
+using Videogames.Repository.Repositories;
+using Videogames.API.Interface;
+using Videogames.API.Services;
 
 namespace WebVideojuegos
 {
@@ -36,6 +38,8 @@ namespace WebVideojuegos
             services.AddControllers();
 
             services.AddScoped<IVideoGameRepository, VideoGamesRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ITokenService,TokenService>();
             services.AddTransient<BusinessManagment>();
             services.AddDbContext<VideogameContext>(x => x.UseMySql(Configuration.GetConnectionString("ConnectionString"), cx => cx.MigrationsAssembly("Videogames.Repository")));
         }
