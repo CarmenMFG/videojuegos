@@ -6,42 +6,58 @@ public static class SystemDOExtension
 {
     public static SystemEntity ConvertDOToEntity(this SystemDO modelDO)
     {
-        var modelEntity = new SystemEntity()
+        SystemEntity modelEntity = null;
+        if (modelDO != null)
         {
-            Id = modelDO.Id,
-            Name = modelDO.Name,
-            Description = modelDO.Description,
-            IdPlatform = modelDO.IdPlatform
-        };
+            modelEntity = new SystemEntity
+            {
+                Id = modelDO.Id,
+                Name = modelDO.Name,
+                Description = modelDO.Description,
+                IdPlatform = modelDO.IdPlatform
+            };
+
+        }
+        
         return modelEntity;
     }
     public static SystemDO ConvertEntityToDO(this SystemEntity modelEntity)
     {
-        var modelDO= new SystemDO()
+        SystemDO modelDO = null;
+        if (modelEntity != null)
         {
-            Id = modelEntity.Id,
-            Name = modelEntity.Name,
-            Description = modelEntity.Description,
-            IdPlatform = modelEntity.IdPlatform,
-            Platform= new PlatformDO()
-            {
-                Id=modelEntity.Platform.Id,
-                Name=modelEntity.Platform.Name,
-                Description=modelEntity.Platform.Description
-            }
+            modelDO = new SystemDO{
+                Id = modelEntity.Id,
+                Name = modelEntity.Name,
+                Description = modelEntity.Description,
+                IdPlatform = modelEntity.IdPlatform,
+                Platform = new PlatformDO()
+                {
+                    Id = modelEntity.Platform.Id,
+                    Name = modelEntity.Platform.Name,
+                    Description = modelEntity.Platform.Description
+                }
+
+            };
+        
         };
         return modelDO;
     }
     public static List<SystemDO> ConvertEntitiesToDOs(this List<SystemEntity> modelEntities)
     {
-        var listSystemDO = new List<SystemDO>();
-       
-        foreach (SystemEntity sys in modelEntities)
+        List<SystemDO> listSystemDO = null;
+        if (modelEntities != null)
         {
-              var model = sys.ConvertEntityToDO();
-              listSystemDO.Add(model);
+            listSystemDO = new List<SystemDO>();
+
+            foreach (SystemEntity sys in modelEntities)
+            {
+                var model = sys.ConvertEntityToDO();
+                listSystemDO.Add(model);
+            }
+
         }
-       
+           
         return listSystemDO;
     }
 }

@@ -5,23 +5,33 @@ public static class PlatformDOExtension
 {
     public static PlatformEntity ConvertDOToEntity(this PlatformDO modelDO)
     {
-        var modelEntity = new PlatformEntity()
+        PlatformEntity modelEntity = null;
+        if (modelDO != null)
         {
-            Id = modelDO.Id,
-            Name = modelDO.Name,
-            Description = modelDO.Description
-           
-        };
+            modelEntity = new PlatformEntity()
+            {
+                Id = modelDO.Id,
+                Name = modelDO.Name,
+                Description = modelDO.Description
+
+            };
+
+        }
         return modelEntity;
     }
     public static PlatformDO ConvertEntityToDO(this PlatformEntity modelEntity)
     {
-        var modelDO = new PlatformDO()
+        PlatformDO modelDO = null;
+        if(modelEntity != null)
         {
-            Id = modelEntity.Id,
-            Name = modelEntity.Name,
-            Description = modelEntity.Description
-        };
+            modelDO = new PlatformDO()
+            {
+                Id = modelEntity.Id,
+                Name = modelEntity.Name,
+                Description = modelEntity.Description
+            };
+
+        }
         return modelDO;
     }
 }

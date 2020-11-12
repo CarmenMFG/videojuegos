@@ -9,80 +9,90 @@ namespace Videogames.Business.Extensions
     {
         public static VideoGameEntity ConvertDOToEntity(this VideoGameDO modelDO)
         {
-            var modelEntity = new VideoGameEntity()
+            VideoGameEntity modelEntity = null;
+            if (modelDO != null)
             {
-                Id = modelDO.Id,
-                BackCover = modelDO.BackCover,
-                BarCode = modelDO.BarCode,
-                CoverPage = modelDO.CoverPage,
-               // CreateDate = modelVM.CreateDate,
-                Description = modelDO.Description,
-                Developer = modelDO.Developer,
-                Distributor = modelDO.Distributor,
-                Genre = modelDO.Genre,
-                IdSystem = modelDO.IdSystem,
-                IdSupport = modelDO.IdSupport,
-              // IdUser = modelVM.IdUser,
-                IsActive = modelDO.IsActive,
-                Language = modelDO.Language,
-                Notes = modelDO.Notes,
-               // Platform = modelVM.Platform,
-                Redump = modelDO.Redump,
-                Region = modelDO.Region,
-                ReleaseDate = modelDO.ReleaseDate,
-              //  Support = modelVM.Support,
-                Title = modelDO.Title
-            };
-          //  modelDO.UpdateDate = modelVM.UpdateDate;
-          //  modelDO.User = modelVM.User;
-            
+                modelEntity = new VideoGameEntity()
+                {
+                    Id = modelDO.Id,
+                    BackCover = modelDO.BackCover,
+                    BarCode = modelDO.BarCode,
+                    CoverPage = modelDO.CoverPage,
+                    // CreateDate = modelVM.CreateDate,
+                    Description = modelDO.Description,
+                    Developer = modelDO.Developer,
+                    Distributor = modelDO.Distributor,
+                    Genre = modelDO.Genre,
+                    IdSystem = modelDO.IdSystem,
+                    IdSupport = modelDO.IdSupport,
+                    // IdUser = modelVM.IdUser,
+                    IsActive = modelDO.IsActive,
+                    Language = modelDO.Language,
+                    Notes = modelDO.Notes,
+                    // Platform = modelVM.Platform,
+                    Redump = modelDO.Redump,
+                    Region = modelDO.Region,
+                    ReleaseDate = modelDO.ReleaseDate,
+                    //  Support = modelVM.Support,
+                    Title = modelDO.Title
+                };
+                //  modelDO.UpdateDate = modelVM.UpdateDate;
+                //  modelDO.User = modelVM.User;
 
+            }
             return modelEntity;
 
         }
         public static VideoGameDO ConvertEntityToDO(this VideoGameEntity modelEntity )
         {
-            var modelVM = new VideoGameDO
+            VideoGameDO modelVM = null;
+            if (modelEntity != null)
             {
-                Id = modelEntity.Id,
-                BackCover = modelEntity.BackCover,
-                BarCode = modelEntity.BarCode,
-                CoverPage = modelEntity.CoverPage,
-              //  CreateDate = modelDO.CreateDate,
-                Description = modelEntity.Description,
-                Developer = modelEntity.Developer,
-                Distributor = modelEntity.Distributor,
-                Genre = modelEntity.Genre,
-                IdSystem = modelEntity.IdSystem,
-                IdSupport = modelEntity.IdSupport,
-               // IdUser = modelDO.IdUser,
-                IsActive = modelEntity.IsActive,
-                Language = modelEntity.Language,
-                Notes = modelEntity.Notes,
-              //  Platform = modelDO.Platform,
-                Redump = modelEntity.Redump,
-                Region = modelEntity.Region,
-                ReleaseDate = modelEntity.ReleaseDate,
-              //  Support = modelDO.Support,
-                Title = modelEntity.Title,
-              //  UpdateDate = modelDO.UpdateDate,
-              //  User = modelDO.User
-            };
-
+                modelVM = new VideoGameDO
+                {
+                    Id = modelEntity.Id,
+                    BackCover = modelEntity.BackCover,
+                    BarCode = modelEntity.BarCode,
+                    CoverPage = modelEntity.CoverPage,
+                    //  CreateDate = modelDO.CreateDate,
+                    Description = modelEntity.Description,
+                    Developer = modelEntity.Developer,
+                    Distributor = modelEntity.Distributor,
+                    Genre = modelEntity.Genre,
+                    IdSystem = modelEntity.IdSystem,
+                    IdSupport = modelEntity.IdSupport,
+                    // IdUser = modelDO.IdUser,
+                    IsActive = modelEntity.IsActive,
+                    Language = modelEntity.Language,
+                    Notes = modelEntity.Notes,
+                    //  Platform = modelDO.Platform,
+                    Redump = modelEntity.Redump,
+                    Region = modelEntity.Region,
+                    ReleaseDate = modelEntity.ReleaseDate,
+                    //  Support = modelDO.Support,
+                    Title = modelEntity.Title,
+                    //  UpdateDate = modelDO.UpdateDate,
+                    //  User = modelDO.User
+                };
+            }
             return modelVM;
-
         }
+
         public static List<VideoGameDO> ConvertEntitiesToDOs(this List<VideoGameEntity> modelEntities)
         {
-            var listVideoGameDO = new List<VideoGameDO>();
-
-            foreach (VideoGameEntity vi in modelEntities)
+            List<VideoGameDO> listVideoGameDO = null;
+            if (modelEntities != null)
             {
-                var model = vi.ConvertEntityToDO();
-                listVideoGameDO.Add(model);
-            }
+                listVideoGameDO = new List<VideoGameDO>();
 
-            return listVideoGameDO;
+                foreach (VideoGameEntity vi in modelEntities)
+                {
+                    var model = vi.ConvertEntityToDO();
+                    listVideoGameDO.Add(model);
+                }
+
+            }
+          return listVideoGameDO;
         }
     }
 

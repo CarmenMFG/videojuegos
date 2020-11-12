@@ -21,29 +21,35 @@ namespace Videogames.API.Extensions
 
         public static SystemVM ConvertDOToVM(this SystemDO modelDO)
         {
-            var modelVM = new SystemVM
+            SystemVM modelVM = null;
+            if (modelDO != null)
             {
-                Description = modelDO.Description,
-                Id = modelDO.Id,
-                Name = modelDO.Name,
-                Platform = modelDO.Platform.Name
+                modelVM = new SystemVM
+                {
+                    Description = modelDO.Description,
+                    Id = modelDO.Id,
+                    Name = modelDO.Name,
+                    Platform = modelDO.Platform.Name
 
-            };
+                };
 
-
-            return modelVM;
+            }
+           return modelVM;
 
         }
         public static List<SystemVM> ConvertDOToVMs(this List<SystemDO> modelsDO)
         {
-            var listSystemsVM = new List<SystemVM>();
-            foreach ( SystemDO sys in modelsDO)
-            {
-                var model = sys.ConvertDOToVM();
-                listSystemsVM.Add(model);
+            List<SystemVM> listSystemsVM = null;
 
+            if (modelsDO != null)
+            {
+                listSystemsVM = new List<SystemVM>();
+                foreach (SystemDO sys in modelsDO)
+                {
+                    var model = sys.ConvertDOToVM();
+                    listSystemsVM.Add(model);
+                }
             }
-          
             return listSystemsVM;
 
         }

@@ -9,42 +9,50 @@ namespace Videogames.API.Extensions
 {
     public static class SupportVMExtensions
     {
-       /* public static SupportDO ConvertVMToDO(this SupportVM modelVM)
-        {
-            var modelDO = new SupportDO();
+        /* public static SupportDO ConvertVMToDO(this SupportVM modelVM)
+         {
+             var modelDO = new SupportDO();
 
-            modelDO.Description = modelVM.Description;
-            modelDO.Id = modelVM.Id;
-            modelDO.Name = modelVM.Name;
-            modelDO.VideoGames = modelVM.VideoGames;
+             modelDO.Description = modelVM.Description;
+             modelDO.Id = modelVM.Id;
+             modelDO.Name = modelVM.Name;
+             modelDO.VideoGames = modelVM.VideoGames;
 
-            return modelDO;
+             return modelDO;
 
-        }*/
+         }*/
 
         public static SupportVM ConvertDOToVM(this SupportDO modelDO)
         {
-            var modelVM = new SupportVM();
-
-            modelVM.Description = modelDO.Description;
-            modelVM.Id = modelDO.Id;
-            modelVM.Name = modelDO.Name;
-            modelVM.VideoGames = modelDO.VideoGames;
+            SupportVM modelVM = null;
+            if (modelDO != null) { 
+                modelVM = new SupportVM
+                {
+                    Description = modelDO.Description,
+                    Id = modelDO.Id,
+                    Name = modelDO.Name,
+                    VideoGames = modelDO.VideoGames
+                };
+             }
 
             return modelVM;
 
         }
         public static List<SupportVM> ConvertDOToVMs(this List<SupportDO> modelsDO)
         {
-            var listSupportsVM = new List<SupportVM>();
-            foreach (SupportDO sup in modelsDO)
+            List<SupportVM> listSupportsVM = null;
+            if (modelsDO != null)
             {
-                var model = sup.ConvertDOToVM();
-                listSupportsVM.Add(model);
+                listSupportsVM = new List<SupportVM>();
+                foreach (SupportDO sup in modelsDO)
+                {
+                    var model = sup.ConvertDOToVM();
+                    listSupportsVM.Add(model);
+
+                }
 
             }
-
-            return listSupportsVM;
+           return listSupportsVM;
 
         }
     }

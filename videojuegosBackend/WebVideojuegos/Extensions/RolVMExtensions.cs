@@ -11,25 +11,33 @@ namespace Videogames.API.Extensions
     {
         public static RolDO ConvertVMToDO(this RolVM modelVM)
         {
-            var modelDO = new RolDO();
 
-            modelDO.Description = modelVM.Description;
-            modelDO.Id = modelVM.Id;
-            modelDO.Name = modelVM.Name;
-            modelDO.Users = modelVM.Users;
-          
-            return modelDO;
+            RolDO modelDO = null;
+            if (modelVM != null)
+            {
+                modelDO = new RolDO{
+                    Description = modelVM.Description,
+                    Id = modelVM.Id,
+                    Name = modelVM.Name,
+                    Users = modelVM.Users
+                };
+            }
+                return modelDO;
 
         }
 
         public static RolVM ConvertDOToVM(this RolDO modelDO)
         {
-            var modelVM = new RolVM();
-
-            modelVM.Description = modelDO.Description;
-            modelVM.Id = modelDO.Id;
-            modelVM.Name = modelDO.Name;
-            modelVM.Users = modelDO.Users;
+            RolVM modelVM = null;
+            if (modelDO != null)
+            {
+                modelVM = new RolVM{
+                    Description = modelDO.Description,
+                    Id = modelDO.Id,
+                    Name = modelDO.Name,
+                    Users = modelDO.Users
+                };
+             }
 
             return modelVM;
 
