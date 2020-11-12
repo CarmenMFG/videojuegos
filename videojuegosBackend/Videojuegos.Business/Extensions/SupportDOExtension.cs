@@ -17,7 +17,9 @@ namespace Videogames.Business.Extensions
                 {
                     Id = modelDO.Id,
                     Name = modelDO.Name,
-                    Description = modelDO.Description,
+                    Description = modelDO.Description
+                  
+
 
                 };
 
@@ -33,7 +35,8 @@ namespace Videogames.Business.Extensions
                 {
                     Id = modelEntity.Id,
                     Name = modelEntity.Name,
-                    Description = modelEntity.Description,
+                    Description = modelEntity.Description
+                 
 
                 };
             }

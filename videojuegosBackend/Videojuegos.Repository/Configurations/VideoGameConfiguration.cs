@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using Videogames.Repository.Entities;
 
@@ -34,7 +35,7 @@ namespace Videogames.Repository.Configurations
 
             builder.Property(vg => vg.ReleaseDate)
                 .HasColumnName("releasedate")
-                .HasColumnType("varchar(20)");
+                .HasColumnType("datetime");
 
             builder.Property(vg => vg.Developer)
                 .HasColumnName("developer")
@@ -57,15 +58,13 @@ namespace Videogames.Repository.Configurations
                .HasColumnType("varchar(200)");
 
             builder.Property(vg => vg.CreateDate)
-               .HasColumnName("createdate")
-               .HasColumnType("datetime")
-               .HasDefaultValueSql("now()"); ;
-
+                .HasColumnName("createdate")
+                .HasColumnType("datetime");
+                
             builder.Property(vg => vg.UpdateDate)
                .HasColumnName("updatedate")
-               .HasColumnType("datetime")
-               .HasDefaultValueSql("now()");
-
+               .HasColumnType("datetime");
+              
             builder.Property(vg => vg.Genre)
                .HasColumnName("genre")
                .HasColumnType("varchar(1000)");

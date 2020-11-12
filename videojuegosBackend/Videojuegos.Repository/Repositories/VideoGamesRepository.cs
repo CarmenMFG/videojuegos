@@ -24,9 +24,8 @@ namespace Videogames.Repository.Repositories
                videoGame.UpdateDate = DateTime.Now;
                videoGame.IdUser = userId;
                videoGame.IsActive = true;
-              
-                _context.VideoGames.Add(videoGame);
-                _context.SaveChanges();
+               _context.VideoGames.Add(videoGame);
+               _context.SaveChanges();
 
                 return true;
             }
@@ -45,8 +44,7 @@ namespace Videogames.Repository.Repositories
                 {
                     videoGameDeactived.IsActive = false;
                     videoGameDeactived.UpdateDate = DateTime.Now;
-                  
-                    _context.SaveChanges();
+                   _context.SaveChanges();
                    
                     return true;
 
@@ -67,28 +65,29 @@ namespace Videogames.Repository.Repositories
                 //solo saca el videojuego con ese id y q sea activo
                 VideoGameEntity videoGameModified = _context.VideoGames.Where(v => v.IsActive).FirstOrDefault(vg => vg.Id == videoGame.Id);
                 if (videoGameModified != null && videoGameModified.IdUser == idUser)
-                    {
-                        videoGameModified.Genre = videoGame.Genre;
-                        videoGameModified.BackCover = videoGame.BackCover;
-                        videoGameModified.BarCode = videoGame.BarCode;
-                        videoGameModified.CoverPage = videoGame.CoverPage;
-                        videoGameModified.Description = videoGame.Description;
-                        videoGameModified.Developer = videoGame.Developer;
-                        videoGameModified.Distributor = videoGame.Distributor;
-                        videoGameModified.IdSystem = videoGame.IdSystem;
-                        videoGameModified.IdSupport = videoGame.IdSupport;
-                        videoGameModified.IsActive = videoGame.IsActive;
-                        videoGameModified.Language = videoGame.Language;
-                        videoGameModified.Notes = videoGame.Notes;
-                        videoGameModified.Redump = videoGame.Redump;
-                        videoGameModified.Region = videoGame.Region;
-                        videoGameModified.ReleaseDate = videoGame.ReleaseDate;
-                        videoGameModified.UpdateDate = DateTime.Now;
-                        videoGameModified.Title = videoGame.Title;
-                        videoGameModified.IsActive = true;
-
-                    _context.SaveChanges();
-                        return true;
+                {
+                    videoGameModified.Genre = videoGame.Genre;
+                    videoGameModified.BackCover = videoGame.BackCover;
+                    videoGameModified.BarCode = videoGame.BarCode;
+                    videoGameModified.CoverPage = videoGame.CoverPage;
+                    videoGameModified.Description = videoGame.Description;
+                    videoGameModified.Developer = videoGame.Developer;
+                    videoGameModified.Distributor = videoGame.Distributor;
+                    videoGameModified.IdSystem = videoGame.IdSystem;
+                    videoGameModified.IdSupport = videoGame.IdSupport;
+                    videoGameModified.IsActive = videoGame.IsActive;
+                    videoGameModified.Language = videoGame.Language;
+                    videoGameModified.Notes = videoGame.Notes;
+                    videoGameModified.Redump = videoGame.Redump;
+                    videoGameModified.Region = videoGame.Region;
+                    videoGameModified.UpdateDate = DateTime.Now;
+                    videoGameModified.Title = videoGame.Title;
+                    videoGameModified.IsActive = true;
+                    videoGameModified.IsActive = true;
+                    videoGameModified.ReleaseDate = videoGame.ReleaseDate;
+                     _context.SaveChanges();
+                  
+                    return true;
 
                     }
 
@@ -109,7 +108,7 @@ namespace Videogames.Repository.Repositories
         
         public VideoGameEntity GetVideoGameRepository(int idVideoGame, int idUser)
         {
-            //solo muestra los videojuegos del usuario q están activos  
+            //solo muestra els videojuegos del usuario q están activos  
             VideoGameEntity videoGameCurrent = _context.VideoGames
                                                 .Where(v => v.IdUser == idUser && v.IsActive)
                                                 .FirstOrDefault(vg => vg.Id == idVideoGame);

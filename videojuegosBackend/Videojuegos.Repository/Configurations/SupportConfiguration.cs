@@ -24,6 +24,10 @@ namespace Videogames.Repository.Configurations
             builder.Property(su => su.Description)
                 .HasColumnName("description")
                 .HasColumnType("varchar(1000)");
+           
+            builder.Property(vg => vg.CreateDate)
+                 .HasColumnName("createdate")
+                 .HasColumnType("datetime");
         }
     }
 }
