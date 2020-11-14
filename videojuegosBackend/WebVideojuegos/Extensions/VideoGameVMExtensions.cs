@@ -32,7 +32,8 @@ namespace Videogames.API.Extensions
                     Redump = modelVM.Redump,
                     Region = modelVM.Region,
                     ReleaseDate = modelVM.ReleaseDate,
-                    //  Support = modelVM.Support,
+                   // Platform = modelVM.Platform.Name
+                   //  Support = modelVM.Support,
                     Title = modelVM.Title
                 };
                 //  modelDO.UpdateDate = modelVM.UpdateDate;
@@ -68,7 +69,9 @@ namespace Videogames.API.Extensions
                     Redump = modelDO.Redump,
                     Region = modelDO.Region,
                     ReleaseDate = modelDO.ReleaseDate,
-                    //  Support = modelDO.Support,
+                    Support = modelDO.Support.Name,
+                    Platform = modelDO.System.Platform.Name,
+                    System=modelDO.System.Name,
                     Title = modelDO.Title,
                     //  UpdateDate = modelDO.UpdateDate,
                     //  User = modelDO.User

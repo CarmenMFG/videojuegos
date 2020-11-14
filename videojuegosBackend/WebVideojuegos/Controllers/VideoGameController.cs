@@ -122,7 +122,7 @@ namespace  Videojuegos.Controllers
                 result.Data = _business.GetAllVideoGame(1, "administrador");
                 result.StatusCode = 200;
             }
-            catch
+            catch(Exception ex)
             {
                 result.Success = false;
                 result.Message = "No se pueden mostrar los videojuegos ";

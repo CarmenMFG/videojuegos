@@ -27,9 +27,10 @@ namespace Videojuegos.API.ViewModels
         public DateTime ReleaseDate { get; set; }
         //public DateTime CreateDate { get; set; }
         //public DateTime UpdateDate { get; set; }
-        //public string Platform { get; set; }
-        //public string User { get; set; }
-        //public string Support { get; set; }
+        public string Platform { get; set; } //Nombre de la plataforma
+       // public string User { get; set; }
+        public string Support { get; set; } //Nombre del soporte
+        public string System { get; set; } //Nombre del sistema
 
     }
 }

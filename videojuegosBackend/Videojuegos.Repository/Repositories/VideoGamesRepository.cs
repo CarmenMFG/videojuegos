@@ -110,6 +110,9 @@ namespace Videogames.Repository.Repositories
         {
             //solo muestra els videojuegos del usuario q están activos  
             VideoGameEntity videoGameCurrent = _context.VideoGames
+                                                .Include(v=>v.Support)
+                                                .Include(v => v.System)
+                                                .Include(v=>v.System.Platform)
                                                 .Where(v => v.IdUser == idUser && v.IsActive)
                                                 .FirstOrDefault(vg => vg.Id == idVideoGame);
             return videoGameCurrent;

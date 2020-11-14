@@ -28,6 +28,8 @@ namespace Videogames.Business.DOModels
         //public DateTime UpdateDate { get; set; }
         //public string Platform { get; set; }
         //public string User { get; set; }
-        //public string Support { get; set; }
+        public SystemDO System { get; set; }
+        public SupportDO Support { get; set; }
+        public PlatformDO  Platform { get; set; }
     }
 }

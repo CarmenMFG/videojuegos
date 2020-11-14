@@ -74,7 +74,8 @@ namespace Videogames.Business
 
                 if (role.ToUpper() == "ADMINISTRADOR" || role.ToUpper() == "USER")
                 {
-                    listVideoGamesDO = _repository.GetAllVideoGameRepository(userId).ConvertEntitiesToDOs();
+                     List<VideoGameEntity> lista = _repository.GetAllVideoGameRepository(userId);
+                    listVideoGamesDO =lista.ConvertEntitiesToDOs();
                                  
                 }
            
