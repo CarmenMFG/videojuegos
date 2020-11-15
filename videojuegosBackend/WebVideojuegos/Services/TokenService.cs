@@ -27,8 +27,9 @@ namespace Videogames.API.Services
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.NameId, user.User),
-                new Claim(JwtRegisteredClaimNames.Email, user.Email)
-
+                new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                new Claim("Rol",user.Rol),
+                new Claim("Ïd", user.Id.ToString())
             };
            
             var creeds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);

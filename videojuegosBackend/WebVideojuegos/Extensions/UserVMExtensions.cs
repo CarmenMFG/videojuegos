@@ -40,6 +40,7 @@ namespace Videogames.API.Extensions
                     Email = modelEntity.Email,
                     Id = modelEntity.Id,
                     IdRol = modelEntity.IdRol,
+                    Rol = modelEntity.Rol.Name,
                     User = modelEntity.User,
                     PasswordHash = modelEntity.PasswordHash,
                     PasswordSalt = modelEntity.PasswordSalt

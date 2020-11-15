@@ -52,25 +52,43 @@ namespace Videogames.Business.Extensions
                 {
                     Id = modelEntity.Id,
                     BackCover = modelEntity.BackCover,
-                    BarCode = modelEntity.BarCode,
+                    BarCode = modelEntity.BarCode ?? string.Empty,
                     CoverPage = modelEntity.CoverPage,
                     //  CreateDate = modelDO.CreateDate,
-                    Description = modelEntity.Description,
-                    Developer = modelEntity.Developer,
-                    Distributor = modelEntity.Distributor,
-                    Genre = modelEntity.Genre,
+                    Description = modelEntity.Description?? string.Empty,
+                    Developer = modelEntity.Developer ?? string.Empty,
+                    Distributor = modelEntity.Distributor ?? string.Empty,
+                    Genre = modelEntity.Genre ?? string.Empty,
                     IdSystem = modelEntity.IdSystem,
                     IdSupport = modelEntity.IdSupport,
                     // IdUser = modelDO.IdUser,
                     IsActive = modelEntity.IsActive,
-                    Language = modelEntity.Language,
-                    Notes = modelEntity.Notes,
+                    Language = modelEntity.Language ?? string.Empty,
+                    Notes = modelEntity.Notes ?? string.Empty,
                     //  Platform = modelDO.Platform,
-                    Redump = modelEntity.Redump,
-                    Region = modelEntity.Region,
+                    Redump = modelEntity.Redump ?? string.Empty,
+                    Region = modelEntity.Region ?? string.Empty,
                     ReleaseDate = modelEntity.ReleaseDate,
                     //  Support = modelDO.Support,
-                    Title = modelEntity.Title,
+                    Title = modelEntity.Title ?? string.Empty,
+                    Support=new SupportDO { 
+                                    Description= modelEntity.Support.Description,
+                                    Name= modelEntity.Support.Name,
+                                    Id=modelEntity.Support.Id
+                                   },
+                    System=new SystemDO{
+                                    Description = modelEntity.System.Description,
+                                    Name = modelEntity.System.Name,
+                                    Id = modelEntity.System.Id
+
+                                    },
+                    Platform= new PlatformDO
+                                    {
+                                    Description = modelEntity.System.Platform.Description,
+                                    Name = modelEntity.System.Platform.Name,
+                                    Id = modelEntity.System.Platform.Id
+
+                    }
                     //  UpdateDate = modelDO.UpdateDate,
                     //  User = modelDO.User
                 };

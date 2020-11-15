@@ -102,7 +102,11 @@ namespace Videogames.Repository.Repositories
         public List<VideoGameEntity> GetAllVideoGameRepository(int idUser)
         {
            //solo muestra los videojuegos del usuario q están activos  
-            List<VideoGameEntity> videoGameList = _context.VideoGames.Where(v => v.IdUser == idUser && v.IsActive).ToList();
+            List<VideoGameEntity> videoGameList = _context.VideoGames
+                                                    .Include(v=>v.Support)
+                                                    .Include(v=>v.System)
+                                                    .Include(v=>v.System.Platform)
+                                                    .Where(v => v.IdUser == idUser && v.IsActive).ToList();
             return videoGameList;
         }
         

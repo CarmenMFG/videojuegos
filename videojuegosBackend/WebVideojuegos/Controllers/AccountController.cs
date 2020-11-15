@@ -69,8 +69,6 @@ namespace Videogames.API.Controllers
             }
 
             return new TokenVM { UserName = userVM.User, Token = _tokenService.CreateToken(userVM) };
-
-
         }
     }
 }

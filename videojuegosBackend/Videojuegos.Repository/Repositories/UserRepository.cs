@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Videogames.Repository.Data;
 using Videogames.Repository.Entities;
 using Videogames.Repository.Interfaces;
@@ -29,8 +31,13 @@ namespace Videogames.Repository.Repositories
         }
         public UserEntity GetUser(string username)
         {
-            return _context.Users.SingleOrDefault(u => u.User == username);
+            return _context.Users.Include(u=>u.Rol).SingleOrDefault(u => u.User == username);
         }
+        public async Task<IEnumerable<UserEntity>> GetUsers()
+        {
+            return await _context.Users.ToListAsync();
+        }
+
     }
 
 }

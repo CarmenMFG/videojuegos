@@ -14,6 +14,9 @@ using Videogames.Repository.Data;
 using Videogames.Repository.Repositories;
 using Videogames.API.Interface;
 using Videogames.API.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace WebVideojuegos
 {
@@ -39,9 +42,24 @@ namespace WebVideojuegos
 
             services.AddScoped<IVideoGameRepository, VideoGamesRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<ITokenService,TokenService>();
+            services.AddScoped<ITokenService, TokenService>();
             services.AddTransient<BusinessManagment>();
             services.AddDbContext<VideogameContext>(x => x.UseMySql(Configuration.GetConnectionString("ConnectionString"), cx => cx.MigrationsAssembly("Videogames.Repository")));
+            services.AddCors();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                     .AddJwtBearer(
+                                        options =>
+                                        {
+                                            options.TokenValidationParameters = new TokenValidationParameters
+                                            {
+                                                ValidateIssuerSigningKey=true,
+                                                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenKey"])),
+                                                ValidateIssuer=false,
+                                                ValidateAudience=false,
+                                            };
+                                        });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +73,7 @@ namespace WebVideojuegos
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

@@ -24,7 +24,7 @@ namespace Videogames.Business
             if (videogame != null)
             {
                
-                if (role.ToUpper() == "ADMINISTRADOR" || role.ToUpper() == "USER")
+                if (role.ToUpper() == "ADMIN" || role.ToUpper() == "USER")
                 {
                     success = _repository.CreateVideoGameRepository(videogame.ConvertDOToEntity(),userId);
 
@@ -42,8 +42,8 @@ namespace Videogames.Business
 
             if (videogame != null)
             {
-                
-                if (role.ToUpper() == "ADMINISTRADOR" || role.ToUpper() == "USER")
+
+                if (role.ToUpper() == "ADMIN" || role.ToUpper() == "USER")
                 {
                    success = _repository.ModifyVideoGameRepository(videogame.ConvertDOToEntity(), userId);
 
@@ -59,8 +59,8 @@ namespace Videogames.Business
 
             bool success = false;
 
-              if (role.ToUpper() == "ADMINISTRADOR" || role.ToUpper() == "USER")
-                {
+            if (role.ToUpper() == "ADMIN" || role.ToUpper() == "USER")
+            {
                     success = _repository.DeactiveVideoGameRepository(idVideoGame,userId);
 
                 }
@@ -72,8 +72,8 @@ namespace Videogames.Business
 
             List<VideoGameDO> listVideoGamesDO = null;
 
-                if (role.ToUpper() == "ADMINISTRADOR" || role.ToUpper() == "USER")
-                {
+            if (role.ToUpper() == "ADMIN" || role.ToUpper() == "USER")
+            {
                      List<VideoGameEntity> lista = _repository.GetAllVideoGameRepository(userId);
                     listVideoGamesDO =lista.ConvertEntitiesToDOs();
                                  
@@ -86,8 +86,8 @@ namespace Videogames.Business
         {
             
             VideoGameDO videoGamesDO = null;
-            
-            if (role.ToUpper() == "ADMINISTRADOR" || role.ToUpper() == "USER")
+
+            if (role.ToUpper() == "ADMIN" || role.ToUpper() == "USER")
             {
                 videoGamesDO = _repository.GetVideoGameRepository(idVideoGame, userId).ConvertEntityToDO();
             }
@@ -101,7 +101,7 @@ namespace Videogames.Business
            
             List<SystemDO> listSystemsDO = null;
 
-            if (role.ToUpper() == "ADMINISTRADOR" || role.ToUpper() == "USER")
+            if (role.ToUpper() == "ADMIN" || role.ToUpper() == "USER")
             {
                  listSystemsDO = _repository.GetAllSystemsRepository().ConvertEntitiesToDOs();
              }
@@ -111,13 +111,11 @@ namespace Videogames.Business
 
         public List<SupportDO> GetAllSupports(int userId,string role)
         {
-            List<SupportEntity> listSup = null;
-            List<SupportDO> listSupportDO = null;
+             List<SupportDO> listSupportDO = null;
 
-            if (role.ToUpper() == "ADMINISTRADOR" || role.ToUpper() == "USER")
+            if (role.ToUpper() == "ADMIN" || role.ToUpper() == "USER")
             {
-                listSup = _repository.GetAllSupportsRepository();
-                listSupportDO=listSup.ConvertEntitiesToDOs();
+              listSupportDO = _repository.GetAllSupportsRepository().ConvertEntitiesToDOs();
                 //listSupportDO = _repository.GetAllSupportsRepository().ConvertEntitiesToDOs();
 
             }

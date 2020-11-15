@@ -70,7 +70,7 @@ namespace Videogames.API.Extensions
                     Region = modelDO.Region,
                     ReleaseDate = modelDO.ReleaseDate,
                     Support = modelDO.Support.Name,
-                    Platform = modelDO.System.Platform.Name,
+                    Platform = modelDO.Platform.Name,
                     System=modelDO.System.Name,
                     Title = modelDO.Title,
                     //  UpdateDate = modelDO.UpdateDate,

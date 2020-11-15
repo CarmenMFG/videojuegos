@@ -6,6 +6,13 @@ using Videogames.Business;
 using Videojuegos.API.ViewModels;
 using Newtonsoft.Json.Serialization;
 using System;
+using System.Linq;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.AspNetCore.Authorization;
+using System.Collections.Generic;
+using System.Security.Claims;
 
 namespace  Videojuegos.Controllers
 {
@@ -17,12 +24,16 @@ namespace  Videojuegos.Controllers
         //private readonly ILogger<VideoGameController> _logger;
 
         private readonly BusinessManagment _business;
+
+        public object Configuration { get; private set; }
+
         public VideoGameController(BusinessManagment business)
         {
             _business = business;
         }
     
         [HttpPost]
+        [Authorize]
         public JsonResult CreateVideoGame(VideoGameVM model)
         {
             var result = new ResultVM() { Message = "", Success = true };
@@ -30,7 +41,8 @@ namespace  Videojuegos.Controllers
             {
                 try
                 {
-                    bool res = _business.CreateVideoGame(model.ConvertVMToDO(), 1, "administrador");
+                    var data = getDataToken(HttpContext.User.Claims.ToList());
+                    bool res = _business.CreateVideoGame(model.ConvertVMToDO(), data.IdUser, data.RolName);
                     result.StatusCode = 200;
                     result.Message = res ? "Videojuego guardado con éxito" : "No se pudo guardar el videojuego seleccionado";
                 }
@@ -51,6 +63,7 @@ namespace  Videojuegos.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public JsonResult ModifyVideoGame(VideoGameVM model)
         {
             var result = new ResultVM() { Message = "", Success = true };
@@ -58,7 +71,8 @@ namespace  Videojuegos.Controllers
             {
                 try
                 {
-                    bool res = _business.ModifyVideoGame(model.ConvertVMToDO(), 1, "administrador");
+                    var data = getDataToken(HttpContext.User.Claims.ToList());
+                    bool res = _business.ModifyVideoGame(model.ConvertVMToDO(), data.IdUser, data.RolName);
 
                     result.StatusCode = 200;
                     result.Message = res ? "Videojuego modificado con éxito" : "No se pudo modificar el videojuego seleccionado";
@@ -84,13 +98,15 @@ namespace  Videojuegos.Controllers
 
 
         [HttpDelete("{idVideoGame}")]
+        [Authorize]
         public JsonResult DeactiveVideoGame(int idVideoGame)
         {
             var result = new ResultVM() { Message = "", Success = true };
 
             try
             {
-                bool res = _business.DeactiveVideoGame(idVideoGame, 1, "administrador");
+                var data = getDataToken(HttpContext.User.Claims.ToList());
+                bool res = _business.DeactiveVideoGame(idVideoGame, data.IdUser, data.RolName);
                 result.StatusCode = 200;
                 result.Message = res ? "Videojuego desactivado con éxito" : "No se puedo desactivar el videojuego seleccionado";
               
@@ -113,13 +129,15 @@ namespace  Videojuegos.Controllers
         }
        
         [HttpGet("getAll")]
+        [Authorize]
         public JsonResult GetAllVideoGame()
         {
             var result = new ResultVM() { Message = "", Success = true };
 
             try
             {
-                result.Data = _business.GetAllVideoGame(1, "administrador");
+                var data = getDataToken(HttpContext.User.Claims.ToList());
+                result.Data = _business.GetAllVideoGame(data.IdUser, data.RolName).Select( x => x.ConvertDOToVM());
                 result.StatusCode = 200;
             }
             catch(Exception ex)
@@ -134,13 +152,15 @@ namespace  Videojuegos.Controllers
         }
 
         [HttpGet("{idVideoGame}")]
+        [Authorize]
         public JsonResult GetVideoGame(int idVideoGame)
         {
             var result = new ResultVM() { Message = "", Success = true };
 
             try
                 {
-                     result.Data = _business.GetVideoGame(idVideoGame, 1, "administrador");
+                    var data = getDataToken(HttpContext.User.Claims.ToList());
+                     result.Data = _business.GetVideoGame(idVideoGame, data.IdUser, data.RolName);
                      result.StatusCode = 200;
                 }
             catch
@@ -155,54 +175,59 @@ namespace  Videojuegos.Controllers
         }
 
         [HttpGet("systems")]
+        [Authorize]
 
         public JsonResult GetAllSystems()
         {
-           var result = new ResultVM() { Message = "", Success = true };
-        
+            var result = new ResultVM() { Message = "", Success = true };
+
             try
-                 {
-                      result.Data = _business.GetAllSystems(1, "administrador").ConvertDOToVMs();
-                      result.StatusCode = 200;
-                  }
-             catch
-                 {
-                       result.Success = false;
-                       result.Message = "No se pueden mostrar los sistemas";
-                       result.StatusCode = 500;
-                  }
+            {
+                var data = getDataToken(HttpContext.User.Claims.ToList());
+                result.Data = _business.GetAllSystems(data.IdUser, data.RolName).ConvertDOToVMs();
+                result.StatusCode = 200;
+            }
+            catch
+            {
+                result.Success = false;
+                result.Message = "No se pueden mostrar los sistemas";
+                result.StatusCode = 500;
+            }
 
             return new JsonResult(result);
 
         }
+
         [HttpGet("supports")]
+        [Authorize]
 
         public JsonResult GetAllSupports()
         {
             var result = new ResultVM() { Message = "", Success = true };
-        
+
             try
-                 {
-                    result.Data= _business.GetAllSupports(1, "administrador").ConvertDOToVMs();
-                    result.StatusCode = 200;
-                 }
-             catch (Exception ex )
-                 {
-                           
-                    result.Success = false;
-                    result.Message = "No se pueden mostrar los soportes";
-                    result.StatusCode = 500;
-            
-             }
+            {
+                var data = getDataToken(HttpContext.User.Claims.ToList());
+                result.Data = _business.GetAllSupports(data.IdUser, data.RolName).ConvertDOToVMs();
+                result.StatusCode = 200;
+            }
+            catch (Exception ex)
+            {
+
+                result.Success = false;
+                result.Message = "No se pueden mostrar los soportes";
+                result.StatusCode = 500;
+
+            }
 
 
             return new JsonResult(result);
 
         }
 
-         
-
-
-
+        private TokenData getDataToken(List<Claim> list)
+        {
+            return new TokenData {  IdUser = int.Parse( list[3].Value), RolName = list[2].Value };
+        }
     }
 }
