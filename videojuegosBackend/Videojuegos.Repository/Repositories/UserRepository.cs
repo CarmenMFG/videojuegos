@@ -18,12 +18,12 @@ namespace Videogames.Repository.Repositories
             _context = context;
         }
 
-        public int CreateUser(UserEntity user)
+        public UserEntity CreateUser(UserEntity user)
         {
             _context.Users.Add(user);
             _context.SaveChanges();
 
-            return user.Id;
+            return GetUser(user.User);
         }
         public bool ExistUser(string userName)
         {

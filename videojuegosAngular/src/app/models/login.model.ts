@@ -1,5 +1,4 @@
-export class UserModel {
-    public email: string;
+export class LoginModel {
     public password: string;
     public user: string;
 }

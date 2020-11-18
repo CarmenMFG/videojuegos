@@ -10,9 +10,11 @@ using Videogames.Repository.Interfaces;
 using Videogames.API.Extensions;
 using Videogames.API.Interface;
 using Videogames.Business.DOModels;
+using Microsoft.AspNetCore.Cors;
 
 namespace Videogames.API.Controllers
 {
+    [EnableCors("AllowAllHeaders")]
     public class AccountController : BaseApiController
     {
         private readonly IUserRepository _userReppository;
@@ -42,12 +44,11 @@ namespace Videogames.API.Controllers
                 IdRol = 2 //Permiso de usuario
             };
 
-            var id = _userReppository.CreateUser(user.ConvertVMToEntity());
+            var userCreated = _userReppository.CreateUser(user.ConvertVMToEntity()).ConvertEntityToVM();
+                    
 
-            user.Id = id;
 
-
-            return new TokenVM { UserName=user.User,Token=_tokenService.CreateToken(user)};
+            return new TokenVM { UserName= userCreated.User,Token=_tokenService.CreateToken(userCreated) };
         }
 
         private bool UserExist(string userName)
@@ -58,7 +59,7 @@ namespace Videogames.API.Controllers
         [HttpPost("login")]
         public ActionResult<TokenVM> Login(LoginVM login)
         {
-            var userVM = _userReppository.GetUser(login.User).ConvertDOToVM();
+            var userVM = _userReppository.GetUser(login.User).ConvertEntityToVM();
 
             if (userVM == null) { return Unauthorized("Usuario Inválido"); };
             using var hmac = new HMACSHA512(userVM.PasswordSalt);

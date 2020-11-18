@@ -30,7 +30,7 @@ namespace Videogames.API.Extensions
 
             return modelentity;
         }
-        public static UserVM ConvertDOToVM(this UserEntity modelEntity)
+        public static UserVM ConvertEntityToVM(this UserEntity modelEntity)
         {
             UserVM modeVM = null;
             if (modelEntity != null)

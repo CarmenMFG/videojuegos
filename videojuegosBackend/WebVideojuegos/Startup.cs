@@ -45,7 +45,17 @@ namespace WebVideojuegos
             services.AddScoped<ITokenService, TokenService>();
             services.AddTransient<BusinessManagment>();
             services.AddDbContext<VideogameContext>(x => x.UseMySql(Configuration.GetConnectionString("ConnectionString"), cx => cx.MigrationsAssembly("Videogames.Repository")));
-            services.AddCors();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllHeaders",
+                      builder =>
+                      {
+                          builder.WithOrigins("http://localhost:4200")
+                                 .AllowAnyHeader()
+                                 .AllowAnyMethod();
+                      });
+            });
+          
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                      .AddJwtBearer(
                                         options =>
@@ -71,8 +81,12 @@ namespace WebVideojuegos
             }
 
             app.UseHttpsRedirection();
-
+           
+           
             app.UseRouting();
+            app.UseCors("AllowAllHeaders");
+
+
             app.UseAuthentication();
 
             app.UseAuthorization();
