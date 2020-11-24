@@ -10,31 +10,25 @@ import { LoginModel } from '../models/login.model';
 })
 export class UserService {
   private url = 'https://localhost:44357/api/Account';
+ 
   constructor(private http: HttpClient) {
-
   }
-  //logout() { }
-
-
-
+ 
   public registerUser(user: UserModel): Observable<any> {
-    const headers = new HttpHeaders();
-    headers.append('Access-Control-Allow-Headers', 'Content-Type');
-    headers.append('Access-Control-Allow-Methods', '*');
-    headers.append('Access-Control-Allow-Origin', '*');
     const data = { ...user };
     console.log(data);
-    return this.http.post(`${this.url}/register`, data, { headers });
+    return this.http.post(`${this.url}/register`, data);
   }
 
   public loginUser(login: LoginModel): Observable<any> {
-    const headers = new HttpHeaders();
-    headers.append('Access-Control-Allow-Headers', 'Content-Type');
-    headers.append('Access-Control-Allow-Methods', '*');
-    headers.append('Access-Control-Allow-Origin', '*');
     const data = { ...login };
-    return this.http.post(`${this.url}/login`, data, { headers });
+    return this.http.post(`${this.url}/login`, data);
   }
+  public logout(): void {
+    localStorage.removeItem('Token');
+    localStorage.removeItem('UserName');
+    localStorage.removeItem('Remember');
+   }
    saveTokenUser(token: string, userName: string): void {
     localStorage.setItem('Token', token);
     localStorage.setItem('UserName', userName);
@@ -44,6 +38,9 @@ export class UserService {
   }
    getUser(): string {
     return (localStorage.getItem('UserName')) ? localStorage.getItem('UserName') : '';
+  }
+  isAuthenticated(): boolean{
+     return localStorage.getItem('Token') != null;
   }
 
 }

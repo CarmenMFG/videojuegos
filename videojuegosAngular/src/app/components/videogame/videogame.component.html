@@ -1,0 +1,117 @@
+<div class="limiter animated fadeIn">
+  
+    <div class="container-login100">
+        <div class="wrap-login100 p-t-50 p-b-90">
+            <form  class="login100-form validate-form flex-sb flex-w" 
+            autocomplete="off" [formGroup]="forma" (ngSubmit)="save()">
+                <span class="login100-form-title p-b-51">
+                   Add Game
+                </span>
+                <div class="wrap-input100 m-b-16">
+                    <input class="input100"
+                           type="text" 
+                           name="title" 
+                           placeholder="Title"
+                           [class.isInvalid]="this.forma.get('title').invalid && this.forma.get('title').touched"
+                          formControlName="title">
+                    
+                 </div>
+                 <div class="mb-3"><small *ngIf="this.forma.get('title').invalid && this.forma.get('title').touched"
+                  class="text-danger animated fadeIn ">Title is required </small></div>
+                
+                <div class="wrap-input100 m-b-16">
+                  <input class="input100" 
+                         type="text" 
+                         name="developer" 
+                         placeholder="Developer"
+                         formControlName="developer">
+                </div>
+                <div class="wrap-input100 m-b-16">
+                  <input class="input100" 
+                         type="text" 
+                         name="barCode" 
+                         placeholder="BarCode"
+                         formControlName="barCode">
+                </div>
+                <div class="wrap-input100 m-b-16">
+                  <input class="input100" 
+                         type="text" 
+                         name="redump" 
+                         placeholder="Redump"
+                         formControlName="redump">
+                </div>
+                <div class="wrap-input100 m-b-16">
+                  <input class="input100" 
+                         type="text" 
+                         name="genre" 
+                         placeholder="Genre"
+                         formControlName="genre">
+                </div>
+                <div class="wrap-input100 m-b-16">
+                  <select  class="input100" name="system" formControlName="system">
+                    <option  class="input100" *ngFor="let system of systems"
+                            [ngValue]="system.id">
+                              {{system.name}} {{system.platform}}
+                    </option>
+                  </select>
+                </div> 
+                <div class="wrap-input100 m-b-16">
+                  <select  class="input100" name="system" formControlName="support">
+                    <option  class="input100" *ngFor="let support of supports"
+                            [ngValue]="support.id">
+                              {{support.name}}
+                    </option>
+                  </select>
+                </div>   
+                <div class="wrap-input100 m-b-16">
+                  <input class="input100" 
+                         type="text" 
+                         name="distributor" 
+                         placeholder="Publisher"
+                         formControlName="distributor">
+                </div>
+                <div class="wrap-input100 m-b-16">
+                  <input class="input100" 
+                         type="text" 
+                         name="region" 
+                         placeholder="Region"
+                         formControlName="region">
+                </div>
+                <div class="wrap-input100 m-b-16">
+                  <input class="input100" 
+                         type="text" 
+                         name="language" 
+                         placeholder="Language"
+                         formControlName="language">
+                </div>
+                                 
+                <div class="wrap-input100 m-b-16">
+                  <textarea class="textarea100" id="notes" rows="3"
+                   name="notes" placeholder="Notes" formControlName="notes"></textarea>
+                </div>
+                <div class="wrap-input100 m-b-16">
+                  <textarea class="textarea100" id="description" rows="3" 
+                  name="descrition" placeholder="Description" formControlName="description"></textarea>
+                </div>
+                <div class="wrap-input100 m-b-16">
+                <input type="file" (change)="onFileChange($event)" name="coverPage" class="inputFile100"/>
+                </div>
+                            
+                <div class="container-login100-form-btn m-t-17">
+                    <button class="login100-form-btn round" type="submit">
+                        Add
+                  </button>
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+  <hr>
+  <pre>
+    Estado del formulario:{{ forma.valid}}
+    Status:{{forma.status}}
+    {{forma.value| json}}
+  </pre>  
+
+  
+  

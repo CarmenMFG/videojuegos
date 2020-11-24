@@ -155,7 +155,7 @@ iframe {
 
 
 .wrap-login100 {
-  width: 390px;
+  width: 500px;
   background: #fff;
   border-radius: 10px;
   position: relative;
@@ -207,6 +207,31 @@ iframe {
   background: transparent;
   height: 62px;
   padding: 0 20px 0 38px;
+}
+.isInvalid{
+  border:1px solid red !important;
+}
+.textarea100 {
+  font-family: Ubuntu-Bold;
+  color: #403866;
+  line-height: 1.2;
+  font-size: 18px;
+  display: block;
+  width: 100%;
+  background: transparent;
+  padding: 20px 20px 0 38px;
+}
+.inputFile100 {
+  font-family: Ubuntu-Bold;
+  color: #403866;
+  line-height: 1.2;
+  font-size: 18px;
+
+  display: block;
+  width: 100%;
+  background: transparent;
+  height: 62px;
+  padding: 20px 20px 0 38px;
 }
 /*------------------------------------------------------------------
 [ Focus Input ]*/
