@@ -28,7 +28,7 @@ export class VideogameComponent implements OnInit, OnDestroy {
      this.createForm();
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.loadSystems();
     this.loadSupports();
    }
@@ -64,39 +64,25 @@ export class VideogameComponent implements OnInit, OnDestroy {
        });
      }
      this.createModel();
-     console.log(this.game);
      this.subscription = this.videogameService.addVideoGame(this.game)
      .subscribe(rsp => {console.log(rsp)});
      this.forma.reset();
    }
-   loadSystems(): void{
+  loadSystems(){
     this.subscription = this.videogameService.allSystems()
-    .subscribe(rsp => {
-      console.log(rsp);
-      if (rsp.success === true){
-        this.systems = rsp.data;
-       /* this.systems.unshift({
-            name: 'Search Systems',
-            description:' ',
-            id: null,
-            platform:''
-        }); */
-      //  this.forma.controls['system'].setValue(this.systems[0]);
-
-      
-        /* rsp.data.forEach(system => {
-          this.systems.push(system);
-        });*/
-       
-       }else{
-        Swal.fire({
-          text: rsp.message,
-          title: 'Error al cargar datos',
-          icon: 'error',
-        });
-       }
-     });
-    }
+      .subscribe(rsp => {
+        console.log(rsp);
+        if (rsp.success === true){
+          this.systems = rsp.data;
+        }else{
+          Swal.fire({
+            text: rsp.message,
+            title: 'Error al cargar datos',
+            icon: 'error',
+          });
+         }
+       });
+  }
     loadSupports(): void{
       this.subscription = this.videogameService.allSupports()
       .subscribe(rsp => {

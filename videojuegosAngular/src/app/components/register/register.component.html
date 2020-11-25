@@ -6,7 +6,7 @@
                 class="login100-form validate-form flex-sb flex-w">
               
                     <span class="login100-form-title p-b-51">
-                        Crear nueva cuenta
+                      Register account
                     </span>
     
                     <span *ngIf="formRegister.submitted && formRegister.controls['email'].errors" 
@@ -54,20 +54,20 @@
                         <div class="contact100-form-checkbox">
                             <input [(ngModel)]="remember" class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
                             <label class="label-checkbox100" for="ckb1">
-                                Recordar mi usuario
+                                Remember user
                             </label>
                         </div>
     
                         <div>
                             <a routerLink="/login" class="txt1">
-                                ¿Ya tienes cuenta? / Ingresar
+                               Do you already have an account? / Login
                             </a>
                         </div>
                     </div>
     
                     <div class="container-login100-form-btn m-t-17">
                         <button class="login100-form-btn" type="submit">
-                            Crear cuenta
+                         Create Account
                         </button>
                     </div>
     

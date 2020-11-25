@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { VideogameService } from '../../services/videogame.service';
+import { VideoGameModel } from 'src/app/models/videogame.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home',
@@ -7,13 +11,35 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-  constructor(private router: Router) { }
+  private subscription: Subscription = new Subscription();
+  public videogames: VideoGameModel[] = new Array<VideoGameModel>();
+  constructor(private router: Router,private videogameService: VideogameService) { }
 
   ngOnInit() {
- 
+    this.loadAllVideoGame();
   }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  
   goAddGame(): void{
      this.router.navigateByUrl('/videogame');
+  }
+  loadAllVideoGame(){
+    this.subscription = this.videogameService.allGames()
+      .subscribe(rsp => {
+        console.log(rsp);
+        if (rsp.success === true){
+          this.videogames = rsp.data;
+          console.log(this.videogames);
+        }else{
+          Swal.fire({
+            text: rsp.message,
+            title: 'Error al cargar datos',
+            icon: 'error',
+          });
+         }
+       });
   }
 }

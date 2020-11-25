@@ -71,28 +71,44 @@ namespace Videogames.Business.Extensions
                     ReleaseDate = modelEntity.ReleaseDate,
                     //  Support = modelDO.Support,
                     Title = modelEntity.Title ?? string.Empty,
-                    Support=new SupportDO { 
-                                    Description= modelEntity.Support.Description,
-                                    Name= modelEntity.Support.Name,
-                                    Id=modelEntity.Support.Id
-                                   },
-                    System=new SystemDO{
-                                    Description = modelEntity.System.Description,
-                                    Name = modelEntity.System.Name,
-                                    Id = modelEntity.System.Id
-
-                                    },
-                    Platform= new PlatformDO
-                                    {
-                                    Description = modelEntity.System.Platform.Description,
-                                    Name = modelEntity.System.Platform.Name,
-                                    Id = modelEntity.System.Platform.Id
-
-                    }
+                   
+                    
                     //  UpdateDate = modelDO.UpdateDate,
                     //  User = modelDO.User
                 };
             }
+            if (modelEntity.Support != null)
+            {
+                modelVM.Support = new SupportDO
+                {
+                    Description = modelEntity.Support.Description,
+                    Name = modelEntity.Support.Name,
+                    Id = modelEntity.Support.Id
+                };
+            }
+            if (modelEntity.System != null)
+            {
+
+                modelVM.System = new SystemDO
+                {
+                    Description = modelEntity.System.Description,
+                    Name = modelEntity.System.Name,
+                    Id = modelEntity.System.Id
+                
+                };
+                if (modelEntity.System.Platform!=null)
+                {
+                 modelVM.Platform= new PlatformDO
+                 {
+                     Description = modelEntity.System.Platform.Description,
+                     Name = modelEntity.System.Platform.Name,
+                     Id = modelEntity.System.Platform.Id
+
+                 };
+                }
+            }
+           
+
             return modelVM;
         }
 

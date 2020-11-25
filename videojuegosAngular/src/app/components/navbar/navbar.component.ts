@@ -1,7 +1,8 @@
-import { Component, OnInit, Inject, OnChanges } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
+import {Subscription} from 'rxjs';
 
 
 @Component({
@@ -9,17 +10,25 @@ import { Router } from '@angular/router';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit,OnDestroy {
   public isLog = false;
-  public username: string;
-  constructor(@Inject(DOCUMENT) public document: Document,
-              private userService: UserService,
-              private router: Router) { }
+  userName: string;
+  private subscription: Subscription = new Subscription();
+
+  constructor(@Inject(DOCUMENT) public document: Document,private userService: UserService,
+              private router: Router) {
+    this.subscription =this.userService.obs$.subscribe( user => {
+    this.userName = user;
+    this.isLog = user !== '';
+    });
+  }
 
   ngOnInit(): void {
-    this.username = this.userService.getUser();
-    this.isLog = (this.username === '') ? false : true;
   }
+  ngOnDestroy(): void {
+   this.subscription.unsubscribe();
+  }
+
   logout(): void{
     this.userService.logout();
   }

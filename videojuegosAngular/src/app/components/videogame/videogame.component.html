@@ -47,14 +47,16 @@
                          placeholder="Genre"
                          formControlName="genre">
                 </div>
+                <label for="system" class="txtLabel">Select a system</label>
                 <div class="wrap-input100 m-b-16">
-                  <select  class="input100" name="system" formControlName="system">
+                   <select  class="input100" name="system" formControlName="system">
                     <option  class="input100" *ngFor="let system of systems"
                             [ngValue]="system.id">
                               {{system.name}} {{system.platform}}
                     </option>
                   </select>
                 </div> 
+                <label for="support" class="txtLabel">Select a support</label>
                 <div class="wrap-input100 m-b-16">
                   <select  class="input100" name="system" formControlName="support">
                     <option  class="input100" *ngFor="let support of supports"
@@ -106,12 +108,7 @@
         </div>
     </div>
   </div>
-  <hr>
-  <pre>
-    Estado del formulario:{{ forma.valid}}
-    Status:{{forma.status}}
-    {{forma.value| json}}
-  </pre>  
+ 
 
   
   

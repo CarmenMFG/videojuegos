@@ -124,6 +124,13 @@ iframe {
   color: #827ffe;
   line-height: 1.4;
 }
+.txtLabel{
+  font-family: Ubuntu-Bold;
+  color: darkgrey;
+  line-height: 1.2;
+  font-size: 18px;
+
+}
 
 
 
@@ -174,7 +181,7 @@ iframe {
   font-size: 30px;
   color: #403866;
   line-height: 1.2;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   text-align: center;
 
   width: 100%;
@@ -354,7 +361,7 @@ iframe {
   font-size: 16px;
   color: #fff;
   line-height: 1.2;
-  text-transform: uppercase;
+ /* text-transform: uppercase;*/
 
   display: -webkit-box;
   display: -webkit-flex;

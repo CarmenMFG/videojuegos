@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserModel } from '../models/user.model';
-import { Observable } from 'rxjs';
+import { of ,Observable} from 'rxjs';
 import { LoginModel } from '../models/login.model';
+
 
 
 @Injectable({
@@ -10,8 +11,16 @@ import { LoginModel } from '../models/login.model';
 })
 export class UserService {
   private url = 'https://localhost:44357/api/Account';
- 
-  constructor(private http: HttpClient) {
+  obs$;
+ // public loged = new Observable(this.loginSubscriber);
+ constructor(private http: HttpClient) {
+    this.obs$ = new Observable(observer => {
+    let user;
+    setInterval(() => {
+       user= this.getUser();
+       observer.next(user);
+      }, 1000 )
+    });
   }
  
   public registerUser(user: UserModel): Observable<any> {
@@ -42,5 +51,9 @@ export class UserService {
   isAuthenticated(): boolean{
      return localStorage.getItem('Token') != null;
   }
+  loginSubscriber(){
+    const user$ = of(this.getUser());
+    return user$;
+  } 
 
 }

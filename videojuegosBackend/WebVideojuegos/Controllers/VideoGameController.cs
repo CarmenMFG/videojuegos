@@ -137,7 +137,8 @@ namespace  Videojuegos.Controllers
             try
             {
                 var data = getDataToken(HttpContext.User.Claims.ToList());
-                result.Data = _business.GetAllVideoGame(data.IdUser, data.RolName).Select( x => x.ConvertDOToVM());
+                var res = _business.GetAllVideoGame(data.IdUser, data.RolName);
+                result.Data =res.Select( x => x.ConvertDOToVM());
                 result.StatusCode = 200;
             }
             catch(Exception ex)
