@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { VideoGameModel } from 'src/app/models/videogame.model';
 import { Subscription } from 'rxjs';
@@ -7,6 +7,8 @@ import { SystemModel } from '../../models/system.model';
 import Swal from 'sweetalert2';
 import { SupportModel } from '../../models/support.model';
 import { ChangeDetectorRef } from '@angular/core';
+import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,14 +23,16 @@ export class VideogameComponent implements OnInit, OnDestroy {
  private subscription: Subscription = new Subscription();
  public systems: SystemModel[] = new Array<SystemModel>();
  public supports: SupportModel[]= new Array<SupportModel>();
+// @ViewChild('NgbdDatepicker') model: NgbDateStruct;
  
  constructor(private fb: FormBuilder,
              private videogameService: VideogameService,
-             private cd: ChangeDetectorRef) { 
+             private cd: ChangeDetectorRef,
+             private router: Router) { 
      this.createForm();
   }
 
-  async ngOnInit() {
+   ngOnInit(): void {
     this.loadSystems();
     this.loadSupports();
    }
@@ -40,7 +44,7 @@ export class VideogameComponent implements OnInit, OnDestroy {
 
   createForm(): void{
     this.forma = this.fb.group({
-      title: ['',[Validators.required,Validators.minLength(3)]],
+      title: ['',[Validators.required, Validators.minLength(3)]],
       // tslint:disable-next-line:no-trailing-whitespace
       developer: [''], 
       barCode: [''],
@@ -53,7 +57,9 @@ export class VideogameComponent implements OnInit, OnDestroy {
       description : [''],
       system: [null],
       support: [null],
-      coverPage: [null]
+      coverPage: [null,[Validators.required]],
+      backCover:[null],
+      releaseDate:['']
     });
    }
 
@@ -65,13 +71,27 @@ export class VideogameComponent implements OnInit, OnDestroy {
      }
      this.createModel();
      this.subscription = this.videogameService.addVideoGame(this.game)
-     .subscribe(rsp => {console.log(rsp)});
+     .subscribe(rsp => {
+      if (rsp.success === true){
+        Swal.fire({
+          text: rsp.message,
+          title: 'Añadir videojuego',
+          icon: 'success',
+        });
+        this.router.navigateByUrl('/home'); 
+      }else{
+        Swal.fire({
+          text: rsp.message,
+          title: 'Error al cargar datos',
+          icon: 'error',
+        });
+      }
+      });
      this.forma.reset();
    }
-  loadSystems(){
+  loadSystems(): void{
     this.subscription = this.videogameService.allSystems()
       .subscribe(rsp => {
-        console.log(rsp);
         if (rsp.success === true){
           this.systems = rsp.data;
         }else{
@@ -86,7 +106,6 @@ export class VideogameComponent implements OnInit, OnDestroy {
     loadSupports(): void{
       this.subscription = this.videogameService.allSupports()
       .subscribe(rsp => {
-        console.log(rsp);
         if (rsp.success === true){
           this.supports = rsp.data;
         }else{
@@ -98,25 +117,27 @@ export class VideogameComponent implements OnInit, OnDestroy {
          }
        });
     }
-
     onFileChange(event): void {
+      console.log(event.target.name);
       const reader = new FileReader();
-   
       if(event.target.files && event.target.files.length) {
         const [file] = event.target.files;
         reader.readAsDataURL(file);
-    
         reader.onload = () => {
-          this.forma.patchValue({
-            coverPage: reader.result
-         });
-        
-          // need to run CD since file load runs outside of zone
-          this.cd.markForCheck();
+         if (event.target.name === 'coverPage'){
+            this.forma.patchValue({
+              coverPage: reader.result
+           });
+         }else{
+            this.forma.patchValue({
+              backCover: reader.result
+           });
+
+         }
+         this.cd.markForCheck();
         };
       }
     }
-    
     createModel(): void{
     this.game.title = this.forma.controls[ 'title' ].value;
     this.game.developer = this.forma.controls[ 'developer' ].value;
@@ -130,7 +151,12 @@ export class VideogameComponent implements OnInit, OnDestroy {
     this.game.description = this.forma.controls[ 'description' ].value;
     this.game.idSystem = this.forma.controls[ 'system' ].value;
     this.game.idSupport = this.forma.controls[ 'support' ].value;
-    this.game.coverPage = this.forma.controls['coverPage'].value;
+    this.game.coverPage = JSON.stringify(this.forma.controls['coverPage'].value);
+    this.game.releaseDate = new Date(this.forma.controls["releaseDate"].value);
+    this.game.backCover = JSON.stringify(this.forma.controls['backCover'].value);
   }
+  goHome(): void{
+    this.router.navigateByUrl('/home');
+ }
 
 }

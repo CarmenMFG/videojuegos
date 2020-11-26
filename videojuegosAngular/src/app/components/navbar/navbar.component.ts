@@ -15,11 +15,11 @@ export class NavbarComponent implements OnInit,OnDestroy {
   userName: string;
   private subscription: Subscription = new Subscription();
 
-  constructor(@Inject(DOCUMENT) public document: Document,private userService: UserService,
+  constructor(@Inject(DOCUMENT) public document: Document, private userService: UserService,
               private router: Router) {
     this.subscription =this.userService.obs$.subscribe( user => {
-    this.userName = user;
-    this.isLog = user !== '';
+      this.userName = user;
+      this.isLog = user !== '';
     });
   }
 

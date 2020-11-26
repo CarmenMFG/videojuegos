@@ -1,9 +1,12 @@
 
-<div class="container-login100-form-btn m-t-17">
-  <button class="login100-form-btn" type="btn" (click)="goAddGame()">
+<div  class="container-login100 mt-2">
+  <button class="login100-form-btn mb-4" type="btn" (click)="goAddGame()">
       Add Game
   </button>
-  <ul>
-    <li *ngFor="let game of videogames">{{game.title}}</li>
-  </ul>
+  <div class="card-group" *ngFor="let game of videogames">
+    <div class="card card-img">
+      <img class="card-img-top"  src={{game.coverPage}} alt="{{game.title}}">
+    </div>
+  </div>
+
 </div>

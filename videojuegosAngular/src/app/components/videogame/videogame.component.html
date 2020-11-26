@@ -1,4 +1,7 @@
 <div class="limiter animated fadeIn">
+  <button class="login100-form-btn mt-4" type="btn" (click)="goHome()">
+   Back
+  </button>  
   
     <div class="container-login100">
         <div class="wrap-login100 p-t-50 p-b-90">
@@ -86,26 +89,41 @@
                          placeholder="Language"
                          formControlName="language">
                 </div>
+                <label for="releaseDate" class="txtLabel">Release Date</label>
+                <div  class="wrap-input100 m-b-16">
+                    <input type="date" class="input100" name="releaseDate"
+                         placeholder="Release Date" formControlName="releaseDate">
+                </div>
                                  
                 <div class="wrap-input100 m-b-16">
                   <textarea class="textarea100" id="notes" rows="3"
                    name="notes" placeholder="Notes" formControlName="notes"></textarea>
-                </div>
-                <div class="wrap-input100 m-b-16">
+                 </div>
+                
+                 <div class="wrap-input100 m-b-16">
                   <textarea class="textarea100" id="description" rows="3" 
                   name="descrition" placeholder="Description" formControlName="description"></textarea>
                 </div>
+                
+                <label for="coverPage" class="txtLabel">Coverpage</label>
                 <div class="wrap-input100 m-b-16">
                 <input type="file" (change)="onFileChange($event)" name="coverPage" class="inputFile100"/>
                 </div>
-                            
+                <div class="mb-3"><small *ngIf="this.forma.get('coverPage').invalid && this.forma.get('coverPage').touched"
+                  class="text-danger animated fadeIn ">Coverpage is required </small></div>
+               
+                <label for="backCover" class="txtLabel">BackCover</label>
+                <div class="wrap-input100 m-b-16">
+                <input type="file" (change)="onFileChange($event)" name="backCover" class="inputFile100"/>
+                </div>                      
+               
                 <div class="container-login100-form-btn m-t-17">
                     <button class="login100-form-btn round" type="submit">
                         Add
                   </button>
                 </div>
             </form>
-        </div>
+           </div>
     </div>
   </div>
  

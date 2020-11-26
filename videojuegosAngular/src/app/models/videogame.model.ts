@@ -12,4 +12,6 @@ export class VideoGameModel {
     public idSystem: number;
     public idSupport: number;
     public coverPage: string;
+    public releaseDate: Date;
+    public backCover: string;
 }

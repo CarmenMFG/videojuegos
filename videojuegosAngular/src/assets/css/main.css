@@ -453,6 +453,18 @@ iframe {
     opacity: 1;
   }
 }
+.card-img{
+  width:300px !important;
+  height:400px !important;
+  margin:2px;
+}
+.card-img img{
+  width:296px !important;
+  height:396px !important;
+}
+  .card-img:hover{
+  border:2px solid red;
+}
 
 
 /*//////////////////////////////////////////////////////////////////

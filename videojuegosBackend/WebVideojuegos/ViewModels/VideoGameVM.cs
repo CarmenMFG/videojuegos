@@ -22,8 +22,8 @@ namespace Videojuegos.API.ViewModels
         public int? IdSupport { get; set; }
        // public int IdUser { get; set; }
         public bool IsActive { get; set; }
-        public byte[] CoverPage { get; set; }
-        public byte[] BackCover { get; set; }
+        public string CoverPage { get; set; }
+        public string BackCover { get; set; }
         public DateTime? ReleaseDate { get; set; }
         //public DateTime CreateDate { get; set; }
         //public DateTime UpdateDate { get; set; }

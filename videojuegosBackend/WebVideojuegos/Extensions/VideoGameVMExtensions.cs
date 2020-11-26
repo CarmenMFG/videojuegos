@@ -53,7 +53,7 @@ namespace Videogames.API.Extensions
                     Id = modelDO.Id,
                     BackCover = modelDO.BackCover,
                     BarCode = modelDO.BarCode,
-                    CoverPage = modelDO.CoverPage,
+                    CoverPage = modelDO.CoverPage??null,
                     //  CreateDate = modelDO.CreateDate,
                     Description = modelDO.Description,
                     Developer = modelDO.Developer,
@@ -69,13 +69,34 @@ namespace Videogames.API.Extensions
                     Redump = modelDO.Redump,
                     Region = modelDO.Region,
                     ReleaseDate = modelDO.ReleaseDate,
-                    Support = modelDO.Support.Name,
-                    Platform = modelDO.Platform.Name,
-                    System=modelDO.System.Name,
                     Title = modelDO.Title,
                     //  UpdateDate = modelDO.UpdateDate,
                     //  User = modelDO.User
                 };
+                 if (modelDO.Support != null)
+                 {
+                    modelVM.Support = modelDO.Support.Name ?? string.Empty;
+                 }
+                 else
+                 {
+                    modelVM.Support = string.Empty;
+                 }
+                 if (modelDO.Platform != null)
+                 {
+                    modelVM.Platform = modelDO.Platform.Name;
+                 }
+                 else
+                 {
+                    modelVM.Platform = string.Empty;
+                 }
+                if (modelDO.System != null)
+                {
+                    modelVM.System = modelDO.System.Name;
+                }
+                else
+                {
+                    modelVM.System = string.Empty;
+                }
             }
             return modelVM;
         }

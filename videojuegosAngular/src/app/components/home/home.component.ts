@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 export class HomeComponent implements OnInit {
   private subscription: Subscription = new Subscription();
   public videogames: VideoGameModel[] = new Array<VideoGameModel>();
-  constructor(private router: Router,private videogameService: VideogameService) { }
+  constructor(private router: Router, private videogameService: VideogameService) { }
 
   ngOnInit() {
     this.loadAllVideoGame();
@@ -32,6 +32,11 @@ export class HomeComponent implements OnInit {
         console.log(rsp);
         if (rsp.success === true){
           this.videogames = rsp.data;
+          this.videogames.forEach(game=>{
+            if (game.coverPage!=null){
+              game.coverPage = game.coverPage.replace(/['"]+/g, '');
+            }
+          })
           console.log(this.videogames);
         }else{
           Swal.fire({

@@ -13,13 +13,14 @@ export class UserService {
   private url = 'https://localhost:44357/api/Account';
   obs$;
  // public loged = new Observable(this.loginSubscriber);
+ 
  constructor(private http: HttpClient) {
     this.obs$ = new Observable(observer => {
     let user;
     setInterval(() => {
-       user= this.getUser();
+       user = this.getUser();
        observer.next(user);
-      }, 1000 )
+      }, 1000)
     });
   }
  
@@ -51,9 +52,6 @@ export class UserService {
   isAuthenticated(): boolean{
      return localStorage.getItem('Token') != null;
   }
-  loginSubscriber(){
-    const user$ = of(this.getUser());
-    return user$;
-  } 
+ 
 
 }
