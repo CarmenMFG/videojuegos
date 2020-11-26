@@ -1,12 +1,13 @@
 
-<div  class="container-login100 mt-2">
+<div class="container-login100 mt-2">
   <button class="login100-form-btn mb-4" type="btn" (click)="goAddGame()">
       Add Game
   </button>
   <div class="card-group" *ngFor="let game of videogames">
     <div class="card card-img">
-      <img class="card-img-top"  src={{game.coverPage}} alt="{{game.title}}">
+      <a [routerLink]="['/videogame-detail/',game.id]">
+       <img class="card-img-top"  src={{game.coverPage}} alt="{{game.title}}">
+      </a>
     </div>
   </div>
-
 </div>

@@ -19,7 +19,6 @@ export class VideogameService {
     const headers: HttpHeaders = new HttpHeaders({
       Authorization: `Bearer ${this.token}`
   });
-   //  const data = JSON.stringify(game);
     const data = { ...game };
     return this.http.post(`${this.url}`, data, { headers });
   }
@@ -41,6 +40,12 @@ export class VideogameService {
       Authorization: `Bearer ${this.token}`
     });
     return this.http.get(`${this.url}/getAll`, { headers });
+  }
+  public getVideoGame(id : number): Observable<any>{
+    const headers: HttpHeaders = new HttpHeaders({
+      Authorization: `Bearer ${this.token}`
+    });
+    return this.http.get(`${this.url}/${id}`, { headers });
   }
    
 

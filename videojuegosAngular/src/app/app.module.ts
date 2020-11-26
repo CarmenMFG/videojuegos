@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { VideogameComponent } from './components/videogame/videogame.component';
 import { UserService } from './services/user.service';
 import { VideogameService } from './services/videogame.service';
+import { VideogameDetailComponent } from './components/videogame-detail/videogame-detail.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { VideogameService } from './services/videogame.service';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    VideogameComponent
+    VideogameComponent,
+    VideogameDetailComponent
   ],
   imports: [
     BrowserModule,

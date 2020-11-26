@@ -14,4 +14,5 @@ export class VideoGameModel {
     public coverPage: string;
     public releaseDate: Date;
     public backCover: string;
+    public id: number;
 }

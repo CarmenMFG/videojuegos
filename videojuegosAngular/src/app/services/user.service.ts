@@ -12,8 +12,7 @@ import { LoginModel } from '../models/login.model';
 export class UserService {
   private url = 'https://localhost:44357/api/Account';
   obs$;
- // public loged = new Observable(this.loginSubscriber);
- 
+  
  constructor(private http: HttpClient) {
     this.obs$ = new Observable(observer => {
     let user;
