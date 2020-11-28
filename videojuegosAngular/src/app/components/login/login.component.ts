@@ -42,15 +42,23 @@ export class LoginComponent implements OnInit, OnDestroy {
     if (form.invalid) { return; }
     this.subscription = this.userService.loginUser(this.loginModel)
       .subscribe(rsp => {
-        this.userService.saveTokenUser(rsp.token, rsp.userName);
-        Swal.close();
-        this.router.navigateByUrl('/home');
-        if (this.remember){
-          localStorage.setItem('Remember', 'true');
-        }else{
-          localStorage.setItem('Remember', '');
+        if (rsp.userName !==''){
+            this.userService.saveTokenUser(rsp.token, rsp.userName);
+            Swal.close();
+            this.router.navigateByUrl('/home');
+            if (this.remember){
+              localStorage.setItem('Remember', 'true');
+            }else{
+              localStorage.setItem('Remember', '');
+            }
+       }else{
+          Swal.fire({
+            text: 'Error al autenticar',
+            title: 'Error al autenticar',
+            icon: 'error',
+          });
         }
-       }, (err) => {
+     }, (err) => {
           console.log(err);
           Swal.fire({
             text: 'Error al autenticar',

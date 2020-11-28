@@ -66,7 +66,7 @@ namespace Videogames.API.Controllers
             var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(login.Password));
             for (int i = 0; i < computedHash.Length; i++)
             {
-                if (computedHash[i] != userVM.PasswordHash[i]) { return Unauthorized("Usuario Inválido"); };
+                if (computedHash[i] != userVM.PasswordHash[i]) { return new TokenVM { UserName = String.Empty, Token = String.Empty }; };
             }
 
             return new TokenVM { UserName = userVM.User, Token = _tokenService.CreateToken(userVM) };

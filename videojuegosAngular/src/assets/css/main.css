@@ -17,38 +17,20 @@
 
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
-
+body{
+   background-color:pink;
+  
+}
 * {
 	margin: 0px; 
 	padding: 0px; 
-	box-sizing: border-box;
+  box-sizing: border-box;	
+  font-family: Ubuntu-Regular, sans-serif;
+   
 }
 
-body, html {
-	height: 100%;
-	font-family: Ubuntu-Regular, sans-serif;
-}
-
-/*---------------------------------------------*/
-a {
-	font-family: Ubuntu-Regular;
-	font-size: 14px;
-	line-height: 1.7;
-	color: #666666;
-	margin: 0px;
-	transition: all 0.4s;
-	-webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  -moz-transition: all 0.4s;
-}
-
-a:focus {
-	outline: none !important;
-}
-
-a:hover {
-	text-decoration: none;
-  color: #403866;
+.container{
+  background-color:blue!important;
 }
 
 /*---------------------------------------------*/
@@ -453,18 +435,7 @@ iframe {
     opacity: 1;
   }
 }
-.card-img{
-  width:300px !important;
-  height:400px !important;
-  margin:2px;
-}
-.card-img img{
-  width:296px !important;
-  height:396px !important;
-}
-  .card-img:hover{
-  border:2px solid red;
-}
+
 
 
 /*//////////////////////////////////////////////////////////////////

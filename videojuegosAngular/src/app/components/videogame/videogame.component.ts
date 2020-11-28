@@ -70,9 +70,16 @@ export class VideogameComponent implements OnInit, OnDestroy {
        });
      }
      this.createModel();
+     Swal.fire({
+      text: 'Espere por favor',
+      allowOutsideClick: false,
+      icon: 'info',
+     });
+     Swal.showLoading();
      this.subscription = this.videogameService.addVideoGame(this.game)
      .subscribe(rsp => {
       if (rsp.success === true){
+        Swal.close();
         Swal.fire({
           text: rsp.message,
           title: 'Añadir videojuego',

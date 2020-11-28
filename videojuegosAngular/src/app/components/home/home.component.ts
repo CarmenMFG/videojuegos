@@ -26,11 +26,17 @@ export class HomeComponent implements OnInit {
   goAddGame(): void{
      this.router.navigateByUrl('/videogame');
   }
-  loadAllVideoGame(){
+  loadAllVideoGame(): void{
+    Swal.fire({
+      text: 'Espere por favor',
+      allowOutsideClick: false,
+      icon: 'info',
+     });
+    Swal.showLoading();
     this.subscription = this.videogameService.allGames()
       .subscribe(rsp => {
-        console.log(rsp);
-        if (rsp.success === true){
+         Swal.close();
+         if (rsp.success === true){
           this.videogames = rsp.data;
           this.videogames.forEach(game=>{
             if (game.coverPage!=null){
