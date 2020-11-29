@@ -13,7 +13,6 @@ import { VideogameComponent } from './components/videogame/videogame.component';
 import { UserService } from './services/user.service';
 import { VideogameService } from './services/videogame.service';
 import { VideogameDetailComponent } from './components/videogame-detail/videogame-detail.component';
-import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
@@ -24,8 +23,7 @@ import { CommonModule } from '@angular/common';
     LoginComponent,
     RegisterComponent,
     VideogameComponent,
-    VideogameDetailComponent,
-    SafeHtmlPipe
+    VideogameDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -35,8 +33,6 @@ import { CommonModule } from '@angular/common';
     HttpClientModule,
     NgbModule,
     CommonModule
-    
-    // Import the module into the application, with configuration
   ],
   providers: [UserService, VideogameService],
   bootstrap: [AppComponent]

@@ -56,7 +56,7 @@ export class VideogameDetailComponent implements OnInit {
   goHome(): void{
     this.router.navigateByUrl('/home');
  }
- showSwalDelete():void{
+ showSwalDelete(): void{
   Swal.fire({
     text: '¿Está seguro de borrar el juego?',
     allowOutsideClick: false,
