@@ -1,3 +1,6 @@
+import { SystemModel } from './system.model';
+import { SupportModel } from './support.model';
+import { PlatformModel } from './platform.model';
 export class VideoGameModel {
     public title: string;
     public developer: string;
@@ -15,4 +18,8 @@ export class VideoGameModel {
     public releaseDate: Date;
     public backCover: string;
     public id: number;
+    public systems: SystemModel;
+    public platform: PlatformModel;
+    public support: SupportModel;
+
 }

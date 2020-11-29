@@ -1,1 +1,72 @@
-<h6>Product Id: {{idVideogame}}</h6>
+<div class="limiter animated fadeIn">
+    <div class="container container-details">   
+        <div class="row mb-5">
+            <div class="col m-auto justify-content-center">
+                <button type="button" class="btn btn-lg btn-outline-primary  m-3 custom33" (click)="goHome()">
+                    <span class="fa fa-undo text-primary" style="margin-right: 10px">
+                    </span>
+                    Back</button>
+                <button type="button" class="btn btn-lg btn-outline-primary  m-3 custom33" (click)="showSwalDelete()">
+                    <span class="fa fa-trash-o text-primary" style="margin-right: 10px">
+                    </span>Delete</button>
+                <button type="button" class="btn btn-lg btn-outline-primary m-3 custom33">
+                    <span class="fa fa-edit text-primary" style="margin-right: 10px">
+                    </span>Edit</button>
+            </div>
+        </div>   
+        <div class="wrap-login wrap-80 m-auto" *ngIf="dataGame!==null">
+        
+        <div class="row">
+            <div class="col">
+                <div class="card card-img" >
+                  <img class="card-img-top"  src={{dataGame.coverPage}}>
+                   <!-- <img class="card-img-top"  src={{dataGame.backCover!=null}}>-->
+                </div>
+            </div>
+            <div class="col">
+               <div class="container">
+                        <div class="row mb-4">
+                            <div class="col"><h4>{{dataGame.title}}</h4></div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col"  *ngIf="dataGame.systems!=null && dataGame.systems.name!==null && dataGame.systems.name!==''">{{dataGame.systems.name}}</div>
+                            <div class="col" *ngIf="dataGame.platform!=null && dataGame.platform.name!==null && dataGame.platform.name!==''">{{dataGame.platform.name}}</div>
+                        </div>
+                        <div class="row  mb-4">
+                            <div class="col" *ngIf="dataGame.releaseDate!==null">{{dataGame.releaseDate}}</div>
+                            <div class="col" *ngIf="dataGame.genre!==null && dataGame.genre!==''"> {{dataGame.genre}}</div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col" *ngIf="dataGame.developer!==null && dataGame.developer!==''">{{dataGame.developer}}</div>
+                            <div class="col" *ngIf="dataGame.distributor!==null && dataGame.distributor!==''">{{dataGame.distributor}}</div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col" *ngIf="dataGame.barCode!==null && dataGame.barCode!==''">{{dataGame.barCode}}</div>
+                           <div class="col"  *ngIf="dataGame.support!=null && dataGame.support.name!==null && dataGame.support.name!==''"> {{dataGame.support.name}}</div>
+                            <div class="col" *ngIf="dataGame.language!==null && dataGame.language!==''">{{dataGame.language}}</div>
+                        </div>
+                </div> 
+            </div>
+        </div> 
+        <div class="row mt-4 mb-4" *ngIf="dataGame.description!==null && dataGame.description!==''">
+            <div class="col">{{dataGame.description}}</div>
+        </div>
+        <div class="row mb-4" *ngIf="dataGame.notes!==null && dataGame.notes!==''">
+            <div class="col">{{dataGame.notes}}</div>
+        </div>
+        <div class="row" *ngIf="dataGame.redump!==null && dataGame.redump!==''">
+            <div class="col">{{dataGame.redump}}</div>
+         </div>
+    </div>  
+ </div>
+</div>      
+     
+     
+     
+     
+     
+     
+     
+     
+     
+ 

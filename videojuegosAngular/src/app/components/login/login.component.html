@@ -1,13 +1,13 @@
 <div class="limiter animated fadeIn">
-    <div class="container">
-        <div class="wrap-login100 p-t-50 p-b-90">
-            <form class="login100-form validate-form flex-sb flex-w" #formLogin="ngForm" (ngSubmit)="login(formLogin)">"
+    <div class="container container-login">
+        <div class="wrap-login wrap-600 m-auto">
+            <form class="validate-form flex-sb flex-w" #formLogin="ngForm" (ngSubmit)="login(formLogin)">
                 <span *ngIf="formLogin.submitted && formLogin.controls['userName'].errors" 
                   class="text-danger animated fadeIn">El nombre de usuario es obligatorio</span>
-                  <span class="login100-form-title p-b-51">
+                  <span class="form-title pb-5">
                    Login
                   </span>
-                  <div class="wrap-input100 m-b-16">
+                  <div class="wrap-input100 mb-4">
                     <input class="input100" 
                            type="text" 
                            name="userName" 
@@ -21,7 +21,7 @@
                 
                <span   *ngIf="formLogin.submitted && formLogin.controls['password'].errors" 
                class="text-danger animated fadeIn">La contraseña debe de ser más de 6 caracteres</span> 
-                <div class="wrap-input100 m-b-16" data-validate = "Password is required">
+                <div class="wrap-input100 mb-5" data-validate = "Password is required">
                     <input class="input100"
                            type="password" 
                            name="password" 
@@ -32,8 +32,8 @@
                     <span class="focus-input100"></span>
                 </div>
                 
-                <div class="flex-sb-m w-full p-t-3 p-b-24">
-                    <div class="contact100-form-checkbox">
+                <div class="flex-sb-m w-full separate-top80 mb-5">
+                    <div>
                         <input [(ngModel)]="remember" class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
                         <label class="label-checkbox100" for="ckb1">
                            Remember user
@@ -41,15 +41,15 @@
                     </div>
 
                     <div>
-                        <a routerLink="/register" class="txt1">
+                        <a class="answer" routerLink="/register" class="answer">
                            You do not have an account?
                         </a>
                     </div>
                 </div>
 
-                <div class="container-login100-form-btn m-t-17">
-                    <button class="login100-form-btn" type="submit">
-                       Login
+              <div class="container-login100-form-btn mt-5 justify-content-center">
+                    <button type="submit" class="btn btn-lg btn-outline-primary custom100">
+                      login
                     </button>
                 </div>
 
@@ -57,4 +57,3 @@
         </div>
     </div>
 </div>
-

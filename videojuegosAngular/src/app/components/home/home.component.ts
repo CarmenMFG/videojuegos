@@ -42,8 +42,8 @@ export class HomeComponent implements OnInit {
             if (game.coverPage!=null){
               game.coverPage = game.coverPage.replace(/['"]+/g, '');
             }
-          })
-          console.log(this.videogames);
+          });
+         
         }else{
           Swal.fire({
             text: rsp.message,

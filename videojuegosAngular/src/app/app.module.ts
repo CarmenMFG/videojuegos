@@ -13,6 +13,8 @@ import { VideogameComponent } from './components/videogame/videogame.component';
 import { UserService } from './services/user.service';
 import { VideogameService } from './services/videogame.service';
 import { VideogameDetailComponent } from './components/videogame-detail/videogame-detail.component';
+import { SafeHtmlPipe } from './pipes/safe-html.pipe';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { VideogameDetailComponent } from './components/videogame-detail/videogam
     LoginComponent,
     RegisterComponent,
     VideogameComponent,
-    VideogameDetailComponent
+    VideogameDetailComponent,
+    SafeHtmlPipe
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,8 @@ import { VideogameDetailComponent } from './components/videogame-detail/videogam
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    CommonModule
     
     // Import the module into the application, with configuration
   ],

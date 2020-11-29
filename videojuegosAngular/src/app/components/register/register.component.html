@@ -1,17 +1,17 @@
 <div class="limiter animated fadeIn">
-        <div class="container-login100">
-            <div class="wrap-login100 p-t-50 p-b-90">
+        <div class="container container-register">
+            <div class="wrap-login wrap-600 m-auto">
                 <form  (ngSubmit)="onSubmit(formRegister)"
                 #formRegister="ngForm"
-                class="login100-form validate-form flex-sb flex-w">
+                class="validate-form flex-sb flex-w">
               
-                    <span class="login100-form-title p-b-51">
+                    <span class="form-title pb-5">
                       Register account
                     </span>
     
                     <span *ngIf="formRegister.submitted && formRegister.controls['email'].errors" 
                      class="text-danger animated fadeIn">El correo es obligatorio</span> 
-                    <div class="wrap-input100 m-b-16">
+                    <div class="wrap-input100 mb-4">
                         <input class="input100" 
                                type="email" 
                                required
@@ -25,7 +25,7 @@
 
                    <span *ngIf="formRegister.submitted && formRegister.controls['userName'].errors" 
                    class="text-danger animated fadeIn">El nombre de usuario es obligatorio</span>
-                    <div class="wrap-input100 m-b-16">
+                    <div class="wrap-input100 mb-4">
                         <input class="input100" 
                                type="text" 
                                name="userName" 
@@ -39,7 +39,7 @@
                     
                  <span *ngIf="formRegister.submitted && formRegister.controls['password'].errors" 
                  class="text-danger animated fadeIn">La contraseña debe de ser más de 6 caracteres</span>
-                    <div class="wrap-input100 m-b-16" data-validate = "Password is required">
+                    <div class="wrap-input100 mb-4" data-validate = "Password is required">
                         <input class="input100"
                                type="password" 
                                name="password" 
@@ -50,7 +50,7 @@
                         <span class="focus-input100"></span>
                     </div>
                     
-                    <div class="flex-sb-m w-full p-t-3 p-b-24">
+                    <div class="flex-sb-m w-full separate-top80 mb-5">
                         <div class="contact100-form-checkbox">
                             <input [(ngModel)]="remember" class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
                             <label class="label-checkbox100" for="ckb1">
@@ -59,15 +59,15 @@
                         </div>
     
                         <div>
-                            <a routerLink="/login" class="txt1">
+                            <a class="answer" routerLink="/login" class="answer">
                                Do you already have an account? / Login
                             </a>
                         </div>
                     </div>
     
-                    <div class="container-login100-form-btn m-t-17">
-                        <button class="login100-form-btn" type="submit">
-                         Create Account
+                    <div class="container-login100-form-btnmt-5">
+                        <button type="submit" class="btn btn-lg btn-outline-primary custom100">
+                           create
                         </button>
                     </div>
     

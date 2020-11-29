@@ -45,8 +45,13 @@ export class VideogameService {
     const headers: HttpHeaders = new HttpHeaders({
       Authorization: `Bearer ${this.token}`
     });
+    console.log("Llama esto",location);
     return this.http.get(`${this.url}/${id}`, { headers });
   }
-   
-
+  public deleteVideoGame(id : number): Observable<any>{
+    const headers: HttpHeaders = new HttpHeaders({
+      Authorization: `Bearer ${this.token}`
+    });
+    return this.http.delete(`${this.url}/${id}`, { headers });
+  }
 }

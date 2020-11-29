@@ -3,7 +3,7 @@ nav{
     z-index: 100 !important;
     width: 100% !important;
     top:0;
-    font-size:1.5em;
+    font-size:1.2em;
     letter-spacing: 2px;;
 
 } 
@@ -14,19 +14,19 @@ li{
     background-color:black;
 }
 .border-separate{
-    height:3px;
-    background-color: rgb(185, 10, 10);
+    height:5px;
+    background-color: rgb(71, 71, 71);
+    position: fixed!important;
+    z-index: 100 !important;
+    width: 100% !important;
+    top:58px;
+}
+.border-separate-light{
+    height:1px;
+    background-color:lightgray;
     position: fixed!important;
     z-index: 100 !important;
     width: 100% !important;
     top:63px;
-}
-.border-separate-light{
-    height:3px;
-    background-color:red;
-    position: fixed!important;
-    z-index: 100 !important;
-    width: 100% !important;
-    top:66px;
 }
 
