@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 import Swal from 'sweetalert2';
 import { VideoGameModel } from '../../models/videogame.model';
 import { VideogameService } from '../../services/videogame.service';
+
 
 @Component({
   selector: 'app-videogame-detail',
@@ -86,10 +87,7 @@ export class VideogameDetailComponent implements OnInit {
         });
    }});
   }
-
-
-
-
-
-
+  goToEdit(): void {
+   this.router.navigate(['/videogame', this.dataGame.id]);
+  }
 }

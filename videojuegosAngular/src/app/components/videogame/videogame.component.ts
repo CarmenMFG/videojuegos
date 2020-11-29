@@ -7,8 +7,7 @@ import { SystemModel } from '../../models/system.model';
 import Swal from 'sweetalert2';
 import { SupportModel } from '../../models/support.model';
 import { ChangeDetectorRef } from '@angular/core';
-import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -22,14 +21,17 @@ export class VideogameComponent implements OnInit, OnDestroy {
  public game: VideoGameModel = new VideoGameModel();
  private subscription: Subscription = new Subscription();
  public systems: SystemModel[] = new Array<SystemModel>();
- public supports: SupportModel[]= new Array<SupportModel>();
-// @ViewChild('NgbdDatepicker') model: NgbDateStruct;
- 
+ public supports: SupportModel[] = new Array<SupportModel>();
+
+ public idVideogame;
  constructor(private fb: FormBuilder,
              private videogameService: VideogameService,
              private cd: ChangeDetectorRef,
-             private router: Router) { 
+             private router: Router,
+             private actRoute: ActivatedRoute) { 
      this.createForm();
+     this.idVideogame = this.actRoute.snapshot.params.id;
+     console.log('id',this.idVideogame);
   }
 
    ngOnInit(): void {

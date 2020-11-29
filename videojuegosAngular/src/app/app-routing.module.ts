@@ -11,7 +11,7 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'videogame', component: VideogameComponent, canActivate: [AuthGuard]},
+  {path: 'videogame/:id', component: VideogameComponent, canActivate: [AuthGuard]},
   {path: 'videogame-detail/:id', component: VideogameDetailComponent},
   {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];

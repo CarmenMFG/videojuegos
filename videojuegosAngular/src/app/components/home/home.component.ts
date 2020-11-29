@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
 
   
   goAddGame(): void{
-     this.router.navigateByUrl('/videogame');
+    this.router.navigate(['/videogame', 'new']);
   }
   loadAllVideoGame(): void{
     Swal.fire({

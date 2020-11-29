@@ -9,12 +9,12 @@
                 <button type="button" class="btn btn-lg btn-outline-primary  m-3 custom33" (click)="showSwalDelete()">
                     <span class="fa fa-trash-o text-primary" style="margin-right: 10px">
                     </span>Delete</button>
-                <button type="button" class="btn btn-lg btn-outline-primary m-3 custom33">
+                <button type="button" class="btn btn-lg btn-outline-primary m-3 custom33" (click)="goToEdit()">
                     <span class="fa fa-edit text-primary" style="margin-right: 10px">
                     </span>Edit</button>
             </div>
         </div>   
-        <div class="wrap-login wrap-80 m-auto" *ngIf="dataGame!==null">
+        <div class="wrap-login wrap-80 m-auto" *ngIf="(dataGame!==null)">
         
         <div class="row">
             <div class="col">
