@@ -1,7 +1,141 @@
 <div class="limiter animated fadeIn">
-  <button class="login100-form-btn mt-4" type="btn" (click)="goHome()">
-   Back
-  </button>  
+  <div class="container container-details">   
+    <div class="row mb-5">
+      <div class="col m-auto justify-content-center">
+          <button type="button" class="btn btn-lg btn-outline-primary  m-3 custom33" (click)="goHome()">
+              <span class="fa fa-undo text-primary" style="margin-right: 10px">
+              </span>
+              Back</button>
+          <button type="button" class="btn btn-lg btn-outline-primary  m-3 custom33">
+              <span class="fa fa-trash-o text-primary" style="margin-right: 10px">
+              </span>Delete</button>
+          <button type="button" class="btn btn-lg btn-outline-primary m-3 custom33" (click)="save()">
+              <span class="fa fa-edit text-primary" style="margin-right: 10px" >
+              </span>Save</button>
+      </div>
+   </div>
+   <div class="wrap-login wrap-80 m-auto">  
+    <form  class="login100-form validate-form flex-sb flex-w" 
+    autocomplete="off" [formGroup]="forma">
+      <div class="row mb-4">
+          <div class="col">
+              <label for="title" class="txtLabel">Title</label>
+              <input class="input100" type="text" name="title" 
+              [class.isInvalid]="this.forma.get('title').invalid && this.forma.get('title').touched"
+                formControlName="title">
+          </div>
+      </div>
+      <div class="row mb-3 ml-2"*ngIf="this.forma.get('title').invalid && this.forma.get('title').touched">
+        <small class="text-danger animated fadeIn ">Title is required </small>
+      </div>
+      
+        <div class="row mb-4">
+          <div class="col">
+              <label for="system" class="txtLabel">Select a system</label>
+              <select  class="input100" name="system" formControlName="system">
+                <option  class="input100" *ngFor="let system of systems"
+                        [ngValue]="system.id">
+                          {{system.name}} {{system.platform}}
+                </option>
+            </select>
+          </div>
+          <div class="col" > 
+            <label for="support" class="txtLabel">Select a support</label>
+              <select  class="input100" name="support" formControlName="support">
+                <option  class="input100" *ngFor="let support of supports"
+                        [ngValue]="support.id">
+                          {{support.name}}
+                </option>
+              </select>
+        </div>
+      </div>
+      <div class="row  mb-4">
+          <div class="col">
+            <label for="releaseDate" class="txtLabel">Release Date</label>
+            <input type="date" class="input100" name="releaseDate"
+             formControlName="releaseDate">
+          </div>
+          <div class="col">
+            <label for="genre" class="txtLabel">Genre</label>
+            <input class="input100" type="text" name="genre" 
+             formControlName="genre">
+          </div>
+      </div>
+      <div class="row mb-4">
+          <div class="col">
+             <label for="developer" class="txtLabel">Developer</label>
+              <input class="input100" type="text" name="developer" 
+             formControlName="developer">
+          </div>
+          <div class="col">
+            <label for="distributor" class="txtLabel">Distributor</label>
+              <input class="input100" type="text" name="distributor" 
+               formControlName="distributor">
+          </div>
+      </div>
+      <div class="row mb-4">
+          <div class="col">
+            <label for="barCode" class="txtLabel">Barcode</label>
+              <input class="input100" type="text" name="barCode" 
+               formControlName="barCode">
+          </div>
+          <div class="col">
+            <label for="language" class="txtLabel">Language</label>
+            <input class="input100" type="text" name="language" 
+             formControlName="language">
+          </div>
+          <div class="col">
+            <label for="region" class="txtLabel">Region</label>
+            <input class="input100" type="text" name="region" 
+           formControlName="region">
+          </div>
+      </div>
+      <div class="row mt-4 mb-4">
+        <div class="col">
+          <label for="coverPage" class="txtLabel">Coverpage</label>
+          <input type="file" (change)="onFileChange($event)" name="coverPage" class="inputFile100"/>
+        </div>
+      </div>
+      <div class="row  mb-3 ml-2"  *ngIf="this.forma.get('coverPage').invalid && this.forma.get('coverPage').touched">
+        <small class="text-danger animated fadeIn ">Coverpage is required </small>
+      </div>
+      <div class="row mt-4 mb-4">
+        <div class="col m-auto">
+          <label for="backCover" class="txtLabel">Backcover</label>
+          <input type="file" (change)="onFileChange($event)" name="backCover" class="inputFile100"/>
+        </div>
+      </div>  
+    
+      <div class="row mb-4">
+          <div class="col">
+            <label for="notes" class="txtLabel">Notes</label>
+            <textarea class="textarea100" id="notes" rows="3"
+            name="notes" formControlName="notes"></textarea>
+          </div>
+          <div class="col">
+            <label for="description" class="txtLabel">Description</label>
+            <textarea class="textarea100" id="description" rows="3" 
+            name="descrition" formControlName="description"></textarea>
+          </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col">
+          <label for="redump" class="txtLabel">Redump</label>
+          <input class="input100" type="text" name="redump" 
+           formControlName="redump">
+        </div>
+      </div>
+      </form>
+    </div>  
+    </div>
+</div>   
+
+
+
+
+
+
+ <!--/************************************************************/
   
     <div class="container-login100">
         <div class="wrap-login100 p-t-50 p-b-90">
@@ -11,110 +145,60 @@
                    Add Game
                 </span>
                 <div class="wrap-input100 m-b-16">
-                    <input class="input100"
-                           type="text" 
-                           name="title" 
-                           placeholder="Title"
-                           [class.isInvalid]="this.forma.get('title').invalid && this.forma.get('title').touched"
-                          formControlName="title">
+                  
                     
                  </div>
-                 <div class="mb-3"><small *ngIf="this.forma.get('title').invalid && this.forma.get('title').touched"
-                  class="text-danger animated fadeIn ">Title is required </small></div>
+                 <div class="mb-3"></div>
                 
                 <div class="wrap-input100 m-b-16">
-                  <input class="input100" 
-                         type="text" 
-                         name="developer" 
-                         placeholder="Developer"
-                         formControlName="developer">
+                
                 </div>
                 <div class="wrap-input100 m-b-16">
-                  <input class="input100" 
-                         type="text" 
-                         name="barCode" 
-                         placeholder="BarCode"
-                         formControlName="barCode">
+                
                 </div>
                 <div class="wrap-input100 m-b-16">
-                  <input class="input100" 
-                         type="text" 
-                         name="redump" 
-                         placeholder="Redump"
-                         formControlName="redump">
+                 
                 </div>
                 <div class="wrap-input100 m-b-16">
-                  <input class="input100" 
-                         type="text" 
-                         name="genre" 
-                         placeholder="Genre"
-                         formControlName="genre">
+                 
                 </div>
-                <label for="system" class="txtLabel">Select a system</label>
+                
                 <div class="wrap-input100 m-b-16">
-                   <select  class="input100" name="system" formControlName="system">
-                    <option  class="input100" *ngFor="let system of systems"
-                            [ngValue]="system.id">
-                              {{system.name}} {{system.platform}}
-                    </option>
-                  </select>
+                   
                 </div> 
-                <label for="support" class="txtLabel">Select a support</label>
+               
                 <div class="wrap-input100 m-b-16">
-                  <select  class="input100" name="system" formControlName="support">
-                    <option  class="input100" *ngFor="let support of supports"
-                            [ngValue]="support.id">
-                              {{support.name}}
-                    </option>
-                  </select>
+                 
                 </div>   
                 <div class="wrap-input100 m-b-16">
-                  <input class="input100" 
-                         type="text" 
-                         name="distributor" 
-                         placeholder="Publisher"
-                         formControlName="distributor">
+                 
                 </div>
                 <div class="wrap-input100 m-b-16">
-                  <input class="input100" 
-                         type="text" 
-                         name="region" 
-                         placeholder="Region"
-                         formControlName="region">
+                 
                 </div>
                 <div class="wrap-input100 m-b-16">
-                  <input class="input100" 
-                         type="text" 
-                         name="language" 
-                         placeholder="Language"
-                         formControlName="language">
+                 
                 </div>
-                <label for="releaseDate" class="txtLabel">Release Date</label>
+              
                 <div  class="wrap-input100 m-b-16">
-                    <input type="date" class="input100" name="releaseDate"
-                         placeholder="Release Date" formControlName="releaseDate">
+                   
                 </div>
                                  
                 <div class="wrap-input100 m-b-16">
-                  <textarea class="textarea100" id="notes" rows="3"
-                   name="notes" placeholder="Notes" formControlName="notes"></textarea>
+               
                  </div>
                 
                  <div class="wrap-input100 m-b-16">
-                  <textarea class="textarea100" id="description" rows="3" 
-                  name="descrition" placeholder="Description" formControlName="description"></textarea>
-                </div>
+                  </div>
                 
                 <label for="coverPage" class="txtLabel">Coverpage</label>
                 <div class="wrap-input100 m-b-16">
-                <input type="file" (change)="onFileChange($event)" name="coverPage" class="inputFile100"/>
-                </div>
-                <div class="mb-3"><small *ngIf="this.forma.get('coverPage').invalid && this.forma.get('coverPage').touched"
-                  class="text-danger animated fadeIn ">Coverpage is required </small></div>
+             
+              
                
                 <label for="backCover" class="txtLabel">BackCover</label>
                 <div class="wrap-input100 m-b-16">
-                <input type="file" (change)="onFileChange($event)" name="backCover" class="inputFile100"/>
+               
                 </div>                      
                
                 <div class="container-login100-form-btn m-t-17">
@@ -124,9 +208,10 @@
                 </div>
             </form>
            </div>
+        
     </div>
-  </div>
+  </div>-->
  
-
+  
   
   

@@ -31,7 +31,7 @@ export class VideogameComponent implements OnInit, OnDestroy {
              private actRoute: ActivatedRoute) { 
      this.createForm();
      this.idVideogame = this.actRoute.snapshot.params.id;
-     console.log('id',this.idVideogame);
+     console.log('id', this.idVideogame);
   }
 
    ngOnInit(): void {
@@ -66,6 +66,7 @@ export class VideogameComponent implements OnInit, OnDestroy {
    }
 
    save(): void{
+     console.log("Entro en save");
      if (this.forma.invalid){
        return Object.values(this.forma.controls).forEach(control => {
          control.markAsTouched();

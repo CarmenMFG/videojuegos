@@ -23,7 +23,7 @@
 	padding: 0px; 
   box-sizing: border-box;	
   font-family: Ubuntu-Regular, sans-serif;
-  color:white;
+  color: darkgrey;
   line-height: 1.2;
   font-size: 18px;
    
@@ -35,6 +35,13 @@
 }
 .separate-top80{
   margin-top:80px;
+}
+.container-details{
+  margin-top:3%;
+  width:80%;
+  padding:50px 50px;
+
+
 }
 
 /*---------------------------------------------*/
@@ -57,7 +64,7 @@ ul, li {
 
 
 /*---------------------------------------------*/
-input {
+/*input {
 	outline: none;
 	border: none;
 }
@@ -65,21 +72,12 @@ input {
 textarea {
   outline: none;
   border: none;
-}
+}*/
 
 textarea:focus, input:focus {
-  border-color: transparent !important;
+  border-color: grey !important;
 }
 
-input::-webkit-input-placeholder { color: #8f8fa1;}
-input:-moz-placeholder { color: #8f8fa1;}
-input::-moz-placeholder { color: #8f8fa1;}
-input:-ms-input-placeholder { color: #8f8fa1;}
-
-textarea::-webkit-input-placeholder { color: #8f8fa1;}
-textarea:-moz-placeholder { color: #8f8fa1;}
-textarea::-moz-placeholder { color: #8f8fa1;}
-textarea:-ms-input-placeholder { color: #8f8fa1;}
 
 label {
   display: block;
@@ -108,15 +106,15 @@ iframe {
   font-size: 16px;
   color:white;
   line-height: 1.4;
-}
+}*/
 .txtLabel{
   font-family: Ubuntu-Bold;
-  color: darkgrey;
+  color:  rgb(185, 72, 72);
   line-height: 1.2;
   font-size: 18px;
 
-}*/
-
+}
+/*
 
 
 /*//////////////////////////////////////////////////////////////////
@@ -154,8 +152,6 @@ iframe {
 }
 
 .wrap-login {
- 
-  background: #fff;
   border-radius: 10px;
   position: relative;
   background-color:black;
@@ -200,7 +196,7 @@ h4{
 /*---------------------------------------------*/
 .input100 {
   font-family: Ubuntu-Bold;
-  color:white;
+  color:grey;
   line-height: 1.2;
   font-size: 18px;
   display: block;
@@ -208,7 +204,7 @@ h4{
   background: transparent;
   height: 62px;
   padding: 0 20px 0 38px;
-  border-bottom:1px solid white;
+  border:1px solid darkgrey;
 
 }
 
@@ -217,7 +213,7 @@ h4{
 }
 .textarea100 {
   font-family: Ubuntu-Bold;
-  color: white;
+  color: grey;
   line-height: 1.2;
   font-size: 18px;
   display: block;
@@ -225,10 +221,11 @@ h4{
   background: transparent;
   padding: 20px 20px 0 38px;
   background: transparent;
+  border:1px solid darkgrey;
 }
 .inputFile100 {
   font-family: Ubuntu-Bold;
-  color: white;
+  color: grey;
   line-height: 1.2;
   font-size: 18px;
   display: block;
@@ -236,12 +233,14 @@ h4{
   background: transparent;
   height: 62px;
   padding: 20px 20px 0 38px;
+  border:1px solid darkgrey;
+
 }
 /*------------------------------------------------------------------
 [ Focus Input ]*/
 
-.focus-input100 {
-  position: absolute;
+/*.focus-input100 {
+ position: absolute;
   display: block;
   width: calc(100% + 2px);
   height: calc(100% + 2px);
@@ -267,7 +266,7 @@ h4{
 }
 
 .input100:focus + .focus-input100 {
-  visibility: visible;
+  /*visibility: visible;
   opacity: 1;
 
   -webkit-transform: scale(1);
@@ -278,15 +277,15 @@ h4{
 }
 
 .eff-focus-selection {
-  visibility: visible;
+ /* visibility: visible;
   opacity: 1;
 
   -webkit-transform: scale(1);
   -moz-transform: scale(1);
   -ms-transform: scale(1);
   -o-transform: scale(1);
-  transform: scale(1);
-}
+  transform: scale(1);*/
+}*/
 
 
 /*==================================================================
@@ -393,7 +392,7 @@ h4{
   position: relative;
 }
 
-.alert-validate::before {
+/*.alert-validate::before {
   content: attr(data-validate);
   position: absolute;
   max-width: 70%;
@@ -451,7 +450,7 @@ h4{
     visibility: visible;
     opacity: 1;
   }
-}
+}*/
 
 
  a.answer {
