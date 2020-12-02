@@ -26,16 +26,4 @@
 		right: 20px;
 	}
 } 
-.card-img{
-	width:300px !important;
-	height:400px !important;
-	margin:8px;	
-  }
-.card-img img{
-	width:298px !important;
-	height:398px !important;
-  }
-  .card-img:hover img{
-	filter:saturate(180%);
-	border:6px solid rgb(185, 72, 72);
-}
+

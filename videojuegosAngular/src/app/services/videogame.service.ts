@@ -45,7 +45,6 @@ export class VideogameService {
     const headers: HttpHeaders = new HttpHeaders({
       Authorization: `Bearer ${this.token}`
     });
-    console.log("Llama esto",location);
     return this.http.get(`${this.url}/${id}`, { headers });
   }
   public deleteVideoGame(id : number): Observable<any>{
@@ -54,4 +53,13 @@ export class VideogameService {
     });
     return this.http.delete(`${this.url}/${id}`, { headers });
   }
+  public modifyVideoGame(game : VideoGameModel ): Observable<any> {
+    console.log("Entro en service.ts");
+    const headers: HttpHeaders = new HttpHeaders({
+      Authorization: `Bearer ${this.token}`
+    });
+    const data = { ...game };
+    return this.http.put(`${this.url}`, data, { headers });
+  }
+
 }

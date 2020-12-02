@@ -39,11 +39,12 @@ export class VideogameDetailComponent implements OnInit {
      if (rsp.success === true){
       Swal.close();
       this.dataGame = rsp.data;
-      if ( this.dataGame.coverPage!=null){
+      if ( this.dataGame.coverPage !== null){
         this.dataGame.coverPage =  this.dataGame.coverPage.replace(/['"]+/g, '');
       }
-     // this.dataGame.coverPage=this.sanitization.bypassSecurityTrustStyle(this.dataGame.coverPage);
-      console.log(this.dataGame);
+      if ( this.dataGame.backCover !== null){
+        this.dataGame.backCover =  this.dataGame.backCover.replace(/['"]+/g, '');
+      }
      }else{
        Swal.fire({
          text: rsp.message,

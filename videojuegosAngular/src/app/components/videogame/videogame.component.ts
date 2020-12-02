@@ -20,8 +20,10 @@ export class VideogameComponent implements OnInit, OnDestroy {
  public forma: FormGroup;
  public game: VideoGameModel = new VideoGameModel();
  private subscription: Subscription = new Subscription();
+ private subscriptionEdit: Subscription = new Subscription();
  public systems: SystemModel[] = new Array<SystemModel>();
  public supports: SupportModel[] = new Array<SupportModel>();
+ public dataGame: VideoGameModel = new VideoGameModel();
 
  public idVideogame;
  constructor(private fb: FormBuilder,
@@ -31,17 +33,19 @@ export class VideogameComponent implements OnInit, OnDestroy {
              private actRoute: ActivatedRoute) { 
      this.createForm();
      this.idVideogame = this.actRoute.snapshot.params.id;
-     console.log('id', this.idVideogame);
   }
 
    ngOnInit(): void {
     this.loadSystems();
     this.loadSupports();
+    if (this.idVideogame !== 'new'){
+      this.getDataVideoGame();
+    }
    }
   
   ngOnDestroy(): void {
-
     this.subscription.unsubscribe();
+    this.subscriptionEdit.unsubscribe();
   }
 
   createForm(): void{
@@ -64,41 +68,110 @@ export class VideogameComponent implements OnInit, OnDestroy {
       releaseDate:['']
     });
    }
+   editVideoGame(){
+      if (this.dataGame.releaseDate!==null){
+        let dateRelease = this.dataGame.releaseDate.toString().substr(0, 10);
+        this.forma.controls['releaseDate'].patchValue(dateRelease);
+      }
+      this.forma.controls['title'].patchValue(this.dataGame.title);
+      this.forma.controls['developer'].patchValue(this.dataGame.developer);
+      this.forma.controls['barCode'].patchValue(this.dataGame.barCode);
+      this.forma.controls['redump'].patchValue(this.dataGame.redump);
+      this.forma.controls['genre'].patchValue(this.dataGame.genre);
+      this.forma.controls['distributor'].patchValue(this.dataGame.distributor);
+      this.forma.controls['region'].patchValue(this.dataGame.region);
+      this.forma.controls['language'].patchValue(this.dataGame.language);
+      this.forma.controls['notes'].patchValue(this.dataGame.notes);
+      this.forma.controls['system'].patchValue(this.dataGame.idSystem);
+      this.forma.controls['support'].patchValue(this.dataGame.idSupport);
+      this.forma.controls['description'].patchValue(this.dataGame.description);
+    
 
-   save(): void{
-     console.log("Entro en save");
-     if (this.forma.invalid){
-       return Object.values(this.forma.controls).forEach(control => {
-         control.markAsTouched();
-       });
-     }
-     this.createModel();
-     Swal.fire({
+  }
+   getDataVideoGame(){
+    Swal.fire({
       text: 'Espere por favor',
       allowOutsideClick: false,
       icon: 'info',
      });
-     Swal.showLoading();
-     this.subscription = this.videogameService.addVideoGame(this.game)
-     .subscribe(rsp => {
-      if (rsp.success === true){
-        Swal.close();
-        Swal.fire({
-          text: rsp.message,
-          title: 'Añadir videojuego',
-          icon: 'success',
-        });
-        this.router.navigateByUrl('/home'); 
-      }else{
-        Swal.fire({
-          text: rsp.message,
-          title: 'Error al cargar datos',
-          icon: 'error',
-        });
+    Swal.showLoading();
+    this.subscriptionEdit = this.videogameService.getVideoGame(this.idVideogame)
+    .subscribe(rsp => {
+     if (rsp.success === true){
+      Swal.close();
+      this.dataGame = rsp.data;
+      this.editVideoGame();
+      if ( this.dataGame.coverPage != null){
+        this.dataGame.coverPage =  this.dataGame.coverPage.replace(/['"]+/g, '');
       }
+    }else{ 
+       Swal.fire({
+         text: rsp.message,
+         title: 'Error al cargar datos',
+         icon: 'error',
+       });
+     }
+     });
+  }
+   save(): void{
+    this.createModel();
+    Swal.fire({
+      text: 'Espere por favor',
+      allowOutsideClick: false,
+      icon: 'info',
       });
-     this.forma.reset();
+    Swal.showLoading();
+    if (this.idVideogame === 'new'){
+      this.subscription = this.videogameService.addVideoGame(this.game)
+              .subscribe(rsp => {
+              if (rsp.success === true){
+                Swal.close();
+                Swal.fire({
+                  text: rsp.message,
+                  title: 'Añadir videojuego',
+                  icon: 'success',
+                });
+                this.cleancomponent()
+                this.router.navigateByUrl('/home'); 
+              }else{
+                Swal.fire({
+                  text: rsp.message,
+                  title: 'Error al cargar datos',
+                  icon: 'error',
+                });
+              }
+     });
+   
+   }else{
+       this.game.id = this.dataGame.id;
+       if (this.forma.controls['coverPage'].value === null){
+         this.game.coverPage = this.dataGame.coverPage;
+      }
+       if (this.forma.controls['backCover'].value === null){
+        this.game.backCover = this.dataGame.backCover;
+      }
+    
+       this.subscriptionEdit = this.videogameService.modifyVideoGame(this.game)
+            .subscribe(rsp => {
+            if (rsp.success === true){
+              Swal.close();
+              Swal.fire({
+                text: rsp.message,
+                title: 'Modificar videojuego',
+                icon: 'success',
+              });
+              this.cleancomponent()
+              this.router.navigateByUrl('/home');
+            }else{
+              Swal.fire({
+                text: rsp.message,
+                title: 'Error al cargar datos',
+                icon: 'error',
+              });
+            }
+            });
    }
+  }
   loadSystems(): void{
     this.subscription = this.videogameService.allSystems()
       .subscribe(rsp => {
@@ -164,9 +237,16 @@ export class VideogameComponent implements OnInit, OnDestroy {
     this.game.coverPage = JSON.stringify(this.forma.controls['coverPage'].value);
     this.game.releaseDate = new Date(this.forma.controls["releaseDate"].value);
     this.game.backCover = JSON.stringify(this.forma.controls['backCover'].value);
+  
   }
+
   goHome(): void{
     this.router.navigateByUrl('/home');
+ }
+ cleancomponent():void{
+  this.forma.reset();
+  this.game = null;
+  this.dataGame = null;
  }
 
 }
