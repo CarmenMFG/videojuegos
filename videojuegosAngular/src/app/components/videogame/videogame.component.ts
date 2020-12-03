@@ -89,16 +89,16 @@ export class VideogameComponent implements OnInit, OnDestroy {
 
   }
    getDataVideoGame(){
-    Swal.fire({
+    /*Swal.fire({
       text: 'Espere por favor',
       allowOutsideClick: false,
       icon: 'info',
-     });
-    Swal.showLoading();
+     });*/
+   // Swal.showLoading();
     this.subscriptionEdit = this.videogameService.getVideoGame(this.idVideogame)
     .subscribe(rsp => {
      if (rsp.success === true){
-      Swal.close();
+    //  Swal.close();
       this.dataGame = rsp.data;
       this.editVideoGame();
       if ( this.dataGame.coverPage != null){
@@ -115,34 +115,33 @@ export class VideogameComponent implements OnInit, OnDestroy {
   }
    save(): void{
     this.createModel();
-    Swal.fire({
+   /* Swal.fire({
       text: 'Espere por favor',
       allowOutsideClick: false,
       icon: 'info',
-      });
-    Swal.showLoading();
+      });*/
+   // Swal.showLoading();
     if (this.idVideogame === 'new'){
       this.subscription = this.videogameService.addVideoGame(this.game)
               .subscribe(rsp => {
               if (rsp.success === true){
-                Swal.close();
                 Swal.fire({
                   text: rsp.message,
-                  title: 'Añadir videojuego',
-                  icon: 'success',
+                  title: 'Add videogame',
+                  icon: 'success'
+                }).then((result)=>{
+                  this.router.navigateByUrl('/home');
                 });
-                this.cleancomponent()
-                this.router.navigateByUrl('/home'); 
-              }else{
+                this.cleancomponent();
+               }else{
                 Swal.fire({
                   text: rsp.message,
-                  title: 'Error al cargar datos',
+                  title: 'Error',
                   icon: 'error',
                 });
               }
      });
-   
-   }else{
+  }else{
        this.game.id = this.dataGame.id;
        if (this.forma.controls['coverPage'].value === null){
          this.game.coverPage = this.dataGame.coverPage;
@@ -157,15 +156,16 @@ export class VideogameComponent implements OnInit, OnDestroy {
               Swal.close();
               Swal.fire({
                 text: rsp.message,
-                title: 'Modificar videojuego',
+                title: 'Modify videogame',
                 icon: 'success',
+              }).then((result)=>{
+                this.router.navigateByUrl('/home');
               });
               this.cleancomponent()
-              this.router.navigateByUrl('/home');
             }else{
               Swal.fire({
                 text: rsp.message,
-                title: 'Error al cargar datos',
+                title: 'Error',
                 icon: 'error',
               });
             }
@@ -180,7 +180,7 @@ export class VideogameComponent implements OnInit, OnDestroy {
         }else{
           Swal.fire({
             text: rsp.message,
-            title: 'Error al cargar datos',
+            title: 'Error',
             icon: 'error',
           });
          }
@@ -194,7 +194,7 @@ export class VideogameComponent implements OnInit, OnDestroy {
         }else{
           Swal.fire({
             text: rsp.message,
-            title: 'Error al cargar datos',
+            title: 'Error',
             icon: 'error',
           });
          }
@@ -248,5 +248,36 @@ export class VideogameComponent implements OnInit, OnDestroy {
   this.game = null;
   this.dataGame = null;
  }
+ showSwalDelete(): void{
+  Swal.fire({
+    text: '¿Está seguro de borrar el juego?',
+    allowOutsideClick: false,
+    icon: 'info',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!',
+   }).then((result) => {
+     if (result.isConfirmed){
+      this.subscription = this.videogameService.deleteVideoGame(this.dataGame.id)
+      .subscribe(rsp => {
+        if (rsp.success === true){
+          Swal.close();
+          Swal.fire({
+            text: rsp.message,
+            title: 'Borrar videojuego',
+            icon: 'success',
+          });
+          this.router.navigateByUrl('/home');
+        }else{
+          Swal.fire({
+            text: rsp.message,
+            title: 'Error',
+            icon: 'error',
+          });
+        }
+        });
+   }});
+  }
 
 }

@@ -28,16 +28,16 @@ export class VideogameDetailComponent implements OnInit {
     this.getDataVideoGame();
   }
   getDataVideoGame(){
-    Swal.fire({
+   /* Swal.fire({
       text: 'Espere por favor',
       allowOutsideClick: false,
       icon: 'info',
      });
-    Swal.showLoading();
+    Swal.showLoading();*/
     this.subscription = this.videogameService.getVideoGame(this.idVideogame)
     .subscribe(rsp => {
      if (rsp.success === true){
-      Swal.close();
+     // Swal.close();
       this.dataGame = rsp.data;
       if ( this.dataGame.coverPage !== null){
         this.dataGame.coverPage =  this.dataGame.coverPage.replace(/['"]+/g, '');

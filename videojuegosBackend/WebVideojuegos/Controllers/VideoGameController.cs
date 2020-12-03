@@ -43,7 +43,8 @@ namespace  Videojuegos.Controllers
                 {
                     var data = getDataToken(HttpContext.User.Claims.ToList());
                     bool res = _business.CreateVideoGame(model.ConvertVMToDO(), data.IdUser, data.RolName);
-                    result.StatusCode = 200;
+                    result.Success = res;
+                    result.StatusCode = res ? 200 : 500;
                     result.Message = res ? "Videojuego guardado con éxito" : "No se pudo guardar el videojuego seleccionado";
                 }
                 catch
@@ -74,7 +75,8 @@ namespace  Videojuegos.Controllers
                     var data = getDataToken(HttpContext.User.Claims.ToList());
                     bool res = _business.ModifyVideoGame(model.ConvertVMToDO(), data.IdUser, data.RolName);
 
-                    result.StatusCode = 200;
+                    result.Success = res;
+                    result.StatusCode = res ? 200 : 500;
                     result.Message = res ? "Videojuego modificado con éxito" : "No se pudo modificar el videojuego seleccionado";
 
                 }
@@ -107,7 +109,8 @@ namespace  Videojuegos.Controllers
             {
                 var data = getDataToken(HttpContext.User.Claims.ToList());
                 bool res = _business.DeactiveVideoGame(idVideoGame, data.IdUser, data.RolName);
-                result.StatusCode = 200;
+                result.Success = res;
+                result.StatusCode = res ? 200 : 500;
                 result.Message = res ? "Videojuego desactivado con éxito" : "No se puedo desactivar el videojuego seleccionado";
               
             }
@@ -140,6 +143,7 @@ namespace  Videojuegos.Controllers
                 var res = _business.GetAllVideoGame(data.IdUser, data.RolName);
                 result.Data =res.Select( x => x.ConvertDOToVM());
                 result.StatusCode = 200;
+                result.Success = true;
             }
             catch(Exception ex)
             {

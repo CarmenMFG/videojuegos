@@ -18,21 +18,28 @@ namespace Videogames.Repository.Repositories
 
         public bool CreateVideoGameRepository(VideoGameEntity videoGame,int userId)
         {
-            try
+            if (videoGame != null && videoGame.Title != String.Empty && videoGame.CoverPage != null)
             {
-               videoGame.CreateDate = DateTime.Now;
-               videoGame.UpdateDate = DateTime.Now;
-               videoGame.IdUser = userId;
-               videoGame.IsActive = true;
-               _context.VideoGames.Add(videoGame);
-               _context.SaveChanges();
+                try
+                {
+                    videoGame.CreateDate = DateTime.Now;
+                    videoGame.UpdateDate = DateTime.Now;
+                    videoGame.IdUser = userId;
+                    videoGame.IsActive = true;
+                    _context.VideoGames.Add(videoGame);
+                    _context.SaveChanges();
 
-                return true;
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
             }
-            catch(Exception ex)
+            else
             {
                 return false;
-            }
+            }    
         }
 
         public bool DeactiveVideoGameRepository(int idVideoGame,int idUser)
@@ -64,7 +71,8 @@ namespace Videogames.Repository.Repositories
             {
                 //solo saca el videojuego con ese id y q sea activo
                 VideoGameEntity videoGameModified = _context.VideoGames.Where(v => v.IsActive).FirstOrDefault(vg => vg.Id == videoGame.Id);
-                if (videoGameModified != null && videoGameModified.IdUser == idUser)
+                if (videoGameModified != null && videoGameModified.IdUser == idUser 
+                    &&  videoGameModified.Title != String.Empty  && videoGameModified.CoverPage != null)
                 {
                     videoGameModified.Genre = videoGame.Genre;
                     videoGameModified.BackCover = videoGame.BackCover;
