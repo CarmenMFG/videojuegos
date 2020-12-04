@@ -28,27 +28,17 @@ export class VideogameDetailComponent implements OnInit {
     this.getDataVideoGame();
   }
   getDataVideoGame(){
-   /* Swal.fire({
-      text: 'Espere por favor',
-      allowOutsideClick: false,
-      icon: 'info',
-     });
-    Swal.showLoading();*/
     this.subscription = this.videogameService.getVideoGame(this.idVideogame)
     .subscribe(rsp => {
      if (rsp.success === true){
-     // Swal.close();
       this.dataGame = rsp.data;
       if ( this.dataGame.coverPage !== null){
         this.dataGame.coverPage =  this.dataGame.coverPage.replace(/['"]+/g, '');
       }
-      if ( this.dataGame.backCover !== null){
-        this.dataGame.backCover =  this.dataGame.backCover.replace(/['"]+/g, '');
-      }
      }else{
        Swal.fire({
          text: rsp.message,
-         title: 'Error al cargar datos',
+         title: 'Error loading data',
          icon: 'error',
        });
      }
@@ -59,7 +49,7 @@ export class VideogameDetailComponent implements OnInit {
  }
  showSwalDelete(): void{
   Swal.fire({
-    text: '¿Está seguro de borrar el juego?',
+    text: 'Are you sure to delete game ?',
     allowOutsideClick: false,
     icon: 'info',
     showCancelButton: true,
@@ -74,7 +64,7 @@ export class VideogameDetailComponent implements OnInit {
           Swal.close();
           Swal.fire({
             text: rsp.message,
-            title: 'Borrar videojuego',
+            title: 'Delete game',
             icon: 'success',
           });
           this.router.navigateByUrl('/home');

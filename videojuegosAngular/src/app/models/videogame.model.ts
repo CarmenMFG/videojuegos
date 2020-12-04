@@ -16,7 +16,7 @@ export class VideoGameModel {
     public idSupport: number;
     public coverPage: string;
     public releaseDate: Date;
-    public backCover: string;
+   // public backCover: string;
     public id: number;
     public systems: SystemModel;
     public platform: PlatformModel;

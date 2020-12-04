@@ -101,13 +101,7 @@
       <div class="row  mb-3 ml-2"  *ngIf="this.forma.get('coverPage').invalid && this.forma.get('coverPage').touched">
         <small class="text-danger animated fadeIn ">Coverpage is required </small>
       </div>
-      <div class="row mt-4 mb-4">
-        <div class="col m-auto">
-          <label for="backCover" class="txtLabel">Backcover</label>
-          <input type="file" (change)="onFileChange($event)" name="backCover" class="inputFile100"/>
-        </div>
-      </div>  
-    
+       
       <div class="row mb-4">
           <div class="col">
             <label for="notes" class="txtLabel">Notes</label>

@@ -64,7 +64,6 @@ export class VideogameComponent implements OnInit, OnDestroy {
       system: [null],
       support: [null],
       coverPage: [null,[Validators.required]],
-      backCover:[null],
       releaseDate:['']
     });
    }
@@ -89,16 +88,10 @@ export class VideogameComponent implements OnInit, OnDestroy {
 
   }
    getDataVideoGame(){
-    /*Swal.fire({
-      text: 'Espere por favor',
-      allowOutsideClick: false,
-      icon: 'info',
-     });*/
-   // Swal.showLoading();
     this.subscriptionEdit = this.videogameService.getVideoGame(this.idVideogame)
     .subscribe(rsp => {
      if (rsp.success === true){
-    //  Swal.close();
+ 
       this.dataGame = rsp.data;
       this.editVideoGame();
       if ( this.dataGame.coverPage != null){
@@ -115,12 +108,6 @@ export class VideogameComponent implements OnInit, OnDestroy {
   }
    save(): void{
     this.createModel();
-   /* Swal.fire({
-      text: 'Espere por favor',
-      allowOutsideClick: false,
-      icon: 'info',
-      });*/
-   // Swal.showLoading();
     if (this.idVideogame === 'new'){
       this.subscription = this.videogameService.addVideoGame(this.game)
               .subscribe(rsp => {
@@ -129,7 +116,7 @@ export class VideogameComponent implements OnInit, OnDestroy {
                   text: rsp.message,
                   title: 'Add videogame',
                   icon: 'success'
-                }).then((result)=>{
+                }).then((result) => {
                   this.router.navigateByUrl('/home');
                 });
                 this.cleancomponent();
@@ -146,10 +133,6 @@ export class VideogameComponent implements OnInit, OnDestroy {
        if (this.forma.controls['coverPage'].value === null){
          this.game.coverPage = this.dataGame.coverPage;
       }
-       if (this.forma.controls['backCover'].value === null){
-        this.game.backCover = this.dataGame.backCover;
-      }
-    
        this.subscriptionEdit = this.videogameService.modifyVideoGame(this.game)
             .subscribe(rsp => {
             if (rsp.success === true){
@@ -211,11 +194,6 @@ export class VideogameComponent implements OnInit, OnDestroy {
             this.forma.patchValue({
               coverPage: reader.result
            });
-         }else{
-            this.forma.patchValue({
-              backCover: reader.result
-           });
-
          }
          this.cd.markForCheck();
         };
@@ -236,7 +214,6 @@ export class VideogameComponent implements OnInit, OnDestroy {
     this.game.idSupport = this.forma.controls[ 'support' ].value;
     this.game.coverPage = JSON.stringify(this.forma.controls['coverPage'].value);
     this.game.releaseDate = new Date(this.forma.controls["releaseDate"].value);
-    this.game.backCover = JSON.stringify(this.forma.controls['backCover'].value);
   
   }
 
@@ -250,7 +227,7 @@ export class VideogameComponent implements OnInit, OnDestroy {
  }
  showSwalDelete(): void{
   Swal.fire({
-    text: '¿Está seguro de borrar el juego?',
+    text: 'Are you sure to delete the game?',
     allowOutsideClick: false,
     icon: 'info',
     showCancelButton: true,
@@ -265,7 +242,7 @@ export class VideogameComponent implements OnInit, OnDestroy {
           Swal.close();
           Swal.fire({
             text: rsp.message,
-            title: 'Borrar videojuego',
+            title: 'Delete game',
             icon: 'success',
           });
           this.router.navigateByUrl('/home');
