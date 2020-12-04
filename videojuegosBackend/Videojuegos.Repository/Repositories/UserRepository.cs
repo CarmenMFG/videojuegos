@@ -20,10 +20,18 @@ namespace Videogames.Repository.Repositories
 
         public UserEntity CreateUser(UserEntity user)
         {
-            _context.Users.Add(user);
-            _context.SaveChanges();
+            try
+            {
+                _context.Users.Add(user);
+                _context.SaveChanges();
+               return GetUser(user.User);
 
-            return GetUser(user.User);
+            }
+            catch
+            {
+                return null;
+            }
+           
         }
         public bool ExistUser(string userName)
         {

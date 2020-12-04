@@ -9,10 +9,9 @@
                       Register account
                     </span>
     
-                    <span *ngIf="formRegister.submitted && formRegister.controls['email'].errors" 
-                     class="text-danger animated fadeIn">El correo es obligatorio</span> 
+                   
                     <div class="wrap-input100 mb-4">
-                        <input class="input100" 
+                        <input class="input100 mb-2" 
                                type="email" 
                                required
                                email
@@ -20,13 +19,13 @@
                                [(ngModel)]="user.email"
                                placeholder="Email">
     
-                        <span class="focus-input100"></span>
+                       <span *ngIf="formRegister.submitted && formRegister.controls['email'].errors" 
+                       class="text-danger animated fadeIn">Email is required, invalid email </span> 
                     </div>
 
-                   <span *ngIf="formRegister.submitted && formRegister.controls['userName'].errors" 
-                   class="text-danger animated fadeIn">El nombre de usuario es obligatorio</span>
+                
                     <div class="wrap-input100 mb-4">
-                        <input class="input100" 
+                        <input class="input100 mb-2" 
                                type="text" 
                                name="userName" 
                                required
@@ -34,23 +33,24 @@
                                [(ngModel)]="user.user"
                                placeholder="Usuario">
     
-                        <span class="focus-input100"></span>
+                       <span *ngIf="formRegister.submitted && formRegister.controls['userName'].errors" 
+                       class="text-danger animated fadeIn">The username is required</span>
                     </div>
                     
-                 <span *ngIf="formRegister.submitted && formRegister.controls['password'].errors" 
-                 class="text-danger animated fadeIn">La contraseña debe de ser más de 6 caracteres</span>
-                    <div class="wrap-input100 mb-4" data-validate = "Password is required">
-                        <input class="input100"
+               
+                    <div class="wrap-input100 mb-4">
+                        <input class="input100 mb-2"
                                type="password" 
                                name="password" 
                                required
                                minlength="6"
                                [(ngModel)]="user.password"
                                placeholder="Password">
-                        <span class="focus-input100"></span>
+                        <span *ngIf="formRegister.submitted && formRegister.controls['password'].errors" 
+                        class="text-danger animated fadeIn">The password must have more than 6 characters</span>
                     </div>
                     
-                    <div class="flex-sb-m w-full separate-top80 mb-5">
+                    <div class="flex-sb-m w-full separate-top50 mb-3">
                         <div class="contact100-form-checkbox">
                             <input [(ngModel)]="remember" class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
                             <label class="label-checkbox100" for="ckb1">
@@ -66,7 +66,7 @@
                     </div>
     
                     <div class="container-login100-form-btnmt-5">
-                        <button type="submit" class="btn btn-lg btn-outline-primary custom100">
+                        <button type="submit" class="btn-red custom100">
                            create
                         </button>
                     </div>

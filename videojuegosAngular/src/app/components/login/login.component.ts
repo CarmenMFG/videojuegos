@@ -32,37 +32,25 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   login(form: NgForm): void {
-    Swal.fire({
-      text: 'Espere por favor',
-      allowOutsideClick: false,
-      icon: 'info',
-    });
-    Swal.showLoading();
-
     if (form.invalid) { return; }
     this.subscription = this.userService.loginUser(this.loginModel)
       .subscribe(rsp => {
-        if (rsp.userName !==''){
+        if (rsp.userName !== ''){
             this.userService.saveTokenUser(rsp.token, rsp.userName);
-            Swal.close();
             this.router.navigateByUrl('/home');
-            if (this.remember){
-              localStorage.setItem('Remember', 'true');
-            }else{
-              localStorage.setItem('Remember', '');
-            }
+            localStorage.setItem('Remember', this.remember ? 'true' : '' );
        }else{
           Swal.fire({
-            text: 'Error al autenticar',
-            title: 'Error al autenticar',
+            text: 'Invalid username or pasword',
+            title: 'Error',
             icon: 'error',
           });
         }
      }, (err) => {
           console.log(err);
           Swal.fire({
-            text: 'Error al autenticar',
-            title: 'Error al autenticar',
+            text: 'Error authentication ',
+            title: 'Error',
             icon: 'error',
           });
       });

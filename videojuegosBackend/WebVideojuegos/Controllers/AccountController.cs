@@ -31,7 +31,7 @@ namespace Videogames.API.Controllers
         {
             if (UserExist(appUser.User))
             {
-                return BadRequest("Usuario ya existe");
+                return new TokenVM { UserName = String.Empty, Token = String.Empty };
             }
 
             using var hmac = new HMACSHA512();
@@ -45,7 +45,10 @@ namespace Videogames.API.Controllers
             };
 
             var userCreated = _userReppository.CreateUser(user.ConvertVMToEntity()).ConvertEntityToVM();
-                    
+            if (userCreated == null)
+            {
+                return new TokenVM { UserName = String.Empty, Token = String.Empty };
+            }        
 
 
             return new TokenVM { UserName= userCreated.User,Token=_tokenService.CreateToken(userCreated) };
@@ -60,8 +63,8 @@ namespace Videogames.API.Controllers
         public ActionResult<TokenVM> Login(LoginVM login)
         {
             var userVM = _userReppository.GetUser(login.User).ConvertEntityToVM();
-
-            if (userVM == null) { return Unauthorized("Usuario Inválido"); };
+            
+            if (userVM == null) { return new TokenVM { UserName = String.Empty, Token = String.Empty };};
             using var hmac = new HMACSHA512(userVM.PasswordSalt);
             var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(login.Password));
             for (int i = 0; i < computedHash.Length; i++)

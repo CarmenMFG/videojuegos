@@ -42,12 +42,12 @@ namespace Videogames.Repository.Repositories
             }    
         }
 
-        public bool DeactiveVideoGameRepository(int idVideoGame,int idUser)
+        public bool DeactiveVideoGameRepository(int idVideoGame,int idUser,string role)
         {
             try
             {
                 VideoGameEntity videoGameDeactived = _context.VideoGames.FirstOrDefault(vg => vg.Id == idVideoGame);
-                if (videoGameDeactived!=null && videoGameDeactived.IdUser == idUser)
+                if (videoGameDeactived!=null && (videoGameDeactived.IdUser == idUser || role.ToUpper() == "ADMIN"))
                 {
                     videoGameDeactived.IsActive = false;
                     videoGameDeactived.UpdateDate = DateTime.Now;
@@ -65,13 +65,13 @@ namespace Videogames.Repository.Repositories
             }
         }
 
-        public bool ModifyVideoGameRepository(VideoGameEntity videoGame,int idUser)
+        public bool ModifyVideoGameRepository(VideoGameEntity videoGame,int idUser,string role)
         {  
             try
             {
                 //solo saca el videojuego con ese id y q sea activo
                 VideoGameEntity videoGameModified = _context.VideoGames.Where(v => v.IsActive).FirstOrDefault(vg => vg.Id == videoGame.Id);
-                if (videoGameModified != null && videoGameModified.IdUser == idUser 
+                if (videoGameModified != null && (videoGameModified.IdUser == idUser || role.ToUpper() == "ADMIN")
                     &&  videoGameModified.Title != String.Empty  && videoGameModified.CoverPage != null)
                 {
                     videoGameModified.Genre = videoGame.Genre;
@@ -107,26 +107,57 @@ namespace Videogames.Repository.Repositories
             }
         }
         
-        public List<VideoGameEntity> GetAllVideoGameRepository(int idUser)
+        public List<VideoGameEntity> GetAllVideoGameRepository(int idUser,string role)
         {
-           //solo muestra los videojuegos del usuario q están activos  
-            List<VideoGameEntity> videoGameList = _context.VideoGames
-                                                    .Include(v=>v.Support)
-                                                    .Include(v=>v.System)
-                                                    .Include(v=>v.System.Platform)
-                                                    .Where(v => v.IdUser == idUser && v.IsActive).ToList();
+            List<VideoGameEntity> videoGameList;
+            if (role.ToUpper() == "USER")
+            {
+                //solo muestra los videojuegos del usuario q están activos o todos los activos si es administrador 
+               videoGameList = _context.VideoGames
+                                                    .Include(v => v.Support)
+                                                    .Include(v => v.System)
+                                                    .Include(v => v.System.Platform)
+                                                    .Where(v => v.IsActive && v.IdUser == idUser).OrderBy(v => v.Title).ToList();
+
+            }
+            else
+            {
+                videoGameList = _context.VideoGames
+                                                   .Include(v => v.Support)
+                                                   .Include(v => v.System)
+                                                   .Include(v => v.System.Platform)
+                                                   .Where(v => v.IsActive).OrderBy(v => v.Title).ToList();
+
+            }
+
+
             return videoGameList;
         }
         
-        public VideoGameEntity GetVideoGameRepository(int idVideoGame, int idUser)
+        public VideoGameEntity GetVideoGameRepository(int idVideoGame, int idUser ,string role)
         {
-            //solo muestra els videojuegos del usuario q están activos  
-            VideoGameEntity videoGameCurrent = _context.VideoGames
-                                                .Include(v=>v.Support)
+            VideoGameEntity videoGameCurrent = null;
+            if (role.ToUpper() == "USER")
+            {
+
+                //solo muestra els videojuegos del usuario q están activos  
+                videoGameCurrent = _context.VideoGames
+                                                .Include(v => v.Support)
                                                 .Include(v => v.System)
-                                                .Include(v=>v.System.Platform)
+                                                .Include(v => v.System.Platform)
                                                 .Where(v => v.IdUser == idUser && v.IsActive)
                                                 .FirstOrDefault(vg => vg.Id == idVideoGame);
+            }
+            else
+            {
+                videoGameCurrent = _context.VideoGames
+                                              .Include(v => v.Support)
+                                              .Include(v => v.System)
+                                              .Include(v => v.System.Platform)
+                                              .Where(v=>v.IsActive)
+                                              .FirstOrDefault(vg => vg.Id == idVideoGame);
+
+            }
             return videoGameCurrent;
         }
 

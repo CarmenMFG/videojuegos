@@ -33,8 +33,8 @@
 .separate-top{
   margin-top:120px;
 }
-.separate-top80{
-  margin-top:80px;
+.separate-top50{
+  margin-top:50px;
 }
 .container-details{
   margin-top:3%;
@@ -159,7 +159,7 @@ iframe {
  
 }
 h4{
-  color: rgb(185, 10, 10);
+  color:rgb(76, 76, 121);;
   text-align: center;
   letter-spacing:2px;
 }
@@ -171,12 +171,13 @@ h4{
 .form-title {
   font-family: Ubuntu-Bold;
   font-size: 35px;
-  color: rgb(185, 10, 10);
+  color: rgb(76, 76, 121);
   line-height: 1.2;
   text-align: center;
   width: 100%;
   display: block;
   padding:3px;
+  letter-spacing: 2px;;
 }
 
 
@@ -384,7 +385,7 @@ h4{
   width:100% !important;
 }
 .custom33{
-  width:28% !important;
+  width:30% !important;
 }
 
 
@@ -475,4 +476,39 @@ a.answer:hover{
  .card-img:hover img{
 	filter:saturate(180%);
 	border:6px solid rgb(185, 72, 72);
+}
+.btn-red{
+  font-size: 20px; /* Cambiar el tamaño de la tipografia */
+	font-weight: bold; /* Fuente en negrita o bold */
+	color: #ffffff; /* Color del texto */
+	border-radius: 5px; /* Borde del boton */
+	letter-spacing: 2px; /* Espacio entre letras */
+	background-color: rgb(185, 10, 10); /* Color de fondo */
+  padding: 18px 30px; /* Relleno del boton */
+  transition: all 300ms ease 0ms;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+
+}
+.btn-flotante {
+	position: fixed;
+	bottom: 40px;
+	right: 40px;
+
+	z-index: 99;
+}
+.btn-red:hover {
+	background-color:red; /* Color de fondo al pasar el cursor */
+	box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.3);
+	transform: translateY(1px);
+}
+@media only screen and (max-width: 600px) {
+ 	.btn-flotante {
+		font-size: 14px;
+		padding: 12px 20px;
+		bottom: 20px;
+		right: 20px;
+	}
+} 
+.container-register{
+  margin-top:10%;
 }

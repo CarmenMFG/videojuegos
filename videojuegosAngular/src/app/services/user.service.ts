@@ -12,15 +12,24 @@ import { LoginModel } from '../models/login.model';
 export class UserService {
   private url = 'https://localhost:44357/api/Account';
   obs$;
+  obsName$;
   
  constructor(private http: HttpClient) {
     this.obs$ = new Observable(observer => {
+    let token;
     let user;
     setInterval(() => {
-       user = this.getUser();
-       observer.next(user);
+       token = this.getToken();
+       observer.next(token);
       }, 1000)
     });
+    this.obsName$ = new Observable(observer => {
+      let user;
+      setInterval(() => {
+         user= this.getUser();
+         observer.next(user);
+        }, 1000)
+      });
   }
  
   public registerUser(user: UserModel): Observable<any> {
@@ -35,8 +44,8 @@ export class UserService {
   }
   public logout(): void {
     localStorage.removeItem('Token');
-    localStorage.removeItem('UserName');
-    localStorage.removeItem('Remember');
+   // localStorage.removeItem('UserName');
+    //localStorage.removeItem('Remember');
    }
    saveTokenUser(token: string, userName: string): void {
     localStorage.setItem('Token', token);

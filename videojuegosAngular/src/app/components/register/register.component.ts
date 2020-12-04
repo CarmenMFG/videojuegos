@@ -32,28 +32,25 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(form: NgForm): void {
-    Swal.fire({
-      text: 'Espere por favor',
-      allowOutsideClick: false,
-      icon: 'info',
-    });
-    Swal.showLoading();
     if (form.invalid) { return; }
     this.subscription = this.userService.registerUser(this.user)
       .subscribe(rsp => {
-        this.userService.saveTokenUser(rsp.token, rsp.userName);
-        Swal.close();
-        this.router.navigateByUrl('/home');
-        if (this.remember){
-          localStorage.setItem('Remember', 'true');
+        if (rsp.userName !==''){
+          this.userService.saveTokenUser(rsp.token, rsp.userName);
+          this.router.navigateByUrl('/home');
+          localStorage.setItem('Remember', this.remember ? 'true' : '' );
         }else{
-          localStorage.setItem('Remember', '');
+          Swal.fire({
+            text: 'Invalid username or email',
+            title: 'Error',
+            icon: 'error',
+          });
         }
       }, (err) => {
         console.log(err);
         Swal.fire({
-          text: 'Error al registrar',
-          title: 'Error al registrar',
+          text: 'Error during registration',
+          title: 'Error',
           icon: 'error',
         });
       });

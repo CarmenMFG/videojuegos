@@ -45,7 +45,7 @@ namespace Videogames.Business
 
                 if (role.ToUpper() == "ADMIN" || role.ToUpper() == "USER")
                 {
-                   success = _repository.ModifyVideoGameRepository(videogame.ConvertDOToEntity(), userId);
+                   success = _repository.ModifyVideoGameRepository(videogame.ConvertDOToEntity(), userId,role);
 
                 }
             }
@@ -61,7 +61,7 @@ namespace Videogames.Business
 
             if (role.ToUpper() == "ADMIN" || role.ToUpper() == "USER")
             {
-                    success = _repository.DeactiveVideoGameRepository(idVideoGame,userId);
+                    success = _repository.DeactiveVideoGameRepository(idVideoGame,userId,role);
 
                 }
            return success;
@@ -74,7 +74,7 @@ namespace Videogames.Business
 
             if (role.ToUpper() == "ADMIN" || role.ToUpper() == "USER")
             {
-                     List<VideoGameEntity> lista = _repository.GetAllVideoGameRepository(userId);
+                     List<VideoGameEntity> lista = _repository.GetAllVideoGameRepository(userId,role);
                     listVideoGamesDO =lista.ConvertEntitiesToDOs();
                                  
                 }
@@ -89,7 +89,7 @@ namespace Videogames.Business
 
             if (role.ToUpper() == "ADMIN" || role.ToUpper() == "USER")
             {
-                videoGamesDO = _repository.GetVideoGameRepository(idVideoGame, userId).ConvertEntityToDO();
+                videoGamesDO = _repository.GetVideoGameRepository(idVideoGame, userId,role).ConvertEntityToDO();
             }
            
             return videoGamesDO;
