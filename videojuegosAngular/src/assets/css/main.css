@@ -109,7 +109,9 @@ iframe {
 }*/
 .txtLabel{
   font-family: Ubuntu-Bold;
-  color:  rgb(185, 72, 72);
+  color: rgb(76, 76, 121);
+  letter-spacing: 2px;
+ padding:5px;
   line-height: 1.2;
   font-size: 18px;
 
@@ -511,4 +513,7 @@ a.answer:hover{
 } 
 .container-register{
   margin-top:10%;
+}
+.buttons-center{
+  text-align: center;
 }

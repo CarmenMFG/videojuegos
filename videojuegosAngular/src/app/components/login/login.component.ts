@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subscription = this.userService.loginUser(this.loginModel)
       .subscribe(rsp => {
         if (rsp.userName !== ''){
-            this.userService.saveTokenUser(rsp.token, rsp.userName);
+            this.userService.saveTokenUser(rsp);
             this.router.navigateByUrl('/home');
             localStorage.setItem('Remember', this.remember ? 'true' : '' );
        }else{

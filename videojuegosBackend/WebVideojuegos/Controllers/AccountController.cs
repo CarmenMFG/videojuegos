@@ -51,11 +51,11 @@ namespace Videogames.API.Controllers
             }        
 
 
-            return new TokenVM { UserName= userCreated.User,Token=_tokenService.CreateToken(userCreated) };
+            return new TokenVM { UserName= userCreated.User, Role= userCreated.Rol, Token =_tokenService.CreateToken(userCreated) };
         }
 
         private bool UserExist(string userName)
-        {
+        {  
             return _userReppository.ExistUser(userName);
         }
 
@@ -72,7 +72,7 @@ namespace Videogames.API.Controllers
                 if (computedHash[i] != userVM.PasswordHash[i]) { return new TokenVM { UserName = String.Empty, Token = String.Empty }; };
             }
 
-            return new TokenVM { UserName = userVM.User, Token = _tokenService.CreateToken(userVM) };
+            return new TokenVM { UserName = userVM.User, Role = userVM.Rol, Token = _tokenService.CreateToken(userVM) };
         }
     }
 }

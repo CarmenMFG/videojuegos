@@ -1,19 +1,10 @@
 <div class="limiter animated fadeIn">
   <div class="container container-details">   
     <div class="row mb-5">
-      <div class="col m-auto justify-content-center">
-          <button type="button" class="btn-red  m-3 custom33" (click)="goHome()">
-              <span class="fa fa-undo text-white" style="margin-right: 10px">
-              </span>
-              Back</button>
-          <button type="button" class="btn-red  m-3 custom33" (click)="showSwalDelete()">
-              <span class="fa fa-trash-o text-white" style="margin-right: 10px">
-              </span>Delete</button>
-          <button type="submit" class="btn-red m-3 custom33" 
-              (click)="save()">
-              <span class="fa fa-edit  text-white" style="margin-right: 10px" >
-              </span>Save</button>
+      <div class="col-md-12">
+        <app-group-buttons (actionType)="goToAction($event)" [idGame]="idVideogame"></app-group-buttons>
       </div>
+      
    </div>
    <div class="wrap-login wrap-80 m-auto">  
     <form  class="login100-form validate-form flex-sb flex-w" 

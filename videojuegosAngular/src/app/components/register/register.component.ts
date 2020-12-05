@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.subscription = this.userService.registerUser(this.user)
       .subscribe(rsp => {
         if (rsp.userName !==''){
-          this.userService.saveTokenUser(rsp.token, rsp.userName);
+          this.userService.saveTokenUser(rsp);
           this.router.navigateByUrl('/home');
           localStorage.setItem('Remember', this.remember ? 'true' : '' );
         }else{

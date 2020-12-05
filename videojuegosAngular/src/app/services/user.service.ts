@@ -44,18 +44,21 @@ export class UserService {
   }
   public logout(): void {
     localStorage.removeItem('Token');
-   // localStorage.removeItem('UserName');
-    //localStorage.removeItem('Remember');
-   }
-   saveTokenUser(token: string, userName: string): void {
-    localStorage.setItem('Token', token);
-    localStorage.setItem('UserName', userName);
+    localStorage.removeItem('Role');
+  }
+   saveTokenUser(rsp: any): void {
+    localStorage.setItem('Token', rsp.token);
+    localStorage.setItem('UserName', rsp.userName);
+    localStorage.setItem('Role', rsp.role);
   }
    getToken(): string {
     return (localStorage.getItem('Token')) ? localStorage.getItem('Token') : '';
   }
    getUser(): string {
     return (localStorage.getItem('UserName')) ? localStorage.getItem('UserName') : '';
+  }
+  isAdmin(): boolean {
+    return (localStorage.getItem('Role') === 'admin') ;
   }
   isAuthenticated(): boolean{
      return localStorage.getItem('Token') != null;

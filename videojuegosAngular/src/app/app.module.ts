@@ -14,6 +14,8 @@ import { UserService } from './services/user.service';
 import { VideogameService } from './services/videogame.service';
 import { VideogameDetailComponent } from './components/videogame-detail/videogame-detail.component';
 import { CommonModule } from '@angular/common';
+import { GroupButtonsComponent } from './components/group-buttons/group-buttons.component';
+import { AdminUsersComponent } from './components/admin-users/admin-users.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { CommonModule } from '@angular/common';
     LoginComponent,
     RegisterComponent,
     VideogameComponent,
-    VideogameDetailComponent
+    VideogameDetailComponent,
+    GroupButtonsComponent,
+    AdminUsersComponent
   ],
   imports: [
     BrowserModule,

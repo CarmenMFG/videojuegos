@@ -1,0 +1,16 @@
+<div class="col-12 m-auto buttons-center" >
+    <button type="button" class="btn-red  m-3 custom33" (click)="goHome()">
+        <span class="fa fa-undo text-white" style="margin-right: 10px">
+        </span>
+        Back</button>
+    <button type="button" class="btn-red  m-3 custom33" (click)="delete()" *ngIf="idGame!='new' && !adminUsers">
+        <span class="fa fa-trash-o text-white" style="margin-right: 10px">
+        </span>Delete</button>
+    <button type="submit" class="btn-red m-3 custom33" 
+        (click)="save()" *ngIf="!details && !adminUsers">
+        <span class="fa fa-edit  text-white" style="margin-right: 10px" >
+        </span>Save</button>
+    <button type="button" class="btn-red m-3 custom33" (click)="edit()" *ngIf="idGame!='new' && details && !adminUsers">
+        <span class="fa fa-edit text-white" style="margin-right: 10px">
+        </span>Edit</button>    
+</div>

@@ -217,10 +217,7 @@ export class VideogameComponent implements OnInit, OnDestroy {
   
   }
 
-  goHome(): void{
-    this.router.navigateByUrl('/home');
- }
- cleancomponent():void{
+ cleancomponent(): void{
   this.forma.reset();
   this.game = null;
   this.dataGame = null;
@@ -255,6 +252,23 @@ export class VideogameComponent implements OnInit, OnDestroy {
         }
         });
    }});
+  }
+
+  goToAction(action: string): void{
+    switch (action) {
+      case 'delete': {
+        this.showSwalDelete();
+        break;
+      }
+      case 'save': {
+        this.save();
+        break;
+      }
+      default: {
+         break;
+       }
+   }
+
   }
 
 }

@@ -81,4 +81,20 @@ export class VideogameDetailComponent implements OnInit {
   goToEdit(): void {
    this.router.navigate(['/videogame', this.dataGame.id]);
   }
+  goToAction(action: string): void{
+    switch (action) {
+      case 'delete': {
+        this.showSwalDelete();
+        break;
+      }
+      case 'edit': {
+        this. goToEdit();
+        break;
+      }
+      default: {
+         break;
+       }
+   }
+
+  }
 }

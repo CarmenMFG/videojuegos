@@ -15,6 +15,7 @@ export class NavbarComponent implements OnInit,OnDestroy {
   public userName : string;
   private subscription: Subscription = new Subscription();
   private subscriptionName: Subscription = new Subscription();
+  public isAdmin : boolean;
 
   constructor(@Inject(DOCUMENT) public document: Document, private userService: UserService) {
     this.subscription =this.userService.obs$.subscribe( token => {
@@ -28,6 +29,7 @@ export class NavbarComponent implements OnInit,OnDestroy {
 
   ngOnInit(): void {
     this.userName = this.userService.getUser();
+    this.isAdmin = this.userService.isAdmin();
   }
   ngOnDestroy(): void {
    this.subscription.unsubscribe();
