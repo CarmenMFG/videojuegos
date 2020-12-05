@@ -11,6 +11,7 @@ import { LoginModel } from '../models/login.model';
 })
 export class UserService {
   private url = 'https://localhost:44357/api/Account';
+  private urlUsers = 'https://localhost:44357/api/User';
   obs$;
   obsName$;
   
@@ -31,8 +32,8 @@ export class UserService {
         }, 1000)
       });
   }
- 
-  public registerUser(user: UserModel): Observable<any> {
+  // --Register and Login user
+   public registerUser(user: UserModel): Observable<any> {
     const data = { ...user };
     console.log(data);
     return this.http.post(`${this.url}/register`, data);
@@ -42,6 +43,16 @@ export class UserService {
     const data = { ...login };
     return this.http.post(`${this.url}/login`, data);
   }
+  // -- Admin users
+  public allUsers(): Observable<any> {
+    const headers: HttpHeaders = new HttpHeaders({
+      Authorization: `Bearer ${this.getToken()}`
+    });
+    return this.http.get(`${this.urlUsers}`, { headers });
+  }  
+
+
+  // -- Method with localstorage
   public logout(): void {
     localStorage.removeItem('Token');
     localStorage.removeItem('Role');

@@ -8,6 +8,28 @@
         <div class="wrap-login wrap-80 m-auto" >
             <div class="row">
                 <div class="col">
+                    <table class="table table-hover table-dark table-custom">
+                        <thead>
+                          <tr>
+                            <th class="txtLabel">User</th>
+                            <th class="txtLabel">Email</th>
+                            <th class="txtLabel">Rol</th>
+                            <th class="txtLabel"></th>
+                            <th class="txtLabel"></th>
+                            
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let user of users">
+                            <td class="p-3">{{user.user}}</td>
+                            <td class="p-3">{{user.email}}</td>
+                            <td class="p-3">{{user.rol}}</td>
+                            <td><button *ngIf="user.rol!='admin'" class="btn btn-black fa fa-edit text-primary" type="button"  title="Edit role " (click)="showSwalEdit(user.id)"></button></td>                          
+                            <td> <button *ngIf="user.rol!='admin'" class="btn btn-black fa fa-times text-danger" type="button"  title="Delete user" (click)="showSwalDelete(user.id)"></button>
+                            </td>
+                          </tr>
+                        </tbody>
+                    </table>      
 
                 </div>
             </div> 

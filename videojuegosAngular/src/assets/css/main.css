@@ -517,3 +517,11 @@ a.answer:hover{
 .buttons-center{
   text-align: center;
 }
+.table-custom{
+  background-color:black !important;
+}
+.table-custom thead tr th{
+  border-top:1px solid rgb(76, 76, 121)!important;
+  border-bottom:1px solid rgb(76, 76, 121)!important;
+
+}

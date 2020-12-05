@@ -15,7 +15,7 @@ namespace Videogames.API.ViewModels
         public byte[] PasswordSalt { get; set; }
         public int IdRol { get; set; }
         public string Rol { get; set; }
-        public string VideoGames { get; set; }
+       // public string VideoGames { get; set; }
 
       
     }

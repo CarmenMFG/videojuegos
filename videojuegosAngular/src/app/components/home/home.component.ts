@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
         }else{
           Swal.fire({
             text: rsp.message,
-            title: 'Error al cargar datos',
+            title: 'Error load data',
             icon: 'error',
           });
          }

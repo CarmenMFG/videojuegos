@@ -11,6 +11,6 @@ namespace Videogames.Repository.Interfaces
         public UserEntity CreateUser(UserEntity user);
         public bool ExistUser(string userName);
         public UserEntity GetUser(string username);
-        public Task<IEnumerable<UserEntity>> GetUsers();
+        public List<UserEntity> GetUsers();
     }
 }

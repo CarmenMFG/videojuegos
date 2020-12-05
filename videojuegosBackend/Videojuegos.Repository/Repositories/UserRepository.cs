@@ -41,9 +41,9 @@ namespace Videogames.Repository.Repositories
         {
             return _context.Users.Include(u=>u.Rol).SingleOrDefault(u => u.User == username);
         }
-        public async Task<IEnumerable<UserEntity>> GetUsers()
+        public List<UserEntity> GetUsers()
         {
-            return await _context.Users.ToListAsync();
+             return  _context.Users.Include(us=>us.Rol).ToList();
         }
 
     }
