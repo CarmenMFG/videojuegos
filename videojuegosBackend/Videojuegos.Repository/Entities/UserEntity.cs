@@ -14,5 +14,6 @@ namespace Videogames.Repository.Entities
         public byte[] PasswordSalt { get; set; }
         public RolEntity Rol { get; set; }
         public ICollection<VideoGameEntity> VideoGames { get; set; }
+        public bool IsActive { get; set; }
     }
 }

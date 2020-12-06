@@ -28,11 +28,15 @@ namespace Videogames.Repository.Configurations
                .HasColumnName("user")
                .IsRequired()
                .HasColumnType("varchar(100)");
+           
+            builder.Property(us => us.IsActive)
+             .HasColumnName("isactive")
+             .HasColumnType("smallint");
 
-           /* builder.Property(us => us.Password)
-               .HasColumnName("password")
-               .IsRequired()
-               .HasColumnType("varchar(200)");*/
+            /* builder.Property(us => us.Password)
+                .HasColumnName("password")
+                .IsRequired()
+                .HasColumnType("varchar(200)");*/
 
             builder.Property(us => us.IdRol)
               .HasColumnName("idrol")

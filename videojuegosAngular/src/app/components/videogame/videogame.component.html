@@ -84,12 +84,15 @@
           </div>
       </div>
       <div class="row mt-4 mb-4">
-        <div class="col">
+        <div class="col-md-6">
           <label for="coverPage" class="txtLabel">Coverpage</label>
           <input type="file" (change)="onFileChange($event)" name="coverPage" class="inputFile100"/>
         </div>
+        <div class="col-md-6">
+          <img *ngIf="coverImg.length>0" src="{{coverImg}}" style="width:100px;height:100px;">
+        </div>
       </div>
-      <div class="row  mb-3 ml-2"  *ngIf="this.forma.get('coverPage').invalid && this.forma.get('coverPage').touched">
+      <div class="row  mb-3 ml-2"  *ngIf="(this.forma.get('coverPage').invalid && this.forma.get('coverPage').touched)">
         <small class="text-danger animated fadeIn ">Coverpage is required </small>
       </div>
        

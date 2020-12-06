@@ -12,5 +12,8 @@ namespace Videogames.Repository.Interfaces
         public bool ExistUser(string userName);
         public UserEntity GetUser(string username);
         public List<UserEntity> GetUsers();
+        public bool DeactiveUser(int id);
+        public bool ActiveUser(int id);
+        public bool ChangeRoleAdmin(int id);
     }
 }

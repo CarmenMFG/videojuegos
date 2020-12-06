@@ -24,6 +24,7 @@ export class VideogameComponent implements OnInit, OnDestroy {
  public systems: SystemModel[] = new Array<SystemModel>();
  public supports: SupportModel[] = new Array<SupportModel>();
  public dataGame: VideoGameModel = new VideoGameModel();
+ public coverImg: string= '';
 
  public idVideogame;
  constructor(private fb: FormBuilder,
@@ -40,6 +41,7 @@ export class VideogameComponent implements OnInit, OnDestroy {
     this.loadSupports();
     if (this.idVideogame !== 'new'){
       this.getDataVideoGame();
+     
     }
    }
   
@@ -84,9 +86,8 @@ export class VideogameComponent implements OnInit, OnDestroy {
       this.forma.controls['system'].patchValue(this.dataGame.idSystem);
       this.forma.controls['support'].patchValue(this.dataGame.idSupport);
       this.forma.controls['description'].patchValue(this.dataGame.description);
-    
-
-  }
+      this.coverImg = this.dataGame.coverPage.replace(/['"]+/g, '');
+   }
    getDataVideoGame(){
     this.subscriptionEdit = this.videogameService.getVideoGame(this.idVideogame)
     .subscribe(rsp => {
@@ -107,53 +108,61 @@ export class VideogameComponent implements OnInit, OnDestroy {
      });
   }
    save(): void{
-    this.createModel();
-    if (this.idVideogame === 'new'){
-      this.subscription = this.videogameService.addVideoGame(this.game)
-              .subscribe(rsp => {
-              if (rsp.success === true){
-                Swal.fire({
-                  text: rsp.message,
-                  title: 'Add videogame',
-                  icon: 'success'
-                }).then((result) => {
-                  this.router.navigateByUrl('/home');
+     if (this.forma.dirty && this.forma.valid) {
+        this.createModel();
+        if (this.idVideogame === 'new'){
+          this.subscription = this.videogameService.addVideoGame(this.game)
+                  .subscribe(rsp => {
+                  if (rsp.success === true){
+                    Swal.fire({
+                      text: rsp.message,
+                      title: 'Add videogame',
+                      icon: 'success'
+                    }).then((result) => {
+                      this.router.navigateByUrl('/home');
+                    });
+                    this.cleancomponent();
+                   }else{
+                    Swal.fire({
+                      text: rsp.message,
+                      title: 'Error',
+                      icon: 'error',
+                    });
+                  }
+         });
+      }else{
+           this.game.id = this.dataGame.id;
+           if (this.forma.controls['coverPage'].value === null){
+             this.game.coverPage = this.dataGame.coverPage;
+          }
+           this.subscriptionEdit = this.videogameService.modifyVideoGame(this.game)
+                .subscribe(rsp => {
+                if (rsp.success === true){
+                  Swal.close();
+                  Swal.fire({
+                    text: rsp.message,
+                    title: 'Modify videogame',
+                    icon: 'success',
+                  }).then((result)=>{
+                    this.router.navigateByUrl('/home');
+                  });
+                  this.cleancomponent()
+                }else{
+                  Swal.fire({
+                    text: rsp.message,
+                    title: 'Error',
+                    icon: 'error',
+                  });
+                }
                 });
-                this.cleancomponent();
-               }else{
-                Swal.fire({
-                  text: rsp.message,
-                  title: 'Error',
-                  icon: 'error',
-                });
-              }
-     });
-  }else{
-       this.game.id = this.dataGame.id;
-       if (this.forma.controls['coverPage'].value === null){
-         this.game.coverPage = this.dataGame.coverPage;
       }
-       this.subscriptionEdit = this.videogameService.modifyVideoGame(this.game)
-            .subscribe(rsp => {
-            if (rsp.success === true){
-              Swal.close();
-              Swal.fire({
-                text: rsp.message,
-                title: 'Modify videogame',
-                icon: 'success',
-              }).then((result)=>{
-                this.router.navigateByUrl('/home');
-              });
-              this.cleancomponent()
-            }else{
-              Swal.fire({
-                text: rsp.message,
-                title: 'Error',
-                icon: 'error',
-              });
-            }
-            });
-   }
+
+    }else{
+      if (this.coverImg.length==0){
+        this.forma.controls['coverPage'].markAsTouched();
+      }
+      this.forma.controls['title'].markAsTouched();
+  }
   }
   loadSystems(): void{
     this.subscription = this.videogameService.allSystems()
@@ -194,6 +203,7 @@ export class VideogameComponent implements OnInit, OnDestroy {
             this.forma.patchValue({
               coverPage: reader.result
            });
+            this.coverImg = this.forma.controls['coverPage'].value.replace(/['"]+/g, '');
          }
          this.cd.markForCheck();
         };

@@ -20,7 +20,8 @@ namespace Videogames.API.Extensions
                     IdRol = modelVM.IdRol,
                     User = modelVM.User,
                     PasswordHash = modelVM.PasswordHash,
-                    PasswordSalt = modelVM.PasswordSalt
+                    PasswordSalt = modelVM.PasswordSalt,
+                    IsActive=modelVM.IsActive
                 };
 
             }
@@ -43,7 +44,8 @@ namespace Videogames.API.Extensions
                     Rol = modelEntity.Rol.Name,
                     User = modelEntity.User,
                     PasswordHash = modelEntity.PasswordHash,
-                    PasswordSalt = modelEntity.PasswordSalt
+                    PasswordSalt = modelEntity.PasswordSalt,
+                    IsActive = modelEntity.IsActive
                 };
 
             }

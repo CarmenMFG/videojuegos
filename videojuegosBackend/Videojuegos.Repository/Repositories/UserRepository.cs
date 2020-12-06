@@ -33,6 +33,52 @@ namespace Videogames.Repository.Repositories
             }
            
         }
+        public bool DeactiveUser(int id)
+        {
+            try
+            {
+                UserEntity userDeactived = _context.Users.FirstOrDefault(u => u.Id == id);
+                    userDeactived.IsActive = false;
+                    _context.SaveChanges();
+                    return true;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public bool ActiveUser(int id)
+        {
+            try
+            {
+                UserEntity userActived = _context.Users.FirstOrDefault(u => u.Id == id);
+                userActived.IsActive = true;
+                _context.SaveChanges();
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public bool ChangeRoleAdmin(int id)
+        {
+            try
+            {
+                UserEntity user= _context.Users.FirstOrDefault(u => u.Id == id);
+                user.IdRol = _context.Roles.Where(r => r.Name == "admin").First().Id;
+                _context.SaveChanges();
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        
         public bool ExistUser(string userName)
         {
             return _context.Users.Where(u => u.User == userName).Count() > 0;
@@ -43,7 +89,8 @@ namespace Videogames.Repository.Repositories
         }
         public List<UserEntity> GetUsers()
         {
-             return  _context.Users.Include(us=>us.Rol).ToList();
+            var list= _context.Users.Include(us=>us.Rol).ToList();
+            return list;
         }
 
     }

@@ -11,6 +11,7 @@ using Videogames.API.Extensions;
 using Videogames.API.Interface;
 using Videogames.Business.DOModels;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.Extensions.Configuration;
 
 namespace Videogames.API.Controllers
 {
@@ -19,10 +20,12 @@ namespace Videogames.API.Controllers
     {
         private readonly IUserRepository _userReppository;
         private readonly ITokenService _tokenService;
-        public AccountController(IUserRepository userReppository,ITokenService tokenService)
+        private readonly IConfiguration _config;
+        public AccountController(IUserRepository userReppository,ITokenService tokenService, IConfiguration config)
         {
             _userReppository = userReppository;
             _tokenService = tokenService;
+            _config = config;
 
         }
 
@@ -41,7 +44,8 @@ namespace Videogames.API.Controllers
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(appUser.Password)),
                 PasswordSalt = hmac.Key,
                 Email = appUser.Email,
-                IdRol = 2 //Permiso de usuario
+                IdRol = int.Parse(_config["IdRolUser"]),//Permiso de usuario
+                IsActive=true
             };
 
             var userCreated = _userReppository.CreateUser(user.ConvertVMToEntity()).ConvertEntityToVM();

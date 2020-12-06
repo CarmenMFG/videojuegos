@@ -51,7 +51,7 @@ namespace Videogames.API.Controllers
                     result.StatusCode = 500;
 
                 }
-               
+
 
             }
             catch (Exception ex)
@@ -64,6 +64,106 @@ namespace Videogames.API.Controllers
             return new JsonResult(result);
 
         }
+        [HttpDelete("{id}")]
+        [Authorize]
+        public JsonResult DeleteUser(int id)
+        {
+            var result = new ResultVM() { Message = "", Success = true };
+            try
+            {
+                var data = getDataToken(HttpContext.User.Claims.ToList());
+                if (data.RolName.ToUpper() == "ADMIN")
+                {
+                    var res= _userReppository.DeactiveUser(id);
+                    result.Success = res;
+                    result.StatusCode = res ? 200 : 500;
+                    result.Message = res ? "User successfully deactivated" : "User deactived failed";
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Message = "No authorized ";
+                    result.StatusCode = 500;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message = "Problem load data ";
+                result.StatusCode = 500;
+            }
+
+            return new JsonResult(result);
+
+        }
+        [HttpPut("{id}")]
+        [Authorize]
+        public JsonResult ActiveUser(int id)
+        {
+            var result = new ResultVM() { Message = "", Success = true };
+            try
+            {
+                var data = getDataToken(HttpContext.User.Claims.ToList());
+                if (data.RolName.ToUpper() == "ADMIN")
+                {
+                    var res = _userReppository.ActiveUser(id);
+                    result.Success = res;
+                    result.StatusCode = res ? 200 : 500;
+                    result.Message = res ? "User successfully activated" : "User actived failed";
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Message = "No authorized ";
+                    result.StatusCode = 500;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message = "Problem load data ";
+                result.StatusCode = 500;
+            }
+
+            return new JsonResult(result);
+
+        }
+        [HttpPost("changeRolAdmin")]
+        [Authorize]
+        public JsonResult ChangeRoleAdmin(DataRoleVM rolVM)
+        {
+            var result = new ResultVM() { Message = "", Success = true };
+            try
+            {
+                var data = getDataToken(HttpContext.User.Claims.ToList());
+                if (data.RolName.ToUpper() == "ADMIN")
+                {
+                    var res = _userReppository.ChangeRoleAdmin(rolVM.IdUser);
+                    result.Success = res;
+                    result.StatusCode = res ? 200 : 500;
+                    result.Message = res ? "Role successfully changed" : "Role changed failed";
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Message = "No authorized ";
+                    result.StatusCode = 500;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message = "Problem load data ";
+                result.StatusCode = 500;
+            }
+
+            return new JsonResult(result);
+
+        }
+
 
 
         /* [HttpGet("{id}")]

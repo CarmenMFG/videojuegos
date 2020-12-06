@@ -4,4 +4,5 @@ export class UserModel {
     public user: string;
     public rol: string;
     public id: number;
+    public isActive:boolean;
 }

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services/user.service';
 import { UserModel } from '../../models/user.model';
 import Swal from 'sweetalert2';
 import { Subscription } from 'rxjs';
+import { AdminUserService } from '../../services/admin-user.service';
+
 
 @Component({
   selector: 'app-admin-users',
@@ -12,7 +13,7 @@ import { Subscription } from 'rxjs';
 export class AdminUsersComponent implements OnInit {
   public users: UserModel[] = new Array<UserModel>();
   private subscription: Subscription = new Subscription();
-  constructor(private userService: UserService) { }
+  constructor(private adminUserService: AdminUserService) { }
 
   ngOnInit(): void {
   this.loadAllUser();
@@ -24,7 +25,7 @@ export class AdminUsersComponent implements OnInit {
       icon: 'info',
      });
     Swal.showLoading();
-    this.subscription = this.userService.allUsers()
+    this.subscription = this.adminUserService.allUsers()
       .subscribe(rsp => {
          Swal.close();
          if (rsp.success === true){
@@ -39,7 +40,7 @@ export class AdminUsersComponent implements OnInit {
          }
        });
   }
-  showSwalDelete(id:number): void{
+  showSwalDeactive(id:number): void{
     Swal.fire({
       text: 'Are you sure to delete user ?',
       allowOutsideClick: false,
@@ -50,8 +51,7 @@ export class AdminUsersComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!',
      }).then((result) => {
        if (result.isConfirmed){
-         console.log("Borrar",id);
-       /* this.subscription = this.userService.deleteUser(id)
+          this.subscription = this.adminUserService.deactiveUser(id)
         .subscribe(rsp => {
           if (rsp.success === true){
             Swal.close();
@@ -60,6 +60,7 @@ export class AdminUsersComponent implements OnInit {
               title: 'Deleted user',
               icon: 'success',
             });
+           this.loadAllUser();
            }else{
             Swal.fire({
               text: rsp.message,
@@ -67,9 +68,40 @@ export class AdminUsersComponent implements OnInit {
               icon: 'error',
             });
           }
-          });*/
+          });
      }});
     }
+    showSwalActive(id:number): void{
+      Swal.fire({
+        text: 'Are you sure to active user ?',
+        allowOutsideClick: false,
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, active it!',
+       }).then((result) => {
+         if (result.isConfirmed){
+            this.subscription = this.adminUserService.activeUser(id)
+          .subscribe(rsp => {
+            if (rsp.success === true){
+              Swal.close();
+              Swal.fire({
+                text: rsp.message,
+                title: 'Actived user',
+                icon: 'success',
+              });
+              this.loadAllUser();
+             }else{
+              Swal.fire({
+                text: rsp.message,
+                title: 'Error',
+                icon: 'error',
+              });
+            }
+            });
+       }});
+     }
    async showSwalEdit(id: number){
       const { value: role } = await Swal.fire({
         title: 'Select field validation',
@@ -86,7 +118,26 @@ export class AdminUsersComponent implements OnInit {
           });
         }
       });
-      console.log(role);
-    }
+      if (role=='admin'){
+        this.subscription = this.adminUserService.changeRol(id)
+        .subscribe(rsp => {
+          if (rsp.success === true){
+            Swal.close();
+            Swal.fire({
+              text: rsp.message,
+              title: 'Rol changed',
+              icon: 'success',
+            });
+            this.loadAllUser();
+           }else{
+            Swal.fire({
+              text: rsp.message,
+              title: 'Error',
+              icon: 'error',
+            });
+          }
+          });
+        }
+     }
 
 }

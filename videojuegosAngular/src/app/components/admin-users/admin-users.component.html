@@ -24,8 +24,10 @@
                             <td class="p-3">{{user.user}}</td>
                             <td class="p-3">{{user.email}}</td>
                             <td class="p-3">{{user.rol}}</td>
-                            <td><button *ngIf="user.rol!='admin'" class="btn btn-black fa fa-edit text-primary" type="button"  title="Edit role " (click)="showSwalEdit(user.id)"></button></td>                          
-                            <td> <button *ngIf="user.rol!='admin'" class="btn btn-black fa fa-times text-danger" type="button"  title="Delete user" (click)="showSwalDelete(user.id)"></button>
+                            <td><button *ngIf="user.rol!='admin' && user.isActive" class="btn btn-black fa fa-edit text-primary" type="button"  title="Edit role " (click)="showSwalEdit(user.id)"></button></td>                          
+                            <td>
+                              <button *ngIf="user.rol!='admin' && user.isActive" class="btn btn-black fa fa-times text-danger" type="button"  title="Deactive user" (click)="showSwalDeactive(user.id )"></button>
+                              <button *ngIf="user.rol!='admin' && !user.isActive" class="btn btn-black fa fa-check text-success" type="button"  title="Active user" (click)="showSwalActive(user.id)"></button>
                             </td>
                           </tr>
                         </tbody>

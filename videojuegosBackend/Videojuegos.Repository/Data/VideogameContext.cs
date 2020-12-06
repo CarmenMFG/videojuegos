@@ -13,6 +13,7 @@ namespace Videogames.Repository.Data
         public DbSet<SupportEntity> Supports { get; set; }
         public DbSet<SystemEntity> Systems { get; set; }
         public DbSet<UserEntity> Users { get; set; }
+        public DbSet<RolEntity> Roles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -11,5 +11,6 @@ namespace Videogames.Business.DOModels
         public int IdRol { get; set; }
         public string Rol { get; set; }
         public string VideoGames { get; set; }
+        public bool IsActive { get; set; }
     }
 }
