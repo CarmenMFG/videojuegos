@@ -21,9 +21,9 @@
                         </thead>
                         <tbody>
                           <tr *ngFor="let user of users">
-                            <td class="p-3">{{user.user}}</td>
-                            <td class="p-3">{{user.email}}</td>
-                            <td class="p-3">{{user.rol}}</td>
+                            <td [class.actived]="user.isActive">{{user.user}}</td>
+                            <td [class.actived]="user.isActive">{{user.email}}</td>
+                            <td [class.actived]="user.isActive">{{user.rol}}</td>
                             <td><button *ngIf="user.rol!='admin' && user.isActive" class="btn btn-black fa fa-edit text-primary" type="button"  title="Edit role " (click)="showSwalEdit(user.id)"></button></td>                          
                             <td>
                               <button *ngIf="user.rol!='admin' && user.isActive" class="btn btn-black fa fa-times text-danger" type="button"  title="Deactive user" (click)="showSwalDeactive(user.id )"></button>

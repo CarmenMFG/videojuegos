@@ -84,11 +84,11 @@
           </div>
       </div>
       <div class="row mt-4 mb-4">
-        <div class="col-md-6">
+        <div class="col-md-10">
           <label for="coverPage" class="txtLabel">Coverpage</label>
           <input type="file" (change)="onFileChange($event)" name="coverPage" class="inputFile100"/>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-2 pull-right">
           <img *ngIf="coverImg.length>0" src="{{coverImg}}" style="width:100px;height:100px;">
         </div>
       </div>

@@ -35,7 +35,6 @@ export class AdminUserService {
     const headers: HttpHeaders = new HttpHeaders({
       Authorization: `Bearer ${localStorage.getItem('Token')}`
     });
-    console.log(id);
     const data = { idUser: id};
     return this.http.post(`${this.urlUsers}/changeRolAdmin`, data , { headers });
   }

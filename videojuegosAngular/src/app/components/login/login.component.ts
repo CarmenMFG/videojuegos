@@ -37,11 +37,13 @@ export class LoginComponent implements OnInit, OnDestroy {
       .subscribe(rsp => {
         if (rsp.userName !== ''){
             this.userService.saveTokenUser(rsp);
+            this.userService.changeUser(true);
+            console.log(rsp);
             this.router.navigateByUrl('/home');
             localStorage.setItem('Remember', this.remember ? 'true' : '' );
        }else{
           Swal.fire({
-            text: 'Invalid username or pasword',
+            text: 'Invalid username and pasword or you are desactivated',
             title: 'Error',
             icon: 'error',
           });

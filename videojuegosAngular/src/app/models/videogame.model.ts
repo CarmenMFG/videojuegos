@@ -21,5 +21,6 @@ export class VideoGameModel {
     public systems: SystemModel;
     public platform: PlatformModel;
     public support: SupportModel;
+    public isNew: boolean;
 
 }

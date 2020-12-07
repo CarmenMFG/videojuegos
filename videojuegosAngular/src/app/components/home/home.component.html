@@ -3,11 +3,11 @@
   <span class="form-title pb-5">
     The collection
   </span>
-  <button class="btn-flotante btn-red" type="button" (click)="goAddGame()">
-    <span class="fa fa-plus"></span><span style="padding-left: 5px"> Add game</span>
-  </button>
- 
-  <div class="card-group" *ngFor="let game of videogames" m-3>
+  <button class="btn-red btn-flotante" type="button" (click)="goAddGame()">
+    <span class="fa fa-plus text-white"></span><span style="padding-left: 5px;color:white !important"> add game</span>
+   </button>
+  
+  <div class="card-group" *ngFor="let game of videogames" >
     <div class="card card-img">
       <a [routerLink]="['/videogame-detail/',game.id]">
        <img class="card-img-top"  src={{game.coverPage}} alt="{{game.title}}">

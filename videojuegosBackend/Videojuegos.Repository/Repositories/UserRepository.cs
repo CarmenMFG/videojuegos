@@ -85,11 +85,11 @@ namespace Videogames.Repository.Repositories
         }
         public UserEntity GetUser(string username)
         {
-            return _context.Users.Include(u=>u.Rol).SingleOrDefault(u => u.User == username);
+            return _context.Users.Include(u=>u.Rol).SingleOrDefault(u => u.User == username && u.IsActive);
         }
         public List<UserEntity> GetUsers()
         {
-            var list= _context.Users.Include(us=>us.Rol).ToList();
+            var list= _context.Users.Include(us=>us.Rol).OrderBy(u=>u.User).ToList();
             return list;
         }
 

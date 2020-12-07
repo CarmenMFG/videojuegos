@@ -34,7 +34,7 @@ namespace  Videojuegos.Controllers
     
         [HttpPost]
         [Authorize]
-        public JsonResult CreateVideoGame(VideoGameVM model)
+        public JsonResult SaveVideoGame(VideoGameVM model)
         {
             var result = new ResultVM() { Message = "", Success = true };
             if (model != null)
@@ -42,63 +42,37 @@ namespace  Videojuegos.Controllers
                 try
                 {
                     var data = getDataToken(HttpContext.User.Claims.ToList());
-                    bool res = _business.CreateVideoGame(model.ConvertVMToDO(), data.IdUser, data.RolName);
+                    bool res=false;
+                    if (model.IsNew)
+                    {
+                         res = _business.CreateVideoGame(model.ConvertVMToDO(), data.IdUser, data.RolName);
+                    }
+                    else
+                    {
+                         res = _business.ModifyVideoGame(model.ConvertVMToDO(), data.IdUser, data.RolName);
+                    }
+                   
                     result.Success = res;
                     result.StatusCode = res ? 200 : 500;
-                    result.Message = res ? "Videojuego guardado con éxito" : "No se pudo guardar el videojuego seleccionado";
+                    result.Message = res ? "Game saved successfull" : "Game saved failed";
                 }
                 catch
                 {
                     result.Success = false;
-                    result.Message = "No se pudo guardar el videojuego ";
+                    result.Message = "Game saved failed";
                     result.StatusCode = 500;
                 }
             }
             else
             {
                 result.Success = false;
-                result.Message = "Debe rellenar los datos del videojuego";
+                result.Message = "Error completed form";
                 result.StatusCode = 500;
             }
             return new JsonResult(result);
         }
 
-        [HttpPut]
-        [Authorize]
-        public JsonResult ModifyVideoGame(VideoGameVM model)
-        {
-            var result = new ResultVM() { Message = "", Success = true };
-            if (model != null)
-            {
-                try
-                {
-                    var data = getDataToken(HttpContext.User.Claims.ToList());
-                    bool res = _business.ModifyVideoGame(model.ConvertVMToDO(), data.IdUser, data.RolName);
-
-                    result.Success = res;
-                    result.StatusCode = res ? 200 : 500;
-                    result.Message = res ? "Videojuego modificado con éxito" : "No se pudo modificar el videojuego seleccionado";
-
-                }
-                catch
-                {
-                    result.Success = false;
-                    result.Message = "No se pudo desactivar el videojuego ";
-                    result.StatusCode = 500;
-                }
-            
-            }
-            else
-            {
-                result.Success = false;
-                result.Message = "Debe seleccionar un videojuego";
-                result.StatusCode = 500;
-
-            }
-            return new JsonResult(result);
-        }
-
-
+      
         [HttpDelete("{idVideoGame}")]
         [Authorize]
         public JsonResult DeactiveVideoGame(int idVideoGame)
@@ -111,13 +85,14 @@ namespace  Videojuegos.Controllers
                 bool res = _business.DeactiveVideoGame(idVideoGame, data.IdUser, data.RolName);
                 result.Success = res;
                 result.StatusCode = res ? 200 : 500;
-                result.Message = res ? "Videojuego desactivado con éxito" : "No se puedo desactivar el videojuego seleccionado";
-              
+                result.Message = res ? "Game desactived successfull" : "Game desactived failed";
+
+
             }
             catch
             {
                 result.Success = false;
-                result.Message = "No se pudo desactivar el videojuego ";
+                result.Message = "Game desactived failed";
                 result.StatusCode = 500;
             }
 
@@ -127,7 +102,7 @@ namespace  Videojuegos.Controllers
         [HttpGet]
         public ActionResult GetOkVideoGame()
         {
-             return Ok("Todo ha ido bien");
+             return Ok("Ok");
 
         }
        
@@ -148,7 +123,7 @@ namespace  Videojuegos.Controllers
             catch(Exception ex)
             {
                 result.Success = false;
-                result.Message = "No se pueden mostrar los videojuegos ";
+                result.Message = "Games cannot be displayed";
                 result.StatusCode = 500;
             }
 
@@ -171,7 +146,7 @@ namespace  Videojuegos.Controllers
             catch
                 {
                     result.Success = false;
-                    result.Message = "No se puede mostrar el videojuego solicitado";
+                    result.Message = "Unable to display the requested game";
                     result.StatusCode = 500;
                 }
 
@@ -195,7 +170,7 @@ namespace  Videojuegos.Controllers
             catch
             {
                 result.Success = false;
-                result.Message = "No se pueden mostrar los sistemas";
+                result.Message = "Systems cannot be displayed";
                 result.StatusCode = 500;
             }
 
@@ -220,7 +195,7 @@ namespace  Videojuegos.Controllers
             {
 
                 result.Success = false;
-                result.Message = "No se pueden mostrar los soportes";
+                result.Message = "Supports cannot be displayed";
                 result.StatusCode = 500;
 
             }

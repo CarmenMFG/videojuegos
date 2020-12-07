@@ -126,6 +126,7 @@ namespace Videogames.Repository.Repositories
                                                    .Include(v => v.Support)
                                                    .Include(v => v.System)
                                                    .Include(v => v.System.Platform)
+                                                   .OrderBy(v => v.Title)
                                                    .Where(v => v.IsActive).OrderBy(v => v.Title).ToList();
 
             }

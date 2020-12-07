@@ -24,6 +24,7 @@ namespace Videojuegos.API.ViewModels
         public bool IsActive { get; set; }
         public string CoverPage { get; set; }
         public string BackCover { get; set; }
+        public bool  IsNew { get; set; }
         public DateTime? ReleaseDate { get; set; }
         //public DateTime CreateDate { get; set; }
         //public DateTime UpdateDate { get; set; }
