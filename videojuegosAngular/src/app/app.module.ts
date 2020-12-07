@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -27,7 +27,7 @@ import { AdminUsersComponent } from './components/admin-users/admin-users.compon
     VideogameComponent,
     VideogameDetailComponent,
     GroupButtonsComponent,
-    AdminUsersComponent
+    AdminUsersComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,9 +36,9 @@ import { AdminUsersComponent } from './components/admin-users/admin-users.compon
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
-    CommonModule
+    CommonModule,
   ],
   providers: [UserService, VideogameService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

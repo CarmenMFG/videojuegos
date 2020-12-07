@@ -1,24 +1,26 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2 bg-dark">
   <a class="navbar-brand" href="#"><span class="logo">Game's Attic</span> </a>
-    <div class="collapse navbar-collapse bg-dark" id="navbarText">
-      <ul class="navbar-nav ml-auto w-auto">
-        <li><span *ngIf="isLog" class="userLabel ml-5">[{{userName}}]</span></li>
-      </ul>  
-      <ul class="navbar-nav w-auto ml-3">
-        <li *ngIf="isLog && isAdmin" class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="/admin-users">Admin</a>
-        </li>
-        <li *ngIf="!isLog" class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="/login">Login</a>
-        </li>
-        <li  *ngIf="!isLog" class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="/register">Register</a>
-        </li>
-         <li *ngIf="isLog" class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="/login" (click)="logout()">Logout</a>
-        </li>
-      </ul>
-     </div>
-  </nav>
-  <div class="border-separate"></div>
-  <div class="border-separate-light"></div>
+  <div class="collapse navbar-collapse bg-dark" id="navbarText">
+    <ul class="navbar-nav ml-auto w-auto">
+      <li>
+        <span *ngIf="isLog" class="userLabel ml-5">[{{ userName }}]</span>
+      </li>
+    </ul>
+    <ul class="navbar-nav w-auto ml-3">
+      <li *ngIf="isLog && isAdmin" class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/admin-users">Admin</a>
+      </li>
+      <li *ngIf="!isLog" class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/login">Login</a>
+      </li>
+      <li *ngIf="!isLog" class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/register">Register</a>
+      </li>
+      <li *ngIf="isLog" class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/login" (click)="logout()">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="border-separate"></div>
+<div class="border-separate-light"></div>

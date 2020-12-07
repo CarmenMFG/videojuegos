@@ -164,8 +164,6 @@ namespace Videogames.API.Controllers
 
         }
 
-
-
         /* [HttpGet("{id}")]
          [Authorize]
          public ActionResult<UserVM> GetUser(int id)

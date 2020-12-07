@@ -1,58 +1,70 @@
 <div class="limiter animated fadeIn">
-    <div class="container container-login">
-        <div class="wrap-login wrap-600 m-auto">
-            <form class="validate-form flex-sb flex-w" #formLogin="ngForm" (ngSubmit)="login(formLogin)">
-                  <span class="form-title pb-5">
-                   Login
-                  </span>
-                  <div class="wrap-input100 mb-4">
-                    <input class="input100  mb-3" 
-                           type="text" 
-                           name="userName" 
-                           required
-                           minlength="2"
-                           [(ngModel)]="loginModel.user"
-                           placeholder="Username">
+  <div class="container container-login">
+    <div class="wrap-login wrap-600 m-auto">
+      <form
+        class="validate-form flex-sb flex-w"
+        #formLogin="ngForm"
+        (ngSubmit)="login(formLogin)"
+      >
+        <span class="form-title pb-5"> Login </span>
+        <div class="wrap-input100 mb-4">
+          <input
+            class="input100 mb-3"
+            type="text"
+            name="userName"
+            required
+            minlength="2"
+            [(ngModel)]="loginModel.user"
+            placeholder="Username"
+          />
 
-                    <span *ngIf="formLogin.submitted && formLogin.controls['userName'].errors" 
-                    class="text-danger animated fadeIn">The username is required</span>
-                </div>
-                
-            
-                <div class="wrap-input100 mb-5" data-validate = "Password is required">
-                    <input class="input100 mb-3"
-                           type="password" 
-                           name="password" 
-                           required
-                           minlength="6"
-                           [(ngModel)]="loginModel.password"
-                           placeholder="Password">
-                    <span   *ngIf="formLogin.submitted && formLogin.controls['password'].errors" 
-                    class="text-danger animated fadeIn">The password must have more than 6 characters</span> 
-                </div>
-                
-                <div class="flex-sb-m w-full separate-top50 mb-5">
-                    <div>
-                        <input [(ngModel)]="remember" class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-                        <label class="label-checkbox100" for="ckb1">
-                           Remember user
-                        </label>
-                    </div>
-
-                    <div>
-                        <a class="answer" routerLink="/register" class="answer">
-                           You do not have an account?
-                        </a>
-                    </div>
-                </div>
-
-              <div class="container-login100-form-btn mt-5 justify-content-center">
-                    <button type="submit" class="btn-red">
-                      enter
-                    </button>
-                </div>
-
-            </form>
+          <span
+            *ngIf="formLogin.submitted && formLogin.controls['userName'].errors"
+            class="text-danger animated fadeIn"
+            >The username is required</span
+          >
         </div>
+
+        <div class="wrap-input100 mb-5" data-validate="Password is required">
+          <input
+            class="input100 mb-3"
+            type="password"
+            name="password"
+            required
+            minlength="6"
+            [(ngModel)]="loginModel.password"
+            placeholder="Password"
+          />
+          <span
+            *ngIf="formLogin.submitted && formLogin.controls['password'].errors"
+            class="text-danger animated fadeIn"
+            >The password must have more than 6 characters</span
+          >
+        </div>
+
+        <div class="flex-sb-m w-full separate-top50 mb-5">
+          <div>
+            <input
+              [(ngModel)]="remember"
+              class="input-checkbox100"
+              id="ckb1"
+              type="checkbox"
+              name="remember-me"
+            />
+            <label class="label-checkbox100" for="ckb1"> Remember user </label>
+          </div>
+
+          <div>
+            <a class="answer" routerLink="/register" class="answer">
+              You do not have an account?
+            </a>
+          </div>
+        </div>
+
+        <div class="container-login100-form-btn mt-5 justify-content-center">
+          <button type="submit" class="btn-red">enter</button>
+        </div>
+      </form>
     </div>
+  </div>
 </div>

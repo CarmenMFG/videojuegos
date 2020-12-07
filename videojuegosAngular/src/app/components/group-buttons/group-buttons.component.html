@@ -1,17 +1,32 @@
-<div class="col-12 m-auto buttons-center" >
-    <button type="button" class="btn-red  m-3 custom33" (click)="goHome()">
-        <span class="fa fa-undo text-white" style="margin-right: 10px">
-        </span>
-        back</button>
- 
-    <button type="submit" class="btn-red m-3 custom33" 
-        (click)="save()" *ngIf="!details && !adminUsers">
-        <span class="fa fa-save text-white" style="margin-right: 10px" >
-        </span>save</button>
-    <button type="button" class="btn-red m-3 custom33" (click)="edit()" *ngIf="idGame!='new' && details && !adminUsers">
-        <span class="fa fa-edit text-white" style="margin-right: 10px">
-        </span>edit</button>  
-     <button type="button" class="btn-red  m-3 custom33" (click)="delete()" *ngIf="idGame!='new' && !adminUsers">
-        <span class="fa fa-trash-o text-white" style="margin-right: 10px">
-        </span>delete</button>  
+<div class="col-12 m-auto buttons-center">
+  <button type="button" class="btn-red m-3 custom33" (click)="goHome()">
+    <span class="fa fa-undo color-letter-btn" style="margin-right: 10px"> </span>
+    back
+  </button>
+
+  <button
+    type="submit"
+    class="btn-red m-3 custom33"
+    (click)="save()"
+    *ngIf="!details && !adminUsers"
+  >
+    <span class="fa fa-save color-letter-btn" style="margin-right: 10px"> </span>save
+  </button>
+  <button
+    type="button"
+    class="btn-red m-3 custom33"
+    (click)="edit()"
+    *ngIf="idGame != 'new' && details && !adminUsers"
+  >
+    <span class="fa fa-edit color-letter-btn" style="margin-right: 10px"> </span>edit
+  </button>
+  <button
+    type="button"
+    class="btn-red m-3 custom33"
+    (click)="delete()"
+    *ngIf="idGame != 'new' && !adminUsers"
+  >
+    <span class="fa fa-trash-o color-letter-btn" style="margin-right: 10px"> </span
+    >delete
+  </button>
 </div>

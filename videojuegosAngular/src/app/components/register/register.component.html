@@ -1,79 +1,95 @@
 <div class="limiter animated fadeIn">
-        <div class="container container-register">
-            <div class="wrap-login wrap-600 m-auto">
-                <form  (ngSubmit)="onSubmit(formRegister)"
-                #formRegister="ngForm"
-                class="validate-form flex-sb flex-w">
-              
-                    <span class="form-title pb-5">
-                      Register account
-                    </span>
-    
-                   
-                    <div class="wrap-input100 mb-4">
-                        <input class="input100 mb-2" 
-                               type="email" 
-                               required
-                               email
-                               name="email" 
-                               [(ngModel)]="user.email"
-                               placeholder="Email">
-    
-                       <span *ngIf="formRegister.submitted && formRegister.controls['email'].errors" 
-                       class="text-danger animated fadeIn">Email is required, invalid email </span> 
-                    </div>
+  <div class="container container-register">
+    <div class="wrap-login wrap-600 m-auto">
+      <form
+        (ngSubmit)="onSubmit(formRegister)"
+        #formRegister="ngForm"
+        class="validate-form flex-sb flex-w"
+      >
+        <span class="form-title pb-5"> Register account </span>
 
-                
-                    <div class="wrap-input100 mb-4">
-                        <input class="input100 mb-2" 
-                               type="text" 
-                               name="userName" 
-                               required
-                               minlength="2"
-                               [(ngModel)]="user.user"
-                               placeholder="Usuario">
-    
-                       <span *ngIf="formRegister.submitted && formRegister.controls['userName'].errors" 
-                       class="text-danger animated fadeIn">The username is required</span>
-                    </div>
-                    
-               
-                    <div class="wrap-input100 mb-4">
-                        <input class="input100 mb-2"
-                               type="password" 
-                               name="password" 
-                               required
-                               minlength="6"
-                               [(ngModel)]="user.password"
-                               placeholder="Password">
-                        <span *ngIf="formRegister.submitted && formRegister.controls['password'].errors" 
-                        class="text-danger animated fadeIn">The password must have more than 6 characters</span>
-                    </div>
-                    
-                    <div class="flex-sb-m w-full separate-top50 mb-3">
-                        <div class="contact100-form-checkbox">
-                            <input [(ngModel)]="remember" class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-                            <label class="label-checkbox100" for="ckb1">
-                                Remember user
-                            </label>
-                        </div>
-    
-                        <div>
-                            <a class="answer" routerLink="/login" class="answer">
-                               Do you already have an account? / Login
-                            </a>
-                        </div>
-                    </div>
-    
-                    <div class="container-login100-form-btn mt-5 justify-content-center">
-                        <button type="submit" class="btn-red">
-                           create
-                        </button>
-                    </div>
-    
-                </form>
-            </div>
+        <div class="wrap-input100 mb-4">
+          <input
+            class="input100 mb-2"
+            type="email"
+            required
+            email
+            name="email"
+            [(ngModel)]="user.email"
+            placeholder="Email"
+          />
+
+          <span
+            *ngIf="
+              formRegister.submitted && formRegister.controls['email'].errors
+            "
+            class="text-danger animated fadeIn"
+            >Email is required, invalid email
+          </span>
         </div>
+
+        <div class="wrap-input100 mb-4">
+          <input
+            class="input100 mb-2"
+            type="text"
+            name="userName"
+            required
+            minlength="2"
+            [(ngModel)]="user.user"
+            placeholder="Usuario"
+          />
+
+          <span
+            *ngIf="
+              formRegister.submitted && formRegister.controls['userName'].errors
+            "
+            class="text-danger animated fadeIn"
+            >The username is required</span
+          >
+        </div>
+
+        <div class="wrap-input100 mb-4">
+          <input
+            class="input100 mb-2"
+            type="password"
+            name="password"
+            required
+            minlength="6"
+            [(ngModel)]="user.password"
+            placeholder="Password"
+          />
+          <span
+            *ngIf="
+              formRegister.submitted && formRegister.controls['password'].errors
+            "
+            class="text-danger animated fadeIn"
+            >The password must have more than 6 characters</span
+          >
+        </div>
+
+        <div class="flex-sb-m w-full separate-top50 mb-3">
+          <div class="contact100-form-checkbox">
+            <input
+              [(ngModel)]="remember"
+              class="input-checkbox100"
+              id="ckb1"
+              type="checkbox"
+              name="remember-me"
+            />
+            <label class="label-checkbox100" for="ckb1"> Remember user </label>
+          </div>
+
+          <div>
+            <a class="answer" routerLink="/login" class="answer">
+              Do you already have an account? / Login
+            </a>
+          </div>
+        </div>
+
+        <div class="container-login100-form-btn mt-5 justify-content-center">
+          <button type="submit" class="btn-red">create</button>
+        </div>
+      </form>
     </div>
-    
-    
+  </div>
+</div>

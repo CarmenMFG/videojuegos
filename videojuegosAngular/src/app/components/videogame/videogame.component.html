@@ -1,126 +1,205 @@
 <div class="limiter animated fadeIn">
-  <div class="container container-details">   
+  <div class="container container-details">
     <div class="row mb-5">
       <div class="col-md-12">
-        <app-group-buttons (actionType)="goToAction($event)" [idGame]="idVideogame"></app-group-buttons>
+        <app-group-buttons
+          (actionType)="goToAction($event)"
+          [idGame]="idVideogame"
+        ></app-group-buttons>
       </div>
-      
-   </div>
-   <div class="wrap-login wrap-80 m-auto">  
-    <form  class="login100-form validate-form flex-sb flex-w" 
-    autocomplete="off" [formGroup]="forma">
-     
-     <div class="row mb-4">
-          <div class="col">
-              <label for="title" class="txtLabel">Title</label>
-              <input class="input100" type="text" name="title" 
-              [class.isInvalid]="this.forma.get('title').invalid && this.forma.get('title').touched"
-                formControlName="title">
-          </div>
-      </div>
-      <div class="row mb-3 ml-2" *ngIf="this.forma.get('title').invalid && this.forma.get('title').touched">
-        <small class="text-danger animated fadeIn ">Title is required </small>
-      </div>
-      
+    </div>
+    <div class="wrap-login wrap-80 m-auto">
+      <form
+        class="login100-form validate-form flex-sb flex-w"
+        autocomplete="off"
+        [formGroup]="forma"
+      >
         <div class="row mb-4">
           <div class="col">
-              <label for="system" class="txtLabel">Select a system</label>
-              <select  class="input100" name="system" formControlName="system">
-                <option  class="input100" *ngFor="let system of systems"
-                        [ngValue]="system.id">
-                          {{system.name}} {{system.platform}}
-                </option>
+            <label for="title" class="txtLabel">Title</label>
+            <input
+              class="input100"
+              type="text"
+              name="title"
+              [class.isInvalid]="
+                this.forma.get('title').invalid &&
+                this.forma.get('title').touched
+              "
+              formControlName="title"
+            />
+          </div>
+        </div>
+        <div
+          class="row mb-3 ml-2"
+          *ngIf="
+            this.forma.get('title').invalid && this.forma.get('title').touched
+          "
+        >
+          <small class="text-danger animated fadeIn">Title is required </small>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col">
+            <label for="system" class="txtLabel">Select a system</label>
+            <select class="input100" name="system" formControlName="system">
+              <option
+                class="input100"
+                *ngFor="let system of systems"
+                [ngValue]="system.id"
+              >
+                {{ system.name }} {{ system.platform }}
+              </option>
             </select>
           </div>
-          <div class="col" > 
+          <div class="col">
             <label for="support" class="txtLabel">Select a support</label>
-              <select  class="input100" name="support" formControlName="support">
-                <option  class="input100" *ngFor="let support of supports"
-                        [ngValue]="support.id">
-                          {{support.name}}
-                </option>
-              </select>
+            <select class="input100" name="support" formControlName="support">
+              <option
+                class="input100"
+                *ngFor="let support of supports"
+                [ngValue]="support.id"
+              >
+                {{ support.name }}
+              </option>
+            </select>
+          </div>
         </div>
-      </div>
-      <div class="row  mb-4">
+        <div class="row mb-4">
           <div class="col">
             <label for="releaseDate" class="txtLabel">Release Date</label>
-            <input type="date" class="input100" name="releaseDate"
-             formControlName="releaseDate">
+            <input
+              type="date"
+              class="input100"
+              name="releaseDate"
+              formControlName="releaseDate"
+            />
           </div>
           <div class="col">
             <label for="genre" class="txtLabel">Genre</label>
-            <input class="input100" type="text" name="genre" 
-             formControlName="genre">
+            <input
+              class="input100"
+              type="text"
+              name="genre"
+              formControlName="genre"
+            />
           </div>
-      </div>
-      <div class="row mb-4">
+        </div>
+        <div class="row mb-4">
           <div class="col">
-             <label for="developer" class="txtLabel">Developer</label>
-              <input class="input100" type="text" name="developer" 
-              formControlName="developer">
+            <label for="developer" class="txtLabel">Developer</label>
+            <input
+              class="input100"
+              type="text"
+              name="developer"
+              formControlName="developer"
+            />
           </div>
           <div class="col">
             <label for="distributor" class="txtLabel">Distributor</label>
-              <input class="input100" type="text" name="distributor" 
-               formControlName="distributor">
+            <input
+              class="input100"
+              type="text"
+              name="distributor"
+              formControlName="distributor"
+            />
           </div>
-      </div>
-      <div class="row mb-4">
+        </div>
+        <div class="row mb-4">
           <div class="col">
             <label for="barCode" class="txtLabel">Barcode</label>
-              <input class="input100" type="text" name="barCode" 
-               formControlName="barCode">
+            <input
+              class="input100"
+              type="text"
+              name="barCode"
+              formControlName="barCode"
+            />
           </div>
           <div class="col">
             <label for="language" class="txtLabel">Language</label>
-            <input class="input100" type="text" name="language" 
-             formControlName="language">
+            <input
+              class="input100"
+              type="text"
+              name="language"
+              formControlName="language"
+            />
           </div>
           <div class="col">
             <label for="region" class="txtLabel">Region</label>
-            <input class="input100" type="text" name="region" 
-           formControlName="region">
+            <input
+              class="input100"
+              type="text"
+              name="region"
+              formControlName="region"
+            />
           </div>
-      </div>
-      <div class="row mt-4 mb-4">
-        <div class="col-md-10">
-          <label for="coverPage" class="txtLabel">Coverpage</label>
-          <input type="file" (change)="onFileChange($event)" name="coverPage" class="inputFile100"/>
         </div>
-        <div class="col-md-2 pull-right">
-          <img *ngIf="coverImg.length>0" src="{{coverImg}}" style="width:100px;height:100px;">
-        </div>
-      </div>
-      <div class="row  mb-3 ml-2"  *ngIf="(this.forma.get('coverPage').invalid && this.forma.get('coverPage').touched)">
-        <small class="text-danger animated fadeIn ">Coverpage is required </small>
-      </div>
-       
-      <div class="row mb-4">
-          <div class="col">
-            <label for="notes" class="txtLabel">Notes</label>
-            <textarea class="textarea100" id="notes" rows="3"
-            name="notes" formControlName="notes"></textarea>
+        <div class="row mt-4 mb-4">
+          <div class="col-md-10">
+            <label for="coverPage" class="txtLabel">Coverpage</label>
+            <input
+              type="file"
+              (change)="onFileChange($event)"
+              name="coverPage"
+              class="inputFile100"
+            />
           </div>
+          <div class="col-md-2 pull-right">
+            <img
+              *ngIf="coverImg.length > 0"
+              src="{{ coverImg }}"
+              style="width: 100px; height: 100px"
+            />
+          </div>
+        </div>
+        <div
+          class="row mb-3 ml-2"
+          *ngIf="
+            this.forma.get('coverPage').invalid &&
+            this.forma.get('coverPage').touched
+          "
+        >
+          <small class="text-danger animated fadeIn"
+            >Coverpage is required
+          </small>
+        </div>
+        <div class="row mb-4">
           <div class="col">
             <label for="description" class="txtLabel">Description</label>
-            <textarea class="textarea100" id="description" rows="3" 
-            name="descrition" formControlName="description"></textarea>
+            <textarea
+              class="textarea100"
+              id="description"
+              rows="6"
+              name="descrition"
+              formControlName="description"
+            ></textarea>
           </div>
-      </div>
-      <div class="row mb-4">
-        <div class="col">
-          <label for="redump" class="txtLabel">Redump</label>
-          <input class="input100" type="text" name="redump" 
-           formControlName="redump">
         </div>
-      </div>
-      </form>
-    </div>  
-    </div>
-</div>   
 
- 
-  
-  
-  
+        <div class="row mb-4">
+          <div class="col">
+            <label for="notes" class="txtLabel">Notes</label>
+            <textarea
+              class="textarea100"
+              id="notes"
+              rows="3"
+              name="notes"
+              formControlName="notes"
+            ></textarea>
+          </div>
+        </div>
+       
+        <div class="row mb-4">
+          <div class="col">
+            <label for="redump" class="txtLabel">Redump</label>
+            <input
+              class="input100"
+              type="text"
+              name="redump"
+              formControlName="redump"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

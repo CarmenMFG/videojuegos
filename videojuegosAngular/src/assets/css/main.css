@@ -1,72 +1,66 @@
-
-
-
-
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
 
 @font-face {
   font-family: Ubuntu-Regular;
-  src: url('../fonts/ubuntu/Ubuntu-Regular.ttf'); 
+  src: url("../fonts/ubuntu/Ubuntu-Regular.ttf");
 }
 
 @font-face {
   font-family: Ubuntu-Bold;
-  src: url('../fonts/ubuntu/Ubuntu-Bold.ttf'); 
+  src: url("../fonts/ubuntu/Ubuntu-Bold.ttf");
+}
+@font-face{
+  font-family: Thinoothin;
+  src:url("../fonts/Thinoo/thinoothin.otf") format('truetype');
+}
+@font-face{
+  font-family: Thinoobold;
+  src:url("../fonts/Thinoo/thinoobold.otf") format('truetype');
 }
 
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
 
 * {
-	margin: 0px; 
-	padding: 0px; 
-  box-sizing: border-box;	
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
   font-family: Ubuntu-Regular, sans-serif;
   color: darkgrey;
   line-height: 1.2;
   font-size: 18px;
-   
 }
 
-
-.separate-top{
-  margin-top:120px;
+.separate-top {
+  margin-top: 160px;
 }
-.separate-top50{
-  margin-top:50px;
+.separate-top50 {
+  margin-top: 50px;
 }
-.container-details{
-  margin-top:3%;
-  width:80%;
-  padding:50px 50px;
-
-
+.container-details {
+  margin-top: 3%;
+  width: 80%;
+  padding: 50px 50px;
 }
 
-
-
-textarea:focus, input:focus {
+textarea:focus,
+input:focus {
   border-color: grey !important;
 }
-
 
 label {
   display: block;
   margin: 0;
 }
 
-
-.txtLabel{
+.txtLabel {
   font-family: Helvetica, Sans-Serif;
-  color:white;
+  color: white;
   letter-spacing: 4px;
-  padding:5px;
+  padding: 5px;
   font-size: 1.2em;
-
 }
-
-
 
 /*//////////////////////////////////////////////////////////////////
 [ login ]*/
@@ -77,7 +71,7 @@ label {
 }
 
 .container-login100 {
-  width: 100%;  
+  width: 100%;
   min-height: 100vh;
   display: -webkit-box;
   display: -webkit-flex;
@@ -88,98 +82,90 @@ label {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  
+
   background-position: center;
   background-size: cover;
-  background-repeat: no-repeat;;
+  background-repeat: no-repeat;
 }
-.wrap-600{
+.wrap-600 {
   width: 600px;
-  padding:50px 100px;
+  padding: 50px 100px;
 }
-.wrap-80{
-  width:80%;
-  padding:50px 50px;
+.wrap-80 {
+  width: 80%;
+  padding: 50px 50px;
 }
 
 .wrap-login {
   border-radius: 10px;
   position: relative;
-  background-color:black;
+  background-color: black;
   box-shadow: 0px 0px 10px 0px darkgrey inset;
- 
 }
-h4{
-  color:rgb(76, 76, 121);;
+h4 {
+  color: rgb(76, 76, 121);
   text-align: center;
-  letter-spacing:2px;
+  letter-spacing: 2px;
 }
 
 /*==================================================================
 [ Form ]*/
 
-
 .form-title {
-  font-family: Ubuntu-Bold;
+  font-family:Thinoobold;
   font-size: 2.3em;
-  color:white;
+  color: white;
   text-align: center;
   width: 100%;
-  font-weight:bold;
   display: block;
-  padding:3px;
-  letter-spacing: 2px;
+  padding: 3px;
+  letter-spacing: 6px;
 }
-
-
-
-
-
 
 /*---------------------------------------------*/
 .input100 {
   font-family: Ubuntu-Bold;
-  color:grey;
+  color: rgb(150, 148, 148);
+  font-size:1.1em;
   line-height: 1.2;
-  font-size: 18px;
+  letter-spacing:2px;
   display: block;
   width: 100%;
   background: transparent;
   height: 62px;
   padding: 0 20px 0 38px;
-  border:1px solid darkgrey;
-
+  border: 1px solid darkgrey;
 }
 
-.isInvalid{
-  border:1px solid red !important;
+.isInvalid {
+  border: 1px solid red !important;
 }
 .textarea100 {
   font-family: Ubuntu-Bold;
-  color: grey;
+  color: rgb(150, 148, 148);
+  font-size:1.1em;
   line-height: 1.2;
-  font-size: 18px;
+  letter-spacing:2px;
   display: block;
   width: 100%;
   background: transparent;
   padding: 20px 20px 0 38px;
   background: transparent;
-  border:1px solid darkgrey;
+  border: 1px solid darkgrey;
 }
 .inputFile100 {
   font-family: Ubuntu-Bold;
-  color: grey;
+  color: rgb(150, 148, 148);
+  font-size:1.1em;
+  letter-spacing:2px;
   line-height: 1.2;
-  font-size: 18px;
   display: block;
   width: 100%;
   background: transparent;
   height: 62px;
   padding: 20px 20px 0 38px;
-  border:1px solid darkgrey;
-
+  border: 1px solid darkgrey;
 }
-
 
 .input-checkbox100 {
   display: none;
@@ -225,7 +211,6 @@ h4{
   color: darkgrey;
 }
 
-
 /*------------------------------------------------------------------
 [ Button ]*/
 .container-login100-form-btn {
@@ -238,119 +223,108 @@ h4{
   flex-wrap: wrap;
 }
 
-
-.custom100{
-  width:100% !important;
+.custom100 {
+  width: 100% !important;
 }
-.custom33{
- /* width:15% !important;*/
+.custom33 {
+  /* width:15% !important;*/
 }
-
 
 .validate-input {
   position: relative;
 }
 
-
-
- a.answer {
+a.answer {
   font-family: Ubuntu-Regular;
   color: #6b91b6;
   line-height: 1.2;
 }
-a.answer:hover{
+a.answer:hover {
   text-decoration: none;
-  color:white;
+  color: white;
 }
-.card-img{
-	width:300px !important;
-	height:400px !important;
-	margin:8px;	
-  }
-.card-img img{
-	width:298px !important;
-	height:398px !important;
-  }
- .card-img:hover img{
-	filter:saturate(180%);
-	border:6px solid #f8e9bb;
+.card-img {
+  width: 300px !important;
+  height: 400px !important;
+  margin: 8px;
 }
-.btn-red{
-   font-family:Helvetica, Sans-Serif;
-   text-align: center;
-   text-decoration: none;
-   color:white;
-  /* text-shadow: 0px 2px 2px #775b05;*/
-  text-shadow: 2px 2px 2px black;
-   font-size: 25px; 
-	 font-weight: bold;
-   border-radius: 40px;
-	 letter-spacing: 4px; 
-	 background-color:#FCD04B; 
-   padding: 18px 30px;
-   transition: all 300ms ease 0ms;	
+.card-img img {
+  width: 298px !important;
+  height: 398px !important;
 }
-
+.card-img:hover img {
+  filter: saturate(180%);
+  border: 6px solid #f8e9bb;
+}
+.btn-red {
+  font-family:Thinoobold;
+  text-align: center;
+  text-decoration: none;
+  color: #775b05;
+  text-shadow: 0px 2px 3px #775b05;
+  /*text-shadow: 2px 2px 2px black;*/
+  font-size: 30px;
+  font-weight: bold;
+  border-radius: 40px;
+  letter-spacing: 4px;
+  background-color: #fcd04b;
+  padding: 18px 30px;
+  transition: all 300ms ease 0ms;
+}
+.color-letter-btn{
+  color: #775b05;
+}
 .btn-red:hover {
-	/*background-color: #fcea88;*/ /* Color de fondo al pasar el cursor */
-  background-color:#b3890e;
-  text-shadow: 0px 1px 2px #FCD04B;
+  /*background-color: #fcea88;*/ /* Color de fondo al pasar el cursor */
+  background-color: #b3890e;
+  text-shadow: 0px 1px 2px #fcd04b;
   transform: translateY(1px);
 }
 
 @media only screen and (max-width: 600px) {
- 	.btn-flotante {
-		font-size: 14px;
-		padding: 12px 20px;
-		bottom: 20px;
-		right: 20px;
-	}
-} 
-.container-register{
-  margin-top:10%;
+  .btn-flotante {
+    font-size: 14px;
+    padding: 12px 20px;
+    bottom: 20px;
+    right: 20px;
+  }
 }
-.buttons-center{
+.container-register {
+  margin-top: 10%;
+}
+.buttons-center {
   text-align: center;
 }
-.table-custom{
-  background-color:black !important;
+.table-custom {
+  background-color: black !important;
 }
-.table-custom thead tr th{
-  border-top:1px solid #6b91b6!important;
-  border-bottom:1px solid #6b91b6!important;
-  color:#6b91b6!important;
-
+.table-custom thead tr th {
+  border-top: 1px solid #6b91b6 !important;
+  border-bottom: 1px solid #6b91b6 !important;
+  color: #6b91b6 !important;
 }
-.table-custom td{
- padding:25px !important;
-
+.table-custom td {
+  padding: 25px !important;
 }
-.logo{
-  font: italic bold 40px Georgia, Serif;
+.logo {
+  font-family:Thinoobold;
   color: white;
-  font-size:45px;
-  letter-spacing:6px;
-  text-shadow: 1px 1px 0px  #b69b05,
-  2px 2px 0px  #b69b05,
-  3px 3px 0px #b69b05,
-  4px 4px 0px   #b69b05,
-  5px 5px 0px  #b69b05;
-
+  font-size: 50px;
+  letter-spacing: 6px;
+  text-shadow: 1px 1px 0px #b69b05, 2px 2px 0px #b69b05; 
 }
-.userLabel{
-  letter-spacing:6px;
-  font-weight:bold;
-
+.userLabel {
+  letter-spacing: 6px;
+  font-weight: bold;
 }
 button.btn-flotante {
-	position: fixed;
-	bottom: 40px;
-	right: 40px;
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
   z-index: 99;
-  color:white !important;
- 
+  color: white !important;
 }
-.actived{
- font-weight: bold!important;
- color:white;
+.actived {
+  font-weight: bold !important;
+  color: white;
 }

@@ -17,27 +17,21 @@ namespace Videogames.API.Extensions
                     BackCover = modelVM.BackCover,
                     BarCode = modelVM.BarCode,
                     CoverPage = modelVM.CoverPage,
-                    // CreateDate = modelVM.CreateDate,
                     Description = modelVM.Description,
                     Developer = modelVM.Developer,
                     Distributor = modelVM.Distributor,
                     Genre = modelVM.Genre,
                     IdSystem = modelVM.IdSystem,
                     IdSupport = modelVM.IdSupport,
-                    // IdUser = modelVM.IdUser,
                     IsActive = modelVM.IsActive,
                     Language = modelVM.Language,
                     Notes = modelVM.Notes,
-                    // Platform = modelVM.Platform,
                     Redump = modelVM.Redump,
                     Region = modelVM.Region,
                     ReleaseDate = modelVM.ReleaseDate,
-                   // Platform = modelVM.Platform.Name
-                   //  Support = modelVM.Support,
                     Title = modelVM.Title
                 };
-                //  modelDO.UpdateDate = modelVM.UpdateDate;
-                //  modelDO.User = modelVM.User;
+               
 
             }
 
@@ -54,24 +48,19 @@ namespace Videogames.API.Extensions
                     BackCover = modelDO.BackCover,
                     BarCode = modelDO.BarCode,
                     CoverPage = modelDO.CoverPage??null,
-                    //  CreateDate = modelDO.CreateDate,
                     Description = modelDO.Description,
                     Developer = modelDO.Developer,
                     Distributor = modelDO.Distributor,
                     Genre = modelDO.Genre,
                     IdSystem = modelDO.IdSystem,
                     IdSupport = modelDO.IdSupport,
-                    // IdUser = modelDO.IdUser,
                     IsActive = modelDO.IsActive,
                     Language = modelDO.Language,
                     Notes = modelDO.Notes,
-                    //  Platform = modelDO.Platform,
                     Redump = modelDO.Redump,
                     Region = modelDO.Region,
                     ReleaseDate = modelDO.ReleaseDate,
-                    Title = modelDO.Title,
-                    //  UpdateDate = modelDO.UpdateDate,
-                    //  User = modelDO.User
+                    Title = modelDO.Title
                 };
                  if (modelDO.Support != null)
                  {

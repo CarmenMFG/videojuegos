@@ -10,17 +10,25 @@ import { AdminUsersComponent } from './components/admin-users/admin-users.compon
 import { AdminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
-  {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'videogame/:id', component: VideogameComponent, canActivate: [AuthGuard]},
-  {path: 'videogame-detail/:id', component: VideogameDetailComponent},
-  {path: 'admin-users', component: AdminUsersComponent, canActivate: [AdminGuard]},
-  {path: '**', pathMatch: 'full', redirectTo: 'home'}
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  {
+    path: 'videogame/:id',
+    component: VideogameComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'videogame-detail/:id', component: VideogameDetailComponent },
+  {
+    path: 'admin-users',
+    component: AdminUsersComponent,
+    canActivate: [AdminGuard],
+  },
+  { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

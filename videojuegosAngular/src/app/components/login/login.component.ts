@@ -8,23 +8,24 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit, OnDestroy {
   loginModel: LoginModel;
   remember = false;
   private subscription: Subscription = new Subscription();
 
-  constructor(private userService: UserService,
-              private router: Router) { }
+  constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
     this.loginModel = new LoginModel();
-    if (localStorage.getItem('Remember') !== '' && localStorage.getItem('UserName')){
-        this.loginModel.user = localStorage.getItem('UserName');
-        this.remember = true;
+    if (
+      localStorage.getItem('Remember') !== '' &&
+      localStorage.getItem('UserName')
+    ) {
+      this.loginModel.user = localStorage.getItem('UserName');
+      this.remember = true;
     }
-
   }
 
   ngOnDestroy(): void {
@@ -32,31 +33,33 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   login(form: NgForm): void {
-    if (form.invalid) { return; }
-    this.subscription = this.userService.loginUser(this.loginModel)
-      .subscribe(rsp => {
-        if (rsp.userName !== ''){
-            this.userService.saveTokenUser(rsp);
-            this.userService.changeUser(true);
-            console.log(rsp);
-            this.router.navigateByUrl('/home');
-            localStorage.setItem('Remember', this.remember ? 'true' : '' );
-       }else{
+    if (form.invalid) {
+      return;
+    }
+    this.subscription = this.userService.loginUser(this.loginModel).subscribe(
+      (rsp) => {
+        if (rsp.userName !== '') {
+          this.userService.saveTokenUser(rsp);
+          this.userService.changeUser(true);
+          console.log(rsp);
+          this.router.navigateByUrl('/home');
+          localStorage.setItem('Remember', this.remember ? 'true' : '');
+        } else {
           Swal.fire({
             text: 'Invalid username and pasword or you are desactivated',
             title: 'Error',
             icon: 'error',
           });
         }
-     }, (err) => {
-          console.log(err);
-          Swal.fire({
-            text: 'Error authentication ',
-            title: 'Error',
-            icon: 'error',
-          });
-      });
-
+      },
+      (err) => {
+        console.log(err);
+        Swal.fire({
+          text: 'Error authentication ',
+          title: 'Error',
+          icon: 'error',
+        });
+      }
+    );
   }
-
 }

@@ -1,40 +1,58 @@
 <div class="limiter animated fadeIn">
-    <div class="container container-details">   
-        <div class="row mb-5">
-            <div class="col-md-12">
-                <app-group-buttons [adminUsers]="true"></app-group-buttons>
-              </div>
-        </div>   
-        <div class="wrap-login wrap-80 m-auto" >
-            <div class="row">
-                <div class="col">
-                    <table class="table table-hover table-dark table-custom">
-                        <thead>
-                          <tr>
-                            <th class="txtLabel">User</th>
-                            <th class="txtLabel">Email</th>
-                            <th class="txtLabel">Rol</th>
-                            <th class="txtLabel"></th>
-                            <th class="txtLabel"></th>
-                            
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr *ngFor="let user of users">
-                            <td [class.actived]="user.isActive">{{user.user}}</td>
-                            <td [class.actived]="user.isActive">{{user.email}}</td>
-                            <td [class.actived]="user.isActive">{{user.rol}}</td>
-                            <td><button *ngIf="user.rol!='admin' && user.isActive" class="btn btn-black fa fa-edit text-primary" type="button"  title="Edit role " (click)="showSwalEdit(user.id)"></button></td>                          
-                            <td>
-                              <button *ngIf="user.rol!='admin' && user.isActive" class="btn btn-black fa fa-times text-danger" type="button"  title="Deactive user" (click)="showSwalDeactive(user.id )"></button>
-                              <button *ngIf="user.rol!='admin' && !user.isActive" class="btn btn-black fa fa-check text-success" type="button"  title="Active user" (click)="showSwalActive(user.id)"></button>
-                            </td>
-                          </tr>
-                        </tbody>
-                    </table>      
-
-                </div>
-            </div> 
-         </div>
+  <div class="container container-details">
+    <div class="row mb-5">
+      <div class="col-md-12">
+        <app-group-buttons [adminUsers]="true"></app-group-buttons>
+      </div>
     </div>
-</div>             
+    <div class="wrap-login wrap-80 m-auto">
+      <div class="row">
+        <div class="col">
+          <table class="table table-hover table-dark table-custom">
+            <thead>
+              <tr>
+                <th class="txtLabel">User</th>
+                <th class="txtLabel">Email</th>
+                <th class="txtLabel">Rol</th>
+                <th class="txtLabel"></th>
+                <th class="txtLabel"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users">
+                <td [class.actived]="user.isActive">{{ user.user }}</td>
+                <td [class.actived]="user.isActive">{{ user.email }}</td>
+                <td [class.actived]="user.isActive">{{ user.rol }}</td>
+                <td>
+                  <button
+                    *ngIf="user.rol != 'admin' && user.isActive"
+                    class="btn btn-black fa fa-edit text-primary"
+                    type="button"
+                    title="Edit role "
+                    (click)="showSwalEdit(user.id)"
+                  ></button>
+                </td>
+                <td>
+                  <button
+                    *ngIf="user.rol != 'admin' && user.isActive"
+                    class="btn btn-black fa fa-times text-danger"
+                    type="button"
+                    title="Deactive user"
+                    (click)="showSwalDeactive(user.id)"
+                  ></button>
+                  <button
+                    *ngIf="user.rol != 'admin' && !user.isActive"
+                    class="btn btn-black fa fa-check text-success"
+                    type="button"
+                    title="Active user"
+                    (click)="showSwalActive(user.id)"
+                  ></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
