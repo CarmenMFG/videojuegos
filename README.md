@@ -10,9 +10,10 @@ El proyecto va a dividirse en varias partes segun la funcionalidad:
 Al **registrar**  una nueva cuenta es un requísito obligatorio que el usuario introduzca un nombre de usuario,dirección de correo electrónico y contraseña.Además los dos primeros deben de ser únicos y no existir anteriormente en la base de datos y la contraseña por seguridad tener un mínimo de seis caractéres.
 Para **logarse** el usuario necesita haber registrado una cuenta anteriormente. Y podrá acceder a la aplicación rellenando el nombre de usuario y contraseña con las que se registró. 
 Para facilitar la usabilidad se podrá recordar el nombre de usuario para próximos accesos.
+
 &nbsp;
 ![image](https://user-images.githubusercontent.com/48281298/101402657-537f3580-38d4-11eb-9972-62c3d2c5effa.png)
-![image](https://user-images.githubusercontent.com/48281298/101402832-92ad8680-38d4-11eb-8e8e-45da725d81c1.png)
+![image](https://user-images.githubusercontent.com/48281298/101403082-f6d04a80-38d4-11eb-96fc-79d94dd9ec20.png)
 
 &nbsp;
 La segunda funcionalidad es respecto a los videojuegos.Una vez identificado el usuario automáticamente se le mostrará la colección de videojuegos 'activos' que tiene almacenada en nuestra aplicación.Aparecerá una lista de "portadas de videojuegos" y estarán ordenadas alfabéticamente por el título. **Todos los usuarios se registran con el rol 'user' y esto les dan sólo permiso de ver y manipular su propia colección**.
