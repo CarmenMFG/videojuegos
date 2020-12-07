@@ -20,6 +20,7 @@ La segunda funcionalidad es respecto a los videojuegos.Una vez identificado el u
 Si el usuario hace click en cualquiera de ellas podrá ver una ficha de detalle del videojuego con todos los datos del mismo.Y en este mismo punto se podrá **editar** ese juego si el usuario necesita modificar algun dato o incluso **desactivar** ese videjuego por lo que dejaría de ser accesible.
 Cuando se muestra la colección será siempre visible un botón fijo a la derecha para **añadir** un nuevo videojuego.Para hacerlo se mostrará un formulario donde el usuario podrá incluir la información del videjuego en los distintos campos.Para poder dar de alta es necesario como mínimo que esté relleno el campo del 'título' y 'portada'.
 No hay restricciones de campos únicos pues un mismo usuario puede guardar dos juegos con el mismo título..pero en idiomas diferentes por ejemplo..el modelo sería bastante flexible en este sentido. 
+
 Existe un **administrador el cual al identificarse tiene acceso a todos los videojuegos 'activos' de todas las colecciones.A su vez tambien podrá manipular todas ellas e incluso añadir un videojuego**. 
 El usuario será informado mediante mensajes tanto en los formularios como por mensajes emergentes si la operación se realizó correctamente o hubo algun problema o error.
 &nbsp;
