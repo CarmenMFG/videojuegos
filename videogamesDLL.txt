@@ -1,0 +1,80 @@
+CREATE TABLE `ROL` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  `description` varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idrol` (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `USER` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(200) NOT NULL,
+  `user` varchar(100) NOT NULL,
+  `idrol` int(11) DEFAULT NULL,
+  `passwordhash` blob,
+  `passwordsalt` blob,
+  `isactive` bit(1) DEFAULT b'1',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `iidusuario` (`id`),
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `user` (`user`),
+  UNIQUE KEY `email_2` (`email`),
+  KEY `idrol` (`idrol`),
+  CONSTRAINT `ROL_fk` FOREIGN KEY (`idrol`) REFERENCES `ROL` (`id`) ON DELETE SET NULL ON UPDATE SET NULL
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `PLATFORM` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  `description` varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `SUPPORT` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) NOT NULL,
+  `description` varchar(1000) DEFAULT NULL,
+  `createDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idsupport` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `VIDEOGAME` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(200) CHARACTER SET latin1 NOT NULL,
+  `coverpage` longtext,
+  `backcover` longtext,
+  `releasedate` datetime DEFAULT NULL,
+  `developer` varchar(200) CHARACTER SET latin1 DEFAULT NULL,
+  `barcode` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
+  `notes` varchar(500) CHARACTER SET latin1 DEFAULT NULL,
+  `description` varchar(1000) CHARACTER SET latin1 DEFAULT NULL,
+  `redump` varchar(200) CHARACTER SET latin1 DEFAULT NULL,
+  `createdate` datetime DEFAULT NULL,
+  `updatedate` datetime DEFAULT NULL,
+  `genre` varchar(1000) CHARACTER SET latin1 DEFAULT NULL,
+  `distributor` varchar(200) CHARACTER SET latin1 DEFAULT NULL,
+  `idsystem` int(11) DEFAULT NULL,
+  `idsupport` int(3) DEFAULT NULL,
+  `region` varchar(20) CHARACTER SET latin1 DEFAULT NULL,
+  `language` varchar(20) CHARACTER SET latin1 DEFAULT NULL,
+  `iduser` int(11) NOT NULL,
+  `isactive` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idvideogame` (`id`),
+  KEY `idsupport` (`idsupport`),
+  KEY `iduser` (`iduser`),
+  KEY `idsystem` (`idsystem`),
+  CONSTRAINT `SUPPORT_fk` FOREIGN KEY (`idsupport`) REFERENCES `SUPPORT` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `SYSTEM_fk` FOREIGN KEY (`idsystem`) REFERENCES `SYSTEM` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
+  CONSTRAINT `USER_fk` FOREIGN KEY (`iduser`) REFERENCES `USER` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=188 DEFAULT CHARSET=utf8;
+
+
+
