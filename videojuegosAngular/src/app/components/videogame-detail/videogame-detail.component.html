@@ -11,90 +11,78 @@
     </div>
     <div class="wrap-login wrap-80 m-auto" *ngIf="dataGame !== null">
       <div class="row">
-        <div class="col">
-          <div class="card card-img">
+        <div class="col-md-5">
+          <div class="card card-img mt-5">
             <img class="card-img-top" src="{{ dataGame.coverPage }}" />
           </div>
         </div>
-        <div class="col">
+        <div class="col-md-7">
           <div class="container">
             <div class="row mb-4 mt-3">
               <div class="col">
                 <h4>{{ dataGame.title }}</h4>
               </div>
             </div>
-            <div class="row mb-4">
-              <div
-                class="col"
-                *ngIf="
-                  dataGame.systems != null &&
-                  dataGame.systems.name !== null &&
-                  dataGame.systems.name !== ''
-                "
-              >
-                {{ dataGame.systems.name }}
+            <div class="row mb-3">
+              <div class="col">
+                <label class="txtLabel">Platform</label><br>
+                <span *ngIf="
+                dataGame.platform != null &&
+                dataGame.platform.name !== null &&
+                dataGame.platform.name !== ''
+               "
+               >{{ dataGame.platform.name }} / </span>
+                <span *ngIf="
+                    dataGame.system!= null &&
+                    dataGame.system.name !== null &&
+                    dataGame.system.name !== ''
+                  "
+                >{{ dataGame.system.name }}</span>
               </div>
-              <div
-                class="col"
-                *ngIf="
-                  dataGame.platform != null &&
-                  dataGame.platform.name !== null &&
-                  dataGame.platform.name !== ''
-                "
-              >
-                {{ dataGame.platform.name }}
-              </div>
-            </div>
-            <div class="row mb-4">
               <div class="col" *ngIf="dataGame.releaseDate !== null">
-                {{ dataGame.releaseDate }}
+                <label class="txtLabel">Release</label><br>
+                {{ dataGame.releaseDate.toString().substr(0,10) }}
               </div>
-              <div
-                class="col"
-                *ngIf="dataGame.genre !== null && dataGame.genre !== ''"
-              >
-                {{ dataGame.genre }}
+            </div>  
+            <div class="row mb-3">
+                <div  class="col">
+                  <label class="txtLabel">Genre</label><br>
+                  <span   *ngIf="dataGame.genre !== null && dataGame.genre !== ''"> {{ dataGame.genre }}</span> 
+                </div>
+                <div class="col">
+                  <label class="txtLabel">Language</label><br>
+                  <span *ngIf="dataGame.language !== null && dataGame.language !== ''">
+                  {{ dataGame.language }}</span>
+                </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col">
+                <label class="txtLabel">Developer</label><br>
+                <span *ngIf="dataGame.developer !== null && dataGame.developer !== ''">
+                {{ dataGame.developer }}</span>
+              </div>
+              <div class="col">
+                <label class="txtLabel">Publisher</label><br>
+               <span *ngIf="
+                  dataGame.distributor !== null && dataGame.distributor !== ''">
+                {{ dataGame.distributor }}</span>
               </div>
             </div>
-            <div class="row mb-4">
-              <div
-                class="col"
-                *ngIf="dataGame.developer !== null && dataGame.developer !== ''"
-              >
-                {{ dataGame.developer }}
+            <div class="row mb-1">
+              <div class="col">
+                <label class="txtLabel">Barcode</label><br>
+               <span *ngIf="dataGame.barCode !== null && dataGame.barCode !== ''">
+                {{ dataGame.barCode }}</span>
               </div>
-              <div
-                class="col"
-                *ngIf="
-                  dataGame.distributor !== null && dataGame.distributor !== ''
-                "
-              >
-                {{ dataGame.distributor }}
-              </div>
-            </div>
-            <div class="row mb-4">
-              <div
-                class="col"
-                *ngIf="dataGame.barCode !== null && dataGame.barCode !== ''"
-              >
-                {{ dataGame.barCode }}
-              </div>
-              <div
-                class="col"
-                *ngIf="
+              <div class="col">
+                <label class="txtLabel">Support</label><br>
+               <span *ngIf="
                   dataGame.support != null &&
                   dataGame.support.name !== null &&
                   dataGame.support.name !== ''
-                "
-              >
-                {{ dataGame.support.name }}
+                ">{{ dataGame.support.name }}</span>
               </div>
-              <div
-                class="col"
-                *ngIf="dataGame.language !== null && dataGame.language !== ''"
-              >
-                {{ dataGame.language }}
-              </div>
+            
             </div>
           </div>
         </div>
@@ -103,19 +91,25 @@
         class="row mt-4 mb-4"
         *ngIf="dataGame.description !== null && dataGame.description !== ''"
       >
-        <div class="col">{{ dataGame.description }}</div>
+        <div class="col text-justify">
+          <label class="txtLabel">Description</label><br>
+          {{ dataGame.description }}</div>
       </div>
       <div
-        class="row mb-4"
+        class="row mb-4 text-justify"
         *ngIf="dataGame.notes !== null && dataGame.notes !== ''"
       >
-        <div class="col">{{ dataGame.notes }}</div>
+        <div class="col">
+          <label class="txtLabel">Notes</label><br>
+          {{ dataGame.notes }}</div>
       </div>
       <div
         class="row"
         *ngIf="dataGame.redump !== null && dataGame.redump !== ''"
       >
-        <div class="col">{{ dataGame.redump }}</div>
+        <div class="col">
+          <label class="txtLabel">Link</label><br>
+          {{ dataGame.redump }}</div>
       </div>
     </div>
   </div>

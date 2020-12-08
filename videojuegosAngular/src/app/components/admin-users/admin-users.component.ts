@@ -3,6 +3,7 @@ import { UserModel } from '../../models/user.model';
 import Swal from 'sweetalert2';
 import { Subscription } from 'rxjs';
 import { AdminUserService } from '../../services/admin-user.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-users',
@@ -12,7 +13,7 @@ import { AdminUserService } from '../../services/admin-user.service';
 export class AdminUsersComponent implements OnInit {
   public users: UserModel[] = new Array<UserModel>();
   private subscription: Subscription = new Subscription();
-  constructor(private adminUserService: AdminUserService) {}
+  constructor(private adminUserService: AdminUserService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadAllUser();
@@ -141,5 +142,8 @@ export class AdminUsersComponent implements OnInit {
           }
         });
     }
+  }
+  goToAction(event: string): void {
+    this.router.navigateByUrl('/home');
   }
 }

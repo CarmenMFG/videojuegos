@@ -103,9 +103,14 @@ label {
   box-shadow: 0px 0px 10px 0px darkgrey inset;
 }
 h4 {
-  color: rgb(76, 76, 121);
-  text-align: center;
-  letter-spacing: 2px;
+  font-family: Ubuntu-Bold;
+  font-size: 3em;
+  color: #6b91b6;
+  text-align: left;
+  width: 100%;
+  display: block;
+  padding: 3px;
+  letter-spacing: 6px;
 }
 
 /*==================================================================
@@ -152,6 +157,7 @@ h4 {
   padding: 20px 20px 0 38px;
   background: transparent;
   border: 1px solid darkgrey;
+  text-align:justify;
 }
 .inputFile100 {
   font-family: Ubuntu-Bold;
@@ -254,17 +260,17 @@ a.answer:hover {
 }
 .card-img:hover img {
   filter: saturate(180%);
-  border: 6px solid #f8e9bb;
+  border: 3px solid  #fcd04b;
 }
 .btn-red {
-  font-family:Thinoobold;
+  font-family:Arial;
   text-align: center;
   text-decoration: none;
-  color: #775b05;
-  text-shadow: 0px 2px 3px #775b05;
+  color: #a77e06;
+  text-shadow: 0px 2px 2px #775b05;
   /*text-shadow: 2px 2px 2px black;*/
-  font-size: 30px;
-  font-weight: bold;
+  font-size: 20px;
+ /* font-weight: bold;*/
   border-radius: 40px;
   letter-spacing: 4px;
   background-color: #fcd04b;
@@ -272,7 +278,7 @@ a.answer:hover {
   transition: all 300ms ease 0ms;
 }
 .color-letter-btn{
-  color: #775b05;
+  color: #a77e06;
 }
 .btn-red:hover {
   /*background-color: #fcea88;*/ /* Color de fondo al pasar el cursor */
@@ -311,7 +317,7 @@ a.answer:hover {
   color: white;
   font-size: 50px;
   letter-spacing: 6px;
-  text-shadow: 1px 1px 0px #b69b05, 2px 2px 0px #b69b05; 
+  text-shadow: -2px -2px 0px #b69b05, 2px 2px 0px #b69b05; 
 }
 .userLabel {
   letter-spacing: 6px;
@@ -322,7 +328,6 @@ button.btn-flotante {
   bottom: 40px;
   right: 40px;
   z-index: 99;
-  color: white !important;
 }
 .actived {
   font-weight: bold !important;

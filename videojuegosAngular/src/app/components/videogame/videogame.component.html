@@ -47,7 +47,7 @@
                 *ngFor="let system of systems"
                 [ngValue]="system.id"
               >
-                {{ system.name }} {{ system.platform }}
+                {{ system.platform }} {{ system.name }}
               </option>
             </select>
           </div>
@@ -95,7 +95,7 @@
             />
           </div>
           <div class="col">
-            <label for="distributor" class="txtLabel">Distributor</label>
+            <label for="distributor" class="txtLabel">Publisher</label>
             <input
               class="input100"
               type="text"
@@ -190,7 +190,7 @@
        
         <div class="row mb-4">
           <div class="col">
-            <label for="redump" class="txtLabel">Redump</label>
+            <label for="redump" class="txtLabel">Link</label>
             <input
               class="input100"
               type="text"

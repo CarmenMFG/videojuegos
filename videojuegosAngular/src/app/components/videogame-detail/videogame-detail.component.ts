@@ -34,6 +34,7 @@ export class VideogameDetailComponent implements OnInit {
       .subscribe((rsp) => {
         if (rsp.success === true) {
           this.dataGame = rsp.data;
+          console.log(rsp.data);
           if (this.dataGame.coverPage !== null) {
             this.dataGame.coverPage = this.dataGame.coverPage.replace(
               /['"]+/g,
@@ -73,6 +74,7 @@ export class VideogameDetailComponent implements OnInit {
                 title: 'Delete game',
                 icon: 'success',
               });
+
               this.router.navigateByUrl('/home');
             } else {
               Swal.fire({
@@ -96,6 +98,10 @@ export class VideogameDetailComponent implements OnInit {
       }
       case 'edit': {
         this.goToEdit();
+        break;
+      }
+      case 'goHome':{
+        this.router.navigateByUrl('/home');
         break;
       }
       default: {

@@ -259,6 +259,14 @@ export class VideogameComponent implements OnInit, OnDestroy {
         this.save();
         break;
       }
+      case 'goHome': {
+        if (this.idVideogame === 'new'){
+          this.router.navigateByUrl('/home');
+        }else{
+          this.router.navigate(['/videogame-detail', this.idVideogame]);
+        }
+        break;
+      }
       default: {
         break;
       }

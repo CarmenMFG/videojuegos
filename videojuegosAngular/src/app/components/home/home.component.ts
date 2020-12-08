@@ -14,6 +14,7 @@ import { UserService } from '../../services/user.service';
 export class HomeComponent implements OnInit {
   private subscription: Subscription = new Subscription();
   public videogames: VideoGameModel[] = new Array<VideoGameModel>();
+  public isAdmin: boolean;
   constructor(
     private router: Router,
     private videogameService: VideogameService,
@@ -40,6 +41,7 @@ export class HomeComponent implements OnInit {
     Swal.showLoading();
 
     this.userService.changeUser(true);
+    this.isAdmin=this.userService.isAdmin();
 
     this.subscription = this.videogameService.allGames().subscribe((rsp) => {
       Swal.close();

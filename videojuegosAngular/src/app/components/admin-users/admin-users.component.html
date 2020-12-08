@@ -2,7 +2,7 @@
   <div class="container container-details">
     <div class="row mb-5">
       <div class="col-md-12">
-        <app-group-buttons [adminUsers]="true"></app-group-buttons>
+        <app-group-buttons [adminUsers]="true"   (actionType)="goToAction($event)" ></app-group-buttons>
       </div>
     </div>
     <div class="wrap-login wrap-80 m-auto">

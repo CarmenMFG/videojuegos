@@ -15,7 +15,7 @@ export class GroupButtonsComponent implements OnInit {
 
   ngOnInit(): void {}
   goHome(): void {
-    this.router.navigateByUrl('/home');
+    this.actionType.emit('goHome');
   }
   delete(): void {
     this.actionType.emit('delete');

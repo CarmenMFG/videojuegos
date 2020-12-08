@@ -1,5 +1,7 @@
 <div class="container-login100 separate-top">
-  <span class="form-title pb-5"> The collection </span>
+  <span class="form-title pb-5" *ngIf="isAdmin">The collections</span>
+  <span class="form-title pb-5" *ngIf="!isAdmin">Your collection</span> 
+ 
   <button class="btn-red btn-flotante" type="button" (click)="goAddGame()">
     <span class="fa fa-plus color-letter-btn"></span
     ><span class="color-letter-btn"> add game</span>
