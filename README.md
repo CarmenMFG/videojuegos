@@ -17,6 +17,7 @@ Para facilitar la usabilidad se podrá recordar el nombre de usuario para próxi
 
 &nbsp;
 La segunda funcionalidad es respecto a los videojuegos.Una vez identificado el usuario automáticamente se le mostrará la colección de videojuegos 'activos' que tiene almacenada en nuestra aplicación.Aparecerá una lista de "portadas de videojuegos" y estarán ordenadas alfabéticamente por el título. **Todos los usuarios se registran con el rol 'user' y esto les dan sólo permiso de ver y manipular su propia colección**.
+![image](https://user-images.githubusercontent.com/48281298/101494588-d56c6e80-3967-11eb-8579-2128410210c1.png)
 Si el usuario hace click en cualquiera de ellas podrá ver una ficha de detalle del videojuego con todos los datos del mismo.Y en este mismo punto se podrá **editar** ese juego si el usuario necesita modificar algun dato o incluso **desactivar** ese videjuego por lo que dejaría de ser accesible.
 Cuando se muestra la colección será siempre visible un botón fijo a la derecha para **añadir** un nuevo videojuego.Para hacerlo se mostrará un formulario donde el usuario podrá incluir la información del videjuego en los distintos campos.Para poder dar de alta es necesario como mínimo que esté relleno el campo del 'título' y 'portada'.
 No hay restricciones de campos únicos pues un mismo usuario puede guardar dos juegos con el mismo título..pero en idiomas diferentes por ejemplo..el modelo sería bastante flexible en este sentido. 
