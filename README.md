@@ -24,6 +24,10 @@ Si el usuario hace click en cualquiera de ellas podrá ver una ficha de detalle 
 
 ![image](https://user-images.githubusercontent.com/48281298/101494813-16fd1980-3968-11eb-9fd1-fe08129b7f07.png)
 
+![image](https://user-images.githubusercontent.com/48281298/101495073-5d527880-3968-11eb-83f8-8657adf8a427.png)
+![image](https://user-images.githubusercontent.com/48281298/101495150-7e1ace00-3968-11eb-9075-1699ddc0e35f.png)
+![image](https://user-images.githubusercontent.com/48281298/101495201-90950780-3968-11eb-9ad3-648a3fb0bf6d.png)
+
 Cuando se muestra la colección será siempre visible un botón fijo a la derecha para **añadir** un nuevo videojuego.Para hacerlo se mostrará un formulario donde el usuario podrá incluir la información del videjuego en los distintos campos.Para poder dar de alta es necesario como mínimo que esté relleno el campo del 'título' y 'portada'.
 No hay restricciones de campos únicos pues un mismo usuario puede guardar dos juegos con el mismo título..pero en idiomas diferentes por ejemplo..el modelo sería bastante flexible en este sentido. 
 
