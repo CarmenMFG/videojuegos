@@ -12,7 +12,7 @@ Para **logarse** el usuario necesita haber registrado una cuenta anteriormente. 
 Para facilitar la usabilidad se podrá recordar el nombre de usuario para próximos accesos.
 
 &nbsp;
-![image](https://user-images.githubusercontent.com/48281298/101493765-c46f2d80-3966-11eb-8a8d-08b84617e62d.png)
+![image](https://user-images.githubusercontent.com/48281298/101494264-64c55200-3967-11eb-84a3-2ca69c9b9e48.png)
 ![image](https://user-images.githubusercontent.com/48281298/101493918-f5e7f900-3966-11eb-8530-528f60b7eb27.png)
 
 &nbsp;
