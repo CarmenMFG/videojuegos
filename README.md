@@ -12,8 +12,8 @@ Para **logarse** el usuario necesita haber registrado una cuenta anteriormente. 
 Para facilitar la usabilidad se podrá recordar el nombre de usuario para próximos accesos.
 
 &nbsp;
-![image](https://user-images.githubusercontent.com/48281298/101406072-487ad400-38d9-11eb-9f7d-f19d0a5cdebe.png)
-![image](https://user-images.githubusercontent.com/48281298/101406198-6a745680-38d9-11eb-871c-d48bcf414206.png)
+![image](https://user-images.githubusercontent.com/48281298/101493765-c46f2d80-3966-11eb-8a8d-08b84617e62d.png)
+![image](https://user-images.githubusercontent.com/48281298/101493918-f5e7f900-3966-11eb-8530-528f60b7eb27.png)
 
 &nbsp;
 La segunda funcionalidad es respecto a los videojuegos.Una vez identificado el usuario automáticamente se le mostrará la colección de videojuegos 'activos' que tiene almacenada en nuestra aplicación.Aparecerá una lista de "portadas de videojuegos" y estarán ordenadas alfabéticamente por el título. **Todos los usuarios se registran con el rol 'user' y esto les dan sólo permiso de ver y manipular su propia colección**.
